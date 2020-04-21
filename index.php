@@ -4031,7 +4031,7 @@ class GetUrlData {
 
     </div>";
     public $tableKey = 'kj52_lotteryTable';
-    public $dataKey = "<td style='width: 164px'>";
+    public $dataKey = "<tdstyle='width:164px'>";
     public $dataKeyLen = '';
 
     public function __construct($url = '')
@@ -4045,6 +4045,7 @@ class GetUrlData {
     {
         $this->getTable();
         $this->getData();
+        $this->insertDB();
     }
 
     #用curl 來抓取路徑上的網頁資料
@@ -4102,12 +4103,42 @@ class GetUrlData {
     #用每個表格的key來判斷抓取範圍
     private function getData()
     {
-        $test = explode($this->dataKey ,$this->data);
-        ##0420做到這邊
-        var_dump($test);
+        $this->data = str_replace(" ", "", $this->data);
+        $this->data = explode($this->dataKey ,$this->data);
+        unset($this->data[0]);
+    }
+    #存入資料庫
+    private function insertDB()
+    {
+        foreach ($this->data as $game) {
+            $oneGame = str_replace(array("\r", "\n", "\r\n", "\n\r"), '', $game);
+            $datePeriodTime = substr($oneGame, 0, 17);
+            #日期
+            
+            $date = substr($datePeriodTime, 0, 8);
+            #時間
+            $time = substr($datePeriodTime, -5, 5);
+            #期數
+            $period = substr(strchr($datePeriodTime, "-"), 1, 3);
+            #唯一索引
+            $dbID = $date . $period;
+            
+            $gameData = explode('spanclass' ,$oneGame);
+            unset($gameData[0]);
+            foreach ($gameData as $item) {
+                $ballStr = substr($item, 4, 2);
+                $ball[] = str_replace("'", '', $ballStr);
+            }
+            $query = "INSERT INTO roberTest SET id = '$dbID', date = '$date', time ='$time', period ='$period',
+            no1 = $ball[0], no2 = $ball[1], no3 = $ball[2], no4 = $ball[3], no5 = $ball[4], no6 = $ball[5], no7 = $ball[6], 
+            no8 = $ball[7], no9 = $ball[8], no10 = $ball[9]";
+
+            die(var_dump($query));
+        }
     }
 }
 new GetUrlData();
 
 
-
+#資料庫語法
+//CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
