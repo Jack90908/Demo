@@ -4119,10 +4119,8 @@ class GetUrlData {
             #時間
             $time = substr($datePeriodTime, -5, 5);
             #期數
-            $period = substr(strchr($datePeriodTime, "-"), 1, 3);
-            #唯一索引
+            $period = substr($datePeriodTime, 9, 3);
             $dbID = $date . $period;
-            
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);
             foreach ($gameData as $item) {
