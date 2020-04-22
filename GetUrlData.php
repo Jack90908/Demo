@@ -102,7 +102,7 @@ class GetUrlData {
             $dbID = $date . $period;
             #重複的不新增，用資料庫最大值去判斷
             if ($dbID < $maxID) continue;
-
+            $ball = array();
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);
             foreach ($gameData as $item) {
@@ -126,8 +126,9 @@ class GetUrlData {
                 'no10' => $ball[9]
             ];
             $res = $this->_db->add('game', $inserData);
-            var_dump($res);
+
         }
+        echo json_encode('success');
     }
     private function faker()
     {
