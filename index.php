@@ -1,4043 +1,22 @@
 <?
 require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
+new GetUrlData();
+
+
+#資料庫語法
+//CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 class GetUrlData {
-    public $data = "HTTP/1.1 200 OK
-            Date: Sun, 19 Apr 2020 18:05:12 GMT
-            Content-Type: text/html; charset=UTF-8
-            Transfer-Encoding: chunked
-            Connection: keep-alive
-            Set-Cookie: __cfduid=d8df2870a83bb6f1ce9a4b2499349c7901587319512; expires=Tue, 19-May-20 18:05:12 GMT; path=/; domain=.9696ty.com; HttpOnly; SameSite=Lax
-            Vary: Accept-Encoding
-            X-Powered-By: PHP/5.6.40
-            CF-Cache-Status: DYNAMIC
-            Expect-CT: max-age=604800, report-uri='https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct'
-            Server: cloudflare
-            CF-RAY: 58688d669ee3fbd8-KIX
-            cf-request-id: 023536b41a0000fbd8a02d1200000001
-
-
-        <div  class='kj52_lotteryTable'>
-            <div id='history-table' class='kj52_lotteryTable'>
-                <table id='history'>
-                    <tr class='LT-tr'>
-                        <th style='width: 164px;'>期號及時間</th>
-                        <th style='width: 373px;'>開獎號碼</th>
-                        <th colspan='3'>冠亞軍和</th>
-                        <th colspan='5'>1~5龍虎</th>
-                    </tr>
-
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-156  03:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                7                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-155  02:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-154  02:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-153  02:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-152  02:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-151  02:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                4                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-150  02:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-149  02:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-148  02:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-147  02:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                14                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-146  02:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-145  02:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                14                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-144  02:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-143  01:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-142  01:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-141  01:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-140  01:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-139  01:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-138  01:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-137  01:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-136  01:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-135  01:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                7                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-134  01:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-133  01:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-132  01:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                14                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-131  00:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                7                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-130  00:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-129  00:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                4                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-128  00:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                5                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-127  00:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-126  00:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                4                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-125  00:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-124  00:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-123  00:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-122  00:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-121  00:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                7                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-120  00:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-119  23:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                18                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-118  23:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-117  23:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-116  23:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-115  23:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-114  23:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-113  23:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-112  23:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-111  23:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-110  23:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-109  23:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-108  23:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-107  22:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-106  22:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-105  22:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-104  22:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-103  22:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-102  22:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-101  22:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-100  22:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                17                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-099  22:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-098  22:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-097  22:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-096  22:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-095  21:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-094  21:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-093  21:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                19                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-092  21:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                5                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-091  21:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-090  21:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                10                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-089  21:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-088  21:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-087  21:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-086  21:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                15                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-085  21:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-084  21:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                19                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-083  20:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-082  20:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                7                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-081  20:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                3                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-080  20:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-079  20:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-078  20:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-077  20:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-076  20:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-075  20:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-074  20:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-073  20:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no9'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                19                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-072  20:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                5                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-071  19:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                17                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-070  19:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-069  19:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-068  19:44                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-067  19:39                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no6'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                6                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-066  19:34                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no7'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-065  19:29                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-064  19:24                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-063  19:19                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no3'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                8                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-062  19:14                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no4'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                13                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-061  19:09                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no8'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no2'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                17                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-060  19:04                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no10'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                16                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    虎                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-059  18:59                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                12                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>大</font>                    </td>
-                            <td style='width: 60px'>
-                                <font color='#0000FF'>雙</font>                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-
-                        </tr>
-                                                        <tr class='even'>
-
-                                            <td style='width: 164px'>
-                                20200419-058  18:54                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no6'></span>                
-                                        <span class='no3'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no10'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no5'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                9                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                                        <tr class='odd'>
-
-                                            <td style='width: 164px'>
-                                20200419-057  18:49                    </td>
-                            <td style='width: 373px'>
-                                <div class='num_pk10'>
-                                                                <span class='no10'></span>                
-                                        <span class='no1'></span>                
-                                        <span class='no9'></span>                
-                                        <span class='no4'></span>                
-                                        <span class='no2'></span>                
-                                        <span class='no6'></span>                
-                                        <span class='no5'></span>                
-                                        <span class='no8'></span>                
-                                        <span class='no7'></span>                
-                                        <span class='no3'></span>   
-                                </div>
-                            </td>
-                            <td style='width: 60px'>
-                                11                    </td>
-                            <td style='width: 60px'>
-                                小                    </td>
-                            <td style='width: 60px'>
-                                單                    </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>                        </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    <font color='red'>龍</font>
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-                                <td style='width: 60px' class=''>
-                                    虎
-                                </td>
-
-                        </tr>
-                                </table>
-            </div>
-
-    </div>";
     public $tableKey = 'kj52_lotteryTable';
-    public $dataKey = "<tdstyle='width:164px'>";
+    public $dataKey = '<tdstyle="width:164px">';
     public $dataKeyLen = '';
-
+    private $_db = '';//資料庫連線
+    private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
     public function __construct($url = '')
     {
-        // $this->data = $this->curl_get($url);
+        if ($url != '') $this->url = $url;
+        $this->data = $this->curl_get($this->url);
+        $this->_db = new Model('cm');
         $this->dataSOP();
     }
 
@@ -4111,33 +90,4075 @@ class GetUrlData {
     #存入資料庫
     private function insertDB()
     {
+        $getMaxID = $this->_db->get('game', 'max(id)');
+        list($maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
         foreach ($this->data as $game) {
             $oneGame = str_replace(array("\r", "\n", "\r\n", "\n\r"), '', $game);
             $datePeriodTime = substr($oneGame, 0, 17);
-            #日期
-            
+            #日期、時間、期數
             $date = substr($datePeriodTime, 0, 8);
-            #時間
             $time = substr($datePeriodTime, -5, 5);
-            #期數
             $period = substr($datePeriodTime, 9, 3);
             $dbID = $date . $period;
+            #重複的不新增，用資料庫最大值去判斷
+            if ($dbID < $maxID) continue;
+
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);
             foreach ($gameData as $item) {
                 $ballStr = substr($item, 4, 2);
                 $ball[] = str_replace("'", '', $ballStr);
             }
-            $query = "INSERT INTO roberTest SET id = '$dbID', date = '$date', time ='$time', period ='$period',
-            no1 = $ball[0], no2 = $ball[1], no3 = $ball[2], no4 = $ball[3], no5 = $ball[4], no6 = $ball[5], no7 = $ball[6], 
-            no8 = $ball[7], no9 = $ball[8], no10 = $ball[9]";
-
-            // die(var_dump($query));
+            $inserData = [
+                'id' => $dbID,
+                'date' => $date,
+                'time' => $time,
+                'period' => $period,
+                'no1' => $ball[0],
+                'no2' => $ball[1],
+                'no3' => $ball[2],
+                'no4' => $ball[3],
+                'no5' => $ball[4],
+                'no6' => $ball[5],
+                'no7' => $ball[6],
+                'no8' => $ball[7],
+                'no9' => $ball[8],
+                'no10' => $ball[9]
+            ];
+            $res = $this->_db->add('game', $inserData);
+            var_dump($res);
         }
     }
+    private function faker()
+    {
+        $this->data = "HTTP/1.1 200 OK
+                Date: Sun, 19 Apr 2020 18:05:12 GMT
+                Content-Type: text/html; charset=UTF-8
+                Transfer-Encoding: chunked
+                Connection: keep-alive
+                Set-Cookie: __cfduid=d8df2870a83bb6f1ce9a4b2499349c7901587319512; expires=Tue, 19-May-20 18:05:12 GMT; path=/; domain=.9696ty.com; HttpOnly; SameSite=Lax
+                Vary: Accept-Encoding
+                X-Powered-By: PHP/5.6.40
+                CF-Cache-Status: DYNAMIC
+                Expect-CT: max-age=604800, report-uri='https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct'
+                Server: cloudflare
+                CF-RAY: 58688d669ee3fbd8-KIX
+                cf-request-id: 023536b41a0000fbd8a02d1200000001
+
+
+            <div  class='kj52_lotteryTable'>
+                <div id='history-table' class='kj52_lotteryTable'>
+                    <table id='history'>
+                        <tr class='LT-tr'>
+                            <th style='width: 164px;'>期號及時間</th>
+                            <th style='width: 373px;'>開獎號碼</th>
+                            <th colspan='3'>冠亞軍和</th>
+                            <th colspan='5'>1~5龍虎</th>
+                        </tr>
+
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-156  03:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    7                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-155  02:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-154  02:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-153  02:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-152  02:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-151  02:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    4                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-150  02:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-149  02:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-148  02:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-147  02:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    14                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-146  02:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-145  02:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    14                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-144  02:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-143  01:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-142  01:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-141  01:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-140  01:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-139  01:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-138  01:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-137  01:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-136  01:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-135  01:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    7                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-134  01:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-133  01:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-132  01:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    14                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-131  00:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    7                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-130  00:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-129  00:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    4                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-128  00:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    5                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-127  00:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-126  00:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    4                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-125  00:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-124  00:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-123  00:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-122  00:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-121  00:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    7                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-120  00:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-119  23:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    18                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-118  23:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-117  23:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-116  23:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-115  23:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-114  23:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-113  23:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-112  23:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-111  23:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-110  23:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-109  23:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-108  23:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-107  22:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-106  22:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-105  22:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-104  22:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-103  22:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-102  22:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-101  22:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-100  22:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    17                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-099  22:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-098  22:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-097  22:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-096  22:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-095  21:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-094  21:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-093  21:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    19                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-092  21:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    5                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-091  21:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-090  21:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    10                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-089  21:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-088  21:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-087  21:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-086  21:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    15                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-085  21:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-084  21:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    19                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-083  20:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-082  20:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    7                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-081  20:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    3                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-080  20:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-079  20:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-078  20:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-077  20:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-076  20:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-075  20:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-074  20:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-073  20:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no9'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    19                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-072  20:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    5                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-071  19:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    17                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-070  19:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-069  19:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-068  19:44                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-067  19:39                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no6'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    6                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-066  19:34                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no7'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-065  19:29                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-064  19:24                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-063  19:19                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no3'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    8                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-062  19:14                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no4'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    13                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-061  19:09                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no8'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no2'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    17                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-060  19:04                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no10'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    16                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-059  18:59                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    12                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>大</font>                    </td>
+                                <td style='width: 60px'>
+                                    <font color='#0000FF'>雙</font>                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+
+                            </tr>
+                                                            <tr class='even'>
+
+                                                <td style='width: 164px'>
+                                    20200419-058  18:54                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no6'></span>                
+                                            <span class='no3'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no10'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no5'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    9                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                                            <tr class='odd'>
+
+                                                <td style='width: 164px'>
+                                    20200419-057  18:49                    </td>
+                                <td style='width: 373px'>
+                                    <div class='num_pk10'>
+                                                                    <span class='no10'></span>                
+                                            <span class='no1'></span>                
+                                            <span class='no9'></span>                
+                                            <span class='no4'></span>                
+                                            <span class='no2'></span>                
+                                            <span class='no6'></span>                
+                                            <span class='no5'></span>                
+                                            <span class='no8'></span>                
+                                            <span class='no7'></span>                
+                                            <span class='no3'></span>   
+                                    </div>
+                                </td>
+                                <td style='width: 60px'>
+                                    11                    </td>
+                                <td style='width: 60px'>
+                                    小                    </td>
+                                <td style='width: 60px'>
+                                    單                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>                        </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        <font color='red'>龍</font>
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+                                    <td style='width: 60px' class=''>
+                                        虎
+                                    </td>
+
+                            </tr>
+                                    </table>
+                </div>
+
+            </div>";
+    }
 }
-new GetUrlData();
-
-
-#資料庫語法
-//CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
