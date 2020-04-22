@@ -1,4 +1,5 @@
 <?
+require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
 class GetUrlData {
     public $data = "HTTP/1.1 200 OK
@@ -4131,7 +4132,7 @@ class GetUrlData {
             no1 = $ball[0], no2 = $ball[1], no3 = $ball[2], no4 = $ball[3], no5 = $ball[4], no6 = $ball[5], no7 = $ball[6], 
             no8 = $ball[7], no9 = $ball[8], no10 = $ball[9]";
 
-            die(var_dump($query));
+            // die(var_dump($query));
         }
     }
 }
