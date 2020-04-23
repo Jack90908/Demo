@@ -1,7 +1,11 @@
 <?
 require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
-new GetUrlData();
+$getData = '';
+if (isset($_GET['getData'])) {
+    $getData = $_GET['getData'];
+}
+new GetUrlData($getData);
 
 
 #資料庫語法
@@ -12,9 +16,11 @@ class GetUrlData {
     public $dataKeyLen = '';
     private $_db = '';//資料庫連線
     private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
-    public function __construct($url = '')
+    public function __construct($getData = '')
     {
-        if ($url != '') $this->url = $url;
+        if ($getData) {
+            $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
+        }
         $this->data = $this->curl_get($this->url);
         $this->_db = new Model('cm');
         $this->dataSOP();

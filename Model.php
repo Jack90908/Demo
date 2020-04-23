@@ -16,7 +16,7 @@ class Model
     private $config = [
         'm' => [
             'host' => 'localhost',
-            'database' => 'roberGame',
+            'database' => 'roberdemo',
         ]
     ];
 
