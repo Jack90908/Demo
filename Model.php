@@ -15,15 +15,15 @@ class Model
 
     private $config = [
         'm' => [
-            'host' => 'localhost',
+            'host' => '192.168.0.100',
             'database' => 'roberdemo',
         ]
     ];
 
     private $sideDBInfo = [
         'c' => [
-            'username' => 'root',
-            'password' => '',
+            'username' => 'rober',
+            'password' => 'jack90908',
         ]
     ];
 
