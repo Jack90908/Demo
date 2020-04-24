@@ -1,4 +1,4 @@
-<?
+<?php
 require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
 $getData = '';
