@@ -2,11 +2,10 @@
 require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
 $getData = '';
-if (isset($_GET['getData'])) {
-    $getData = $_GET['getData'];
-}
-new GetUrlData($getData);
-
+$post = '';
+if (isset($_GET['getData'])) $getData = $_GET['getData'];
+if (isset($_POST)) $post = $_POST;
+new GetUrlData($getData, $post);
 
 #資料庫語法
 //CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
@@ -16,13 +15,14 @@ class GetUrlData {
     public $dataKeyLen = '';
     private $_db = '';//資料庫連線
     private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
-    public function __construct($getData = '')
+    public function __construct($getData = '', $post = '')
     {
-        if ($getData) {
-            $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
-        }
+        if ($getData) $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
         $this->data = $this->curl_get($this->url);
         $this->_db = new Model('cm');
+        $getMaxID = $this->_db->get('game', 'max(id)');
+        list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
+        if ($post) $this->getNowId(key($post));
         $this->dataSOP();
     }
 
@@ -33,7 +33,15 @@ class GetUrlData {
         $this->getData();
         $this->insertDB();
     }
-
+    private function getNowId($id) 
+    {
+        if ($id == $this->maxID) {
+            echo json_encode('success');
+            exit;
+        } else {
+            return;
+        }
+    }
     #用curl 來抓取路徑上的網頁資料
     function curl_get($url)
     {
@@ -96,8 +104,6 @@ class GetUrlData {
     #存入資料庫
     private function insertDB()
     {
-        $getMaxID = $this->_db->get('game', 'max(id)');
-        list($maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
         foreach ($this->data as $game) {
             $oneGame = str_replace(array("\r", "\n", "\r\n", "\n\r"), '', $game);
             $datePeriodTime = substr($oneGame, 0, 17);
@@ -107,7 +113,7 @@ class GetUrlData {
             $period = substr($datePeriodTime, 9, 3);
             $dbID = $date . $period;
             #重複的不新增，用資料庫最大值去判斷
-            if ($dbID < $maxID) continue;
+            if ($dbID < $this->maxID) continue;
             $ball = array();
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);

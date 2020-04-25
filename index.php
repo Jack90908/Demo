@@ -68,6 +68,8 @@ $ball = [
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('result.php?type=goBall')" target="_blank" title="瀏覽" value ="跟球走">
 <input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
+<br><br><button class="summit">手動更新期數</button>
+
 <br><br><br><br>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <form action="result.php" method="post" name=formS target="_blank">
@@ -101,7 +103,6 @@ $ball = [
         </tr>
     </form>
 </table>
-<button>手動更新期數</button>
 <br><br><br><br><br><br>
 <footer>
     <a href="historic.php" style="font-size:5px;">更新日誌</a>
@@ -127,14 +128,15 @@ $ball = [
         }
         $(document).ready(function(){
         $('button').click(function(){
+            var data = '<?=$id?>';
                     $.ajax({
                             url: 'GetUrlData.php',
                             type: 'POST',
                             dataType: 'json',
                             async: true,
                             cache: false,
+                            data:data,
                             success: function(data) {
-                                alert('更新成功');
                                 window.location.reload();
                             },
                             error: function(data){

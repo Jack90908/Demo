@@ -9,6 +9,16 @@
   display: inline-block;
   font-size: 16px;
 }
+.summit {
+  background-color: #ab4646; Green
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 </style>
 <?php
 require_once "Model.php";
@@ -46,6 +56,7 @@ $ball = [
     </HEAD>
 <body>
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
+<button class="summit">手動更新期數</button>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <tr>
     <td>日期</td>
@@ -79,21 +90,22 @@ $ball = [
 <table border=1 cellpadding=3 cellspacing=2 width=1020 bgcolor=#fafad2>
 
 </table>
-<button>手動更新期數</button>
+<button class="summit">手動更新期數</button>
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
 <script language="javascript">
         $(document).ready(function(){
         $('button').click(function(){
+            var data = '<?=$id?>';
                     $.ajax({
                             url: 'GetUrlData.php',
                             type: 'POST',
                             dataType: 'json',
                             async: true,
                             cache: false,
+                            data:data,
                             success: function(data) {
-                                alert('更新成功');
                                 window.location.reload();
                             },
                             error: function(data){
