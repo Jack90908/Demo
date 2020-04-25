@@ -18,7 +18,8 @@
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<br>[新增]跟球走功能、button css樣式新增、日期判斷修正
+<br>偏移新增、檢查資訊多顏色區分
+<br>[新增]跟球走功能、button css樣式新增、日期判斷修正、跳轉頁面微調
 <br>test
 <br>[網路設定]test
 <br>後續使用

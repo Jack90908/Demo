@@ -67,7 +67,7 @@ $ball = [
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('result.php?type=goBall')" target="_blank" title="瀏覽" value ="跟球走">
-<!-- <input class="button" type="button" onclick="window.open('result.php')" target="_blank" title="瀏覽" value ="偏移球"> -->
+<input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
 <br><br><br><br>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <form action="result.php" method="post" name=formS target="_blank">

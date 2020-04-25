@@ -64,7 +64,7 @@ $ball = [
     <?php foreach ($data as $value) :?>
     <tr>
         <td><?=substr($value['date'], -4, 4);?></td>
-        <td><?=$value['period']?></td>
+        <td bgcolor="#a5f99a"><?=$value['period']?></td>
             <?php foreach ($ball as $num) :?>
         <td><?=$value["no{$num}"];?></td>
             <?php endforeach?>

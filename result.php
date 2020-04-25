@@ -121,6 +121,48 @@ switch ($act) {
             }
         }
     break;
+    case 'move':
+        $seach = $date['Ymd'];
+        $between = $date['Ymd']-1 . '180';
+        $getData = $db->where("id between '$between' AND '{$seach}180'")
+                ->get('game');
+        $data = $db->fetchAll($getData);
+
+        #塞入開頭資訊
+        $titleData = [
+            '1,4,7號： 下期右側中獎1,4,7',
+            '2,5,8號： 下期右側中獎2,5,8',
+            '3,6,9號： 下期右側中獎3,6,9',
+            '10號： 下期右側中獎1,5,10',
+        ];
+        #塞入結果
+        $dataGroup = [
+            '1' => [1, 4, 7],
+            '2' => [2, 5, 8],
+            '3' => [3, 6, 9],
+            '4' => [1, 4, 7],
+            '5' => [2, 5, 8],
+            '6' => [3, 6, 9],
+            '7' => [1, 4, 7],
+            '8' => [2, 5, 8],
+            '9' => [3, 6, 9],
+            '10' => [1, 5, 10],
+        ];
+        $beforBall = array();
+        foreach ($data as $dK => $dV) {
+            $bingo[$dV['period']] = 0;
+            foreach ($ball as $num) {
+                $move = ($num == 10) ? 1 : $num + 1;
+                if ($dK != 0 && in_array($dV["no{$move}"], $dataGroup[$beforBall["no{$num}"]])) {
+                    $bingo[$dV['period']] ++;
+                }
+            }
+            unset($beforBall);
+            foreach($ball as $num) {
+                $beforBall["no{$num}"] = $dV["no{$num}"];
+            }
+        }
+    break;
     default:
     break;
 }
