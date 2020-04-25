@@ -142,7 +142,7 @@ switch ($act) {
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 
-<input class="button" type="button" onclick="window.open('index.php')" target="_self" title="瀏覽" value ="返回首頁">
+<input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 <br><br><br><br>
 <br>
 <h>分析日期<?=$seach?></h>

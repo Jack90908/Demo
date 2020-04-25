@@ -10,7 +10,7 @@
   font-size: 16px;
 }
 </style>
-<input class="button" type="button" onclick="window.open('index.php')" target="_self" title="瀏覽" value ="返回首頁">
+<input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 
 <HTML>
     <HEAD>

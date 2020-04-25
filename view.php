@@ -45,7 +45,7 @@ $ball = [
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<input class="button" type="button" onclick="window.open('index.php')" target="_self" title="瀏覽" value ="返回首頁">
+<input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <tr>
     <td>日期</td>
