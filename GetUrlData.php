@@ -17,12 +17,12 @@ class GetUrlData {
     private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
     public function __construct($getData = '', $post = '')
     {
-        if ($getData) $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
-        $this->data = $this->curl_get($this->url);
         $this->_db = new Model('cm');
         $getMaxID = $this->_db->get('game', 'max(id)');
         list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
         if ($post) $this->getNowId(key($post));
+        if ($getData) $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
+        $this->data = $this->curl_get($this->url);
         $this->dataSOP();
     }
 
@@ -35,7 +35,7 @@ class GetUrlData {
     }
     private function getNowId($id) 
     {
-        if ($id == $this->maxID) {
+        if ($id != $this->maxID) {
             echo json_encode('success');
             exit;
         } else {

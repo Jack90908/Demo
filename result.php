@@ -57,23 +57,44 @@ $bingo = array();
 $seach = ':null';
 $act = (!isset($_GET['type'])) ? 'hand' : $_GET['type'];
 $typeHead = [
-    'hand' => '手選號碼',
-    'goBall' => '跟球走',
-    'move' => '偏移球',
+    'hand' => [
+        'title' => '手選-當期',
+        'color' => '#fafad2'
+    ],
+    'goBall' => [
+        'title' => '跟球-下期',
+        'color' => 'antiquewhite'
+    ], 
+    'move'=> [
+        'title' => '偏移-下期',
+        'color' => 'lavender'
+    ], 
 ];
 ##########
 
 switch ($act) {
     case 'hand':
-        $seach = ($_POST['date'] == 'day') ? $date['Ymd'] : $date['Ymd']-1;
+        #找期數
+        $seach = (!isset($_GET['date']) || $_GET['date'] == 'day') ? $date['Ymd'] : $date['Ymd']-1;
         $getData = $db->where("id LIKE '$seach%'")
                     ->get('game');
         $data = $db->fetchAll($getData);
+        #找是否有偏好設定
+        if (isset($_GET['name'])) {
+            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
+            $getData = $db->where("name", $_GET['name'])
+                    ->get('setting', 'data');
+            $resData = $db->fetch($getData);
+            $bData = json_decode($resData['data'], true);
+        } else {
+            $bData = $_GET['ball'];
+        }
+
         #塞入開頭資訊
         foreach ($ball as $ballList) {
             $str = '';
-            if (isset($_POST['ball'][$ballList])) {
-                foreach ($_POST['ball'][$ballList] as $num) {
+            if (isset($bData[$ballList])) {
+                foreach ($bData[$ballList] as $num) {
                     $str .= $num.',';
                 }
                 $str = substr($str,0,-1);
@@ -84,7 +105,7 @@ switch ($act) {
         foreach ($data as $dV) {
             $bingo[$dV['period']] = 0;
             foreach ($ball as $num) {
-                if (isset($_POST['ball'][$num]) && in_array($dV["no{$num}"], $_POST['ball'][$num])) {
+                if (isset($bData[$num]) && in_array($dV["no{$num}"], $bData[$num])) {
                     $bingo[$dV['period']] ++;
                 }
             }
@@ -179,14 +200,14 @@ switch ($act) {
 ?>
 <HTML>
     <HEAD>
-        <TITLE>分析</TITLE>
+        <TITLE><?=$typeHead[$act]['title']?></TITLE>
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<h><?=$typeHead[$act]?></h><br>
-<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
+<h><?=$typeHead[$act]['title']?></h><br>
+<table border=1 cellpadding=2 cellspacing=1 width=1250 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php foreach ($titleData as $titleValue):?>
-        <td>
+        <td style="width:250px">
             <?=$titleValue?>
         </td>
     <?php endforeach;?>
@@ -198,7 +219,7 @@ switch ($act) {
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 <br>
 <h>分析日期<?=$seach?></h>
-<table border=1 cellpadding=3 cellspacing=2 width=1020 bgcolor=#fafad2>
+<table border=1 cellpadding=3 cellspacing=2 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>
     <tr>
         <?php 

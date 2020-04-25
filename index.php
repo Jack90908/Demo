@@ -69,10 +69,12 @@ $ball = [
 <input class="button" type="button" onclick="window.open('result.php?type=goBall')" target="_blank" title="瀏覽" value ="跟球走">
 <input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
 <br><br><button class="summit">手動更新期數</button>
+<input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
 
 <br><br><br><br>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
-    <form action="result.php" method="post" name=formS target="_blank">
+    <form action="result.php" method="get" name=formS target="_blank">
+        <input type="hidden" name="type" value="hand">
         <?php 
         foreach ($tableStyle as $tableKey => $tableValue) :?>
             <tr bgcolor="#afeeee">
@@ -91,7 +93,7 @@ $ball = [
             ?>
             <td>
                 <?php foreach ($ball as $ballVaule) :?>
-                <input type="checkbox" name="ball[<?=$tableKey?>][]" onclick="checkbox_clicked(this)" value="<?=$ballVaule?>"><font color=#000000><?=$ballVaule?>&nbsp;&nbsp;&nbsp;</font>
+                <input type="checkbox" id="chk<?=$tableKey?>-<?=$ballVaule?>" name="ball[<?=$tableKey?>][]" onclick="checkbox_clicked(this)" value="<?=$ballVaule?>"><font color=#000000><?=$ballVaule?>&nbsp;&nbsp;&nbsp;</font>
                 <?php endforeach?>
             </td>
             </tr>
@@ -103,6 +105,7 @@ $ball = [
         </tr>
     </form>
 </table>
+<input class="summit" type="button" id="clearCookie" value="清除點選記錄">
 <br><br><br><br><br><br>
 <footer>
     <a href="historic.php" style="font-size:5px;">更新日誌</a>
@@ -144,5 +147,37 @@ $ball = [
                             }
                         });
                 });
+    });
+
+    $(document).ready(function () {
+        $("input:checkbox").change(function () {
+            var arrCheckedCheckboxes = [];
+
+            $("input[id^=chk]").each(function () {
+                var id = $(this).attr('id');
+
+                if ($(this).is(':checked')) {
+                    arrCheckedCheckboxes.push($(id).selector);
+
+                    sessionStorage.setItem('checked-checkboxes', JSON.stringify(arrCheckedCheckboxes));
+                    document.cookie = 'checked-checkboxes' + "=" + JSON.stringify(arrCheckedCheckboxes);
+                }
+            });
+        });
+        if (sessionStorage.getItem('checked-checkboxes') && $.parseJSON(sessionStorage.getItem('checked-checkboxes')).length !== 0) {
+            var arrCheckedCheckboxes = $.parseJSON(sessionStorage.getItem('checked-checkboxes'));
+            $("input[id^=chk]").each(function () {
+                var id = $(this).attr('id');
+                var chk = $(this).attr('id');
+                if (arrCheckedCheckboxes.indexOf(chk) != '-1') {
+                    document.getElementById(chk).checked=true
+                }
+            });
+        }
+
+        $("input[id^=clearCookie]").click(function () {
+            sessionStorage.clear();
+            window.location.reload();
+        });
     });
 </script>
