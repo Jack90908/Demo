@@ -22,8 +22,8 @@ class Model
 
     private $sideDBInfo = [
         'c' => [
-            'username' => 'root',
-            'password' => '',
+            'username' => 'rober',
+            'password' => 'jack90908',
         ]
     ];
 
