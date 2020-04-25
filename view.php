@@ -1,3 +1,15 @@
+<style>
+.button {
+  background-color: #4CAF50; Green
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
 <?php
 require_once "Model.php";
 //中獎量 0123 藍 456789紅色
@@ -33,7 +45,7 @@ $ball = [
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<a href="index.php">返回搜尋頁</a>
+<input class="button" type="button" onclick="window.open('index.php')" target="_self" title="瀏覽" value ="返回首頁">
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <tr>
     <td>日期</td>
@@ -60,7 +72,7 @@ $ball = [
     </tr>
 </table>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
-<a href="index.php">返回搜尋頁</a>
+<input class="button" type="button" onclick="window.open('index.php')" target="_self" title="瀏覽" value ="返回首頁">
 <br><br><br><br>
 <h>更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</h>
 <br>

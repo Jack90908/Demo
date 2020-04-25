@@ -1,3 +1,25 @@
+<style>
+.button {
+  background-color: #4CAF50; Green
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.summit {
+  background-color: #ab4646; Green
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
 <?php
 require_once "Model.php";
 $db = new Model('cm');
@@ -42,11 +64,13 @@ $ball = [
 <body>
 <h1>請選擇號碼</h1>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
-<a href="view.php" target="_blank" title="瀏覽">查看資料</a>
+<span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
+<input class="button" type="button" onclick="window.open('view.php')" target="view_window" title="瀏覽" value ="近期期數">
+<input class="button" type="button" onclick="window.open('result.php?type=goBall')" target="_blank" title="瀏覽" value ="跟球走">
+<!-- <input class="button" type="button" onclick="window.open('result.php')" target="_blank" title="瀏覽" value ="偏移球"> -->
 <br><br><br><br>
-<h>更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</h>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
-    <form action="result.php" method="post" name=formS>
+    <form action="result.php" method="post" name=formS target="_blank">
         <?php 
         foreach ($tableStyle as $tableKey => $tableValue) :?>
             <tr bgcolor="#afeeee">
@@ -72,12 +96,16 @@ $ball = [
         <?php endforeach;?>
         <tr>
             <td>
-                <input type="submit" value="統計">
+                <input class="summit" type="submit" value="統計">
             </td>
         </tr>
     </form>
 </table>
 <button>手動更新期數</button>
+<br><br><br><br><br><br>
+<footer>
+    <a href="historic.php" style="font-size:5px;">更新日誌</a>
+</footer>
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
