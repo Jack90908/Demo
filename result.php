@@ -35,10 +35,16 @@ $period = substr($id, -3, 3);
 ##預設值##
 $row = [
     1,
+    21,
+    41,
     61,
-    121
+    81,
+    101,
+    121,
+    141,
+    161,
 ];
-$list = 60;
+$list = 20;
 $ball = [
     '1' => 1,
     '2' => 2,
@@ -219,7 +225,7 @@ switch ($act) {
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 <br>
 <h>分析日期<?=$seach?></h>
-<table border=1 cellpadding=3 cellspacing=2 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
+<table border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>
     <tr>
         <?php 
@@ -227,13 +233,13 @@ switch ($act) {
         $periodList = $rowV + $j;
         ?>
         <td width="340">
-            期數：<?=$periodList?>
+            期數<?=$periodList?>：
             <?php if (isset($bingo[$periodList])) :
             $color = ($bingo[$periodList] > 3) ? 'red' : 'blue';
             ?>
-             中獎量：<font color=<?=$color?>><?= $bingo[$periodList]?></font>
+            <font color=<?=$color?>><?= $bingo[$periodList]?></font>
             <?php else: ?>
-            尚未開獎
+            未開
             <?php endif;?>
         </td>
         <?php endforeach;?>
