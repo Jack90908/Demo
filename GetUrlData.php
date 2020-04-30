@@ -2,7 +2,7 @@
 require_once "Model.php";
 // $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
 $getData = '';
-$post = '';
+$post = array();
 if (isset($_GET['getData'])) $getData = $_GET['getData'];
 if (isset($_POST)) $post = $_POST;
 new GetUrlData($getData, $post);
@@ -13,15 +13,20 @@ class GetUrlData {
     public $tableKey = 'kj52_lotteryTable';
     public $dataKey = '<tdstyle="width:164px">';
     public $dataKeyLen = '';
+    private $fixOpen = false; #不修正資料則判斷最大期數
     private $_db = '';//資料庫連線
     private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
-    public function __construct($getData = '', $post = '')
+    private $fixDataUrl = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=';
+    public function __construct($getData = '', $post = array())
     {
         $this->_db = new Model('cm');
         $getMaxID = $this->_db->get('game', 'max(id)');
         list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
         if ($post) $this->getNowId(key($post));
-        if ($getData) $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=' . $getData;
+        if ($getData) {
+            $this->url = $this->fixDataUrl . $getData;
+            $this->fixOpen = true;
+        }
         $this->data = $this->curl_get($this->url);
         $this->dataSOP();
     }
@@ -113,7 +118,7 @@ class GetUrlData {
             $period = substr($datePeriodTime, 9, 3);
             $dbID = $date . $period;
             #重複的不新增，用資料庫最大值去判斷
-            if ($dbID < $this->maxID) continue;
+            if ($dbID < $this->maxID && !$this->fixOpen) continue;
             $ball = array();
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);

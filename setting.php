@@ -119,11 +119,11 @@ $typeHead = [
         'color' => 'antiquewhite',
         'type'  => '號球'
     ], 
-    // 'move'=> [
-    //     'title' => '偏移-下期',
-    //     'color' => 'lavender',
-    //     'type'  => '號球'
-    // ], 
+    'move'=> [
+        'title' => '偏移-下期',
+        'color' => 'lavender',
+        'type'  => '號球'
+    ], 
 ];
 $tableStyle = [
     '一',
@@ -212,15 +212,12 @@ endforeach;?>
 <br>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <h>更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</h>
-<br><br><br><br>
-<br>
-<hr size="8px" color=#00000>
 <h3>刪除不要的設定值</h3>
-<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
+<table border=1 cellpadding=2 cellspacing=1 width=300 bgcolor=#fafad2>
     <form action="setting.php" id='del' method="post">
         <tr>
-            <td>
-                <select name="name">
+            <td style="width:200px">
+                <select style="width:200px" name="name">
                     <?php foreach ($settingData as $setK => $setV) :?>
                     　<option value="<?=$setV['name']?>"><?=$setV['name']?></option>
                     <?php endforeach;?>
@@ -233,6 +230,7 @@ endforeach;?>
         </tr>
     </form>
 </table>
+<hr size="8px" color=#00000>
     </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>

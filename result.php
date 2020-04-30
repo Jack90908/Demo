@@ -188,32 +188,61 @@ switch ($act) {
         }
     break;
     case 'move':
-        $seach = $date['Ymd'];
-        $between = $date['Ymd']-1 . '180';
+        $between = $seach -1 . '180';
         $getData = $db->where("id between '$between' AND '{$seach}180'")
                 ->get('game');
         $data = $db->fetchAll($getData);
 
         #塞入開頭資訊
-        $titleData = [
-            '1,4,7號： 下期右側中獎1,4,7',
-            '2,5,8號： 下期右側中獎2,5,8',
-            '3,6,9號： 下期右側中獎3,6,9',
-            '10號： 下期右側中獎1,5,10',
-        ];
+        if (isset($_GET['name'])) {
+            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
+            $getData = $db->where("name", $_GET['name'])
+                    ->get('setting', 'data');
+            $resData = $db->fetch($getData);
+            $bData = json_decode($resData['data'], true);
+        }
+        if (isset($_GET['ball']) || isset($_GET['name'])) {
+
+            $titleData = array();
+            $setBall = (isset($_GET['ball'])) ? $_GET['ball'] : $bData;
+            foreach ($setBall as $ballK => $ballCanter) {
+                $titleData[$ballK] = $ballK."號：";
+                foreach ($ballCanter as $canter) {
+                    $titleData[$ballK] .= $canter . ',';
+                }
+                $titleData[$ballK] = substr($titleData[$ballK],0,-1);
+            }
+        } else {
+            $titleData = [
+                '1,4,7號： 下期右側中獎1,4,7',
+                '2,5,8號： 下期右側中獎2,5,8',
+                '3,6,9號： 下期右側中獎3,6,9',
+                '10號： 下期右側中獎1,5,10',
+            ];
+        }
+
         #塞入結果
-        $dataGroup = [
-            '1' => [1, 4, 7],
-            '2' => [2, 5, 8],
-            '3' => [3, 6, 9],
-            '4' => [1, 4, 7],
-            '5' => [2, 5, 8],
-            '6' => [3, 6, 9],
-            '7' => [1, 4, 7],
-            '8' => [2, 5, 8],
-            '9' => [3, 6, 9],
-            '10' => [1, 5, 10],
-        ];
+        if (isset($setBall)) {
+            $dataGroup = array();
+            foreach ($setBall as $ballK => $ballCanter) {
+                foreach ($ballCanter as $canter) {
+                    $dataGroup[$ballK][] = $canter;
+                }
+            }
+        } else {
+            $dataGroup = [
+                '1' => [1, 4, 7],
+                '2' => [2, 5, 8],
+                '3' => [3, 6, 9],
+                '4' => [1, 4, 7],
+                '5' => [2, 5, 8],
+                '6' => [3, 6, 9],
+                '7' => [1, 4, 7],
+                '8' => [2, 5, 8],
+                '9' => [3, 6, 9],
+                '10' => [1, 5, 10],
+            ];
+        }
         $beforBall = array();
         foreach ($data as $dK => $dV) {
             $bingo[$dV['period']] = 0;

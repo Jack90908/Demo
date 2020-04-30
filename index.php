@@ -67,11 +67,11 @@ $typeHead = [
         'color' => 'antiquewhite',
         'type'  => '號球'
     ], 
-    // 'move'=> [
-    //     'title' => '偏移-下期',
-    //     'color' => 'lavender',
-    //     'type'  => '號球'
-    // ], 
+    'move'=> [
+        'title' => '偏移-下期',
+        'color' => 'lavender',
+        'type'  => '號球'
+    ], 
 ];
 ?>
 <HTML>
@@ -85,7 +85,6 @@ $typeHead = [
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
-<input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
 
 <br><br><br><br>
 <form action="index.php" method="get" name="changeAct">
