@@ -59,10 +59,9 @@ $ball = [
 ];
 #必要的參數
 $titleData = array();
-if (!isset($_GET['date'])) $_GET['date'] ='day';
-$seach = ($_GET['date'] == 'yesterday') ? $date['Ymd'] -1 : $date['Ymd'];
 $bingo = array();
-$act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
+$seach = ':null';
+$act = (!isset($_GET['type'])) ? 'hand' : $_GET['type'];
 $typeHead = [
     'hand' => [
         'title' => '手選-當期',
@@ -82,6 +81,7 @@ $typeHead = [
 switch ($act) {
     case 'hand':
         #找期數
+        $seach = (!isset($_GET['date']) || $_GET['date'] == 'day') ? $date['Ymd'] : $date['Ymd']-1;
         $getData = $db->where("id LIKE '$seach%'")
                     ->get('game');
         $data = $db->fetchAll($getData);
@@ -118,65 +118,36 @@ switch ($act) {
         }
     break;
     case 'goBall':
-        $between = $seach -1 . '180';
+        $seach = $date['Ymd'];
+        $between = $date['Ymd']-1 . '180';
         $getData = $db->where("id between '$between' AND '{$seach}180'")
                 ->get('game');
         $data = $db->fetchAll($getData);
 
         #塞入開頭資訊
-        if (isset($_GET['name'])) {
-            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
-            $getData = $db->where("name", $_GET['name'])
-                    ->get('setting', 'data');
-            $resData = $db->fetch($getData);
-            $bData = json_decode($resData['data'], true);
-        }
-        if (isset($_GET['ball']) || isset($_GET['name'])) {
-
-            $titleData = array();
-            $setBall = (isset($_GET['ball'])) ? $_GET['ball'] : $bData;
-            foreach ($setBall as $ballK => $ballCanter) {
-                $titleData[$ballK] = $ballK."號球：";
-                foreach ($ballCanter as $canter) {
-                    $titleData[$ballK] .= $canter . ',';
-                }
-                $titleData[$ballK] = substr($titleData[$ballK],0,-1);
-            }
-        } else {
-            $titleData = [
-                '1,4,7號： 下期中獎1,4,7',
-                '2,5,8號： 下期中獎2,5,8',
-                '3,6,9號： 下期中獎3,6,9',
-                '10號： 下期中獎1,5,10',
-            ];
-        }
+        $titleData = [
+            '1,4,7號： 下期中獎1,4,7',
+            '2,5,8號： 下期中獎2,5,8',
+            '3,6,9號： 下期中獎3,6,9',
+            '10號： 下期中獎1,5,10',
+        ];
         #塞入結果
-        if (isset($setBall)) {
-            $dataGroup = array();
-            foreach ($setBall as $ballK => $ballCanter) {
-                foreach ($ballCanter as $canter) {
-                    $dataGroup[$ballK][] = $canter;
-                }
-            }
-        } else {
-            $dataGroup = [
-                '1' => [1, 4, 7],
-                '2' => [2, 5, 8],
-                '3' => [3, 6, 9],
-                '4' => [1, 4, 7],
-                '5' => [2, 5, 8],
-                '6' => [3, 6, 9],
-                '7' => [1, 4, 7],
-                '8' => [2, 5, 8],
-                '9' => [3, 6, 9],
-                '10' => [1, 5, 10],
-            ];
-        }
+        $dataGroup = [
+            '1' => [1, 4, 7],
+            '2' => [2, 5, 8],
+            '3' => [3, 6, 9],
+            '4' => [1, 4, 7],
+            '5' => [2, 5, 8],
+            '6' => [3, 6, 9],
+            '7' => [1, 4, 7],
+            '8' => [2, 5, 8],
+            '9' => [3, 6, 9],
+            '10' => [1, 5, 10],
+        ];
         $beforBall = array();
         foreach ($data as $dK => $dV) {
             $bingo[$dV['period']] = 0;
             foreach ($ball as $num) {
-                if (!isset($beforBall["no{$num}"],$dataGroup[$beforBall["no{$num}"]])) continue;
                 if ($dK != 0 && in_array($dV["no{$num}"], $dataGroup[$beforBall["no{$num}"]])) {
                     $bingo[$dV['period']] ++;
                 }

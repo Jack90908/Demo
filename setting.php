@@ -9,16 +9,6 @@
   display: inline-block;
   font-size: 16px;
 }
-.button_sel {
-  background-color: #4CAF50; Green
-  border: none;
-  color: 00000;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
 .summit {
   background-color: #ab4646; Green
   border: none;
@@ -92,8 +82,7 @@ $limit = (isset($_POST['limit'])) ? $_POST['limit'] :100;
 $getData = $db->order('id', 'DESC')
             ->get('game', '*', [0, $limit]);
 $data = $db->fetchAll($getData);
-$setGet = $db->order('act')
-            ->get('setting', ['name', 'act']);
+$setGet = $db->get('setting', ['name', 'act']);
 $settingData = $db->fetchAll($setGet);
 $ball = [
     '1' => 1,
@@ -107,36 +96,6 @@ $ball = [
     '9' => 9,
     '10' => 10
 ];
-$act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
-$typeHead = [
-    'hand' => [
-        'title' => '手選-當期',
-        'color' => '#fafad2',
-        'type'  => '第'
-    ],
-    'goBall' => [
-        'title' => '跟球-下期',
-        'color' => 'antiquewhite',
-        'type'  => '號球'
-    ], 
-    // 'move'=> [
-    //     'title' => '偏移-下期',
-    //     'color' => 'lavender',
-    //     'type'  => '號球'
-    // ], 
-];
-$tableStyle = [
-    '一',
-    '二',
-    '三',
-    '四',
-    '五',
-    '六',
-    '七',
-    '八',
-    '九',
-    '十',
-];
 ?>
 <HTML>
     <HEAD>
@@ -145,31 +104,30 @@ $tableStyle = [
     </HEAD>
 <body>
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
-&nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
-<h3>設定最愛</h3>
-<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
+<button class="summit">手動更新期數</button>
+<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <form action="setting.php" method="post" name=formS>
         <tr>
             <td>最愛暱稱</td>
             <td>型態</td>
-            <?php 
-            foreach ($tableStyle as $tableKey => $tableValue) :
-            $tdName = ($act == 'hand') ? $typeHead[$act]['type'] . $tableValue .'名' : $tableValue . $typeHead[$act]['type'];
-            ?>
-            <td><?=$tdName?>
-            <?php endforeach;?>
+            <td>第一名</td>
+            <td>第二名</td>
+            <td>第三名</td>
+            <td>第四名</td>
+            <td>第五名</td>
+            <td>第六名</td>
+            <td>第七名</td>
+            <td>第八名</td>
+            <td>第九名</td>
+            <td>第十名</td>
         </tr>
         <tr>
             <td>
                 <input type="text" id="content" name="content" value="請輸入暱稱"/>
             </td>
             <td>
-                <select id="act" name="act" onchange="chageAct()">
-                    <?php foreach ($typeHead as $tK => $titleValue) : 
-                    $checked = ($tK == $act) ? 'selected' : '';
-                    ?>
-                    <option <?=$checked?> value="<?=$tK?>"><?=$titleValue['title']?></option>
-                    <?php endforeach;?>
+                <select name="act"">
+                　<option value="hand" checked>手選-當期</option>
                 </select>
             </td>
             <?php foreach($ball as $ballVaule) :?>
@@ -192,33 +150,23 @@ $tableStyle = [
         </tr>
     </form>
 </table>
-<hr size="8px" color=#00000>
-<h3>查詢結果</h3>
-
-<?php 
-$setAct = '';
-foreach ($settingData as $setK => $setV) :
-    if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
-    $backGroud = $typeHead[$setV['act']]['color'];
-    ?>
-    <input type="button" style="width:200px; background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
+<?php foreach ($settingData as $setK => $setV) :?>
+    <input style="width:200px" class="button" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">
     </form>
-<?php $setAct = $setV['act'];
-endforeach;?>
+<?php endforeach;?>
 
 <br>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <h>更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</h>
 <br><br><br><br>
 <br>
-<hr size="8px" color=#00000>
-<h3>刪除不要的設定值</h3>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
     <form action="setting.php" id='del' method="post">
         <tr>
+            <td>刪除不要的設定值</td>
             <td>
                 <select name="name">
                     <?php foreach ($settingData as $setK => $setV) :?>
@@ -233,7 +181,9 @@ endforeach;?>
         </tr>
     </form>
 </table>
-    </HTML>
+
+<button class="summit">手動更新期數</button>
+</HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
 <script language="javascript">
@@ -266,11 +216,6 @@ endforeach;?>
             $(this).css('color','#ccc'); 
         } 
     });
-    function chageAct() {
-            var act = document.getElementById("act").value;
-            var url = "setting.php?act=" + act;
-            location.href=url;
-    }
 </script>
 
 <!-- CREATE TABLE `roberDemo`.`setting` ( `name` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `act` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `data` TEXT NOT NULL , PRIMARY KEY (`name`)) ENGINE = InnoDB; -->
