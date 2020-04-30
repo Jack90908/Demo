@@ -146,7 +146,7 @@ $tableStyle = [
     </HEAD>
 <body>
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
-&nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
+<input class="button" type="button" onclick="location.href='set.php'" target="_self" title="瀏覽" value ="檢視最愛">
 <h3>設定最愛</h3>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
     <form action="setting.php" method="post" name=formS>
@@ -157,7 +157,7 @@ $tableStyle = [
             foreach ($tableStyle as $tableKey => $tableValue) :
             $tdName = ($act == 'hand') ? $typeHead[$act]['type'] . $tableValue .'名' : $tableValue . $typeHead[$act]['type'];
             ?>
-            <td><?=$tdName?>
+            <td><?=$tdName?></td>
             <?php endforeach;?>
         </tr>
         <tr>
