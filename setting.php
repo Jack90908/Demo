@@ -93,6 +93,7 @@ $getData = $db->order('id', 'DESC')
             ->get('game', '*', [0, $limit]);
 $data = $db->fetchAll($getData);
 $setGet = $db->order('act')
+            ->order('name')
             ->get('setting', ['name', 'act']);
 $settingData = $db->fetchAll($setGet);
 $ball = [
