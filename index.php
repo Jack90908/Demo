@@ -32,16 +32,16 @@ $date['day'] = substr($id, 6, 2);
 $period = substr($id, -3, 3);
 $tableStyle = [
     '名次',
-    '第一',
-    '第二',
-    '第三',
-    '第四',
-    '第五',
-    '第六',
-    '第七',
-    '第八',
-    '第九',
-    '第十',
+    '一',
+    '二',
+    '三',
+    '四',
+    '五',
+    '六',
+    '七',
+    '八',
+    '九',
+    '十',
 ];
 $ball = [
     1,
@@ -55,6 +55,24 @@ $ball = [
     9,
     10
 ];
+$act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
+$typeHead = [
+    'hand' => [
+        'title' => '手選-當期',
+        'color' => '#fafad2',
+        'type'  => '第'
+    ],
+    'goBall' => [
+        'title' => '跟球-下期',
+        'color' => 'antiquewhite',
+        'type'  => '號球'
+    ], 
+    // 'move'=> [
+    //     'title' => '偏移-下期',
+    //     'color' => 'lavender',
+    //     'type'  => '號球'
+    // ], 
+];
 ?>
 <HTML>
     <HEAD>
@@ -66,19 +84,32 @@ $ball = [
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
-<input class="button" type="button" onclick="window.open('result.php?type=goBall')" target="_blank" title="瀏覽" value ="跟球走">
-<input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
-<br><br><button class="summit">手動更新期數</button>
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
+<input class="button" type="button" onclick="window.open('result.php?type=move')" target="_blank" title="瀏覽" value ="偏移">
 
 <br><br><br><br>
-<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=#fafad2>
+<form action="index.php" method="get" name="changeAct">
+    <select id="act" name="act" onchange="selectChange()">
+        <?php foreach ($typeHead as $tK => $titleValue) : 
+        $checked = ($tK == $act) ? 'selected' : '';
+        ?>
+            <option <?=$checked?> value="<?=$tK?>"><?=$titleValue['title']?></option>
+        <?php endforeach;?>
+    </select>
+</form>
+<h><?=$typeHead[$act]['title']?></h>
+<font size="1px"> <?php if ($act != 'hand') echo '(不帶任何數值為預設ex:1->1,4,7...)';?></font>
+<br>
+<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
     <form action="result.php" method="get" name=formS target="_blank">
-        <input type="hidden" name="type" value="hand">
+        <input type="hidden" name="act" value="<?=$act?>">
         <?php 
-        foreach ($tableStyle as $tableKey => $tableValue) :?>
-            <tr bgcolor="#afeeee">
-            <td><font color=#000000><?=$tableValue?></font></td>
+        foreach ($tableStyle as $tableKey => $tableValue) :
+            $tdName = ($act == 'hand') ? $typeHead[$act]['type'] . $tableValue .'名' : $tableValue . $typeHead[$act]['type'];
+            if ($tableValue == '名次') $tdName = '名次';
+        ?>
+            <tr>
+            <td><font color=#000000><?=$tdName?></font></td>
             <?php if ($tableValue == '名次') :?>
             <td>
                 查詢區間：
@@ -106,7 +137,7 @@ $ball = [
     </form>
 </table>
 <input class="summit" type="button" id="clearCookie" value="清除點選記錄">
-<br><br><br><br><br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 <footer>
     <a href="historic.php" style="font-size:5px;">更新日誌</a>
 </footer>
@@ -114,6 +145,9 @@ $ball = [
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
 <script language="javascript">
+        function selectChange() {
+            changeAct.submit();
+        }
         var checked_num;
         checked_num = [];
         function checkbox_clicked(flag){  
