@@ -19,10 +19,82 @@
   display: inline-block;
   font-size: 16px;
 }
+form {
+    margin:0px; display:inline
+}
 </style>
 <?php
+
 require_once "Model.php";
 $db = new Model('cm');
+
+
+#此段後續可刪除
+$dbSchema = $db->query("SHOW TABLES LIKE 'getUrl'");
+$dbName = $db->fetch($dbSchema);
+if (!$dbName) {
+    $db->query("-- phpMyAdmin SQL Dump
+    -- version 5.0.2
+    -- https://www.phpmyadmin.net/
+    --
+    -- 主機： localhost
+    -- 產生時間： 2020 年 05 月 06 日 15:13
+    -- 伺服器版本： 10.4.11-MariaDB
+    -- PHP 版本： 7.2.29
+    
+    SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
+    START TRANSACTION;
+    SET time_zone = '+00:00';
+    
+    --
+    -- 資料庫： `roberDemo`
+    --
+    
+    -- --------------------------------------------------------
+    
+    --
+    -- 資料表結構 `getUrl`
+    --
+    
+    CREATE TABLE `getUrl` (
+      `url_id` int(11) NOT NULL,
+      `setUrlName` varchar(20) NOT NULL,
+      `domain` varchar(200) NOT NULL,
+      `status` varchar(2) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    
+    --
+    -- 傾印資料表的資料 `getUrl`
+    --
+    
+    INSERT INTO `getUrl` (`url_id`, `setUrlName`, `domain`, `status`) VALUES
+    (1, '96開獎網', 'https://www.9696ty.com/96/xyft/kj.php', 'N'),
+    (2, '優樂園', 'https://www.9111kjw.com/draw-xyft-today.html', 'Y');
+    
+    --
+    -- 已傾印資料表的索引
+    --
+    
+    --
+    -- 資料表索引 `getUrl`
+    --
+    ALTER TABLE `getUrl`
+      ADD PRIMARY KEY (`url_id`);
+    
+    --
+    -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
+    --
+    
+    --
+    -- 使用資料表自動遞增(AUTO_INCREMENT) `getUrl`
+    --
+    ALTER TABLE `getUrl`
+      MODIFY `url_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    COMMIT;
+    ");
+}
+####
+
 $getPeriod = $db->order('id', 'DESC')
                 ->get('game', ['id','creat_time'], 'LIMIT 1');
 list($id, $uptime) = $db->fetch($getPeriod, PDO::FETCH_NUM);
@@ -30,6 +102,15 @@ $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
 $period = substr($id, -3, 3);
+if (isset($_POST['changeurl'])) {
+    $db->set('getUrl', ['status' => 'Y']);
+    $db->where('url_id', $_POST['changeurl'])->set('getUrl', ['status' => 'N']);
+    header('Location: index.php');
+    exit;
+}
+$getUrlData = $db->where('status', 'Y')
+                ->get('getUrl', ['setUrlName', 'domain', 'url_id']);
+$urlData = $db->fetch($getUrlData);
 $tableStyle = [
     '名次',
     '一',
@@ -137,6 +218,12 @@ $typeHead = [
 </table>
 <input class="summit" type="button" id="clearCookie" value="清除點選記錄">
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<form action="index.php" method="post" name="url">
+    <input type="hidden" name="changeurl" value="<?=$urlData['url_id']?>">
+    <input class="summit" type="submit" value="切換開獎網">
+</form>
+當前網站：<a target="_blank" href="<?=$urlData['domain']?>"><?=$urlData['setUrlName']?></a>
 <footer>
     <a href="historic.php" style="font-size:5px;">更新日誌</a>
 </footer>

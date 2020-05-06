@@ -10,27 +10,74 @@ new GetUrlData($getData, $post);
 #資料庫語法
 //CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 class GetUrlData {
-    public $tableKey = 'kj52_lotteryTable';
-    public $dataKey = '<tdstyle="width:164px">';
     public $dataKeyLen = '';
     private $fixOpen = false; #不修正資料則判斷最大期數
     private $_db = '';//資料庫連線
+    public $tableKey = 'kj52_lotteryTable';
+    public $dataKey = '<tdstyle="width:164px">';
     private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
     private $fixDataUrl = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=';
+    private $dataNum = [4, 2];
+    private $dateSe = [
+        'all' => [0, 17],
+        'date' => [0, 8],
+        'time' => [-5, 5],
+        'period' => [9, 3]
+    ];
+
     public function __construct($getData = '', $post = array())
     {
         $this->_db = new Model('cm');
+        #抓最大ID
         $getMaxID = $this->_db->get('game', 'max(id)');
         list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
+        #判斷抓的站台
+        $this->getUrl($getData);
+        #手動更新如果資料已有則不抓資料
         if ($post) $this->getNowId(key($post));
-        if ($getData) {
-            $this->url = $this->fixDataUrl . $getData;
-            $this->fixOpen = true;
-        }
         $this->data = $this->curl_get($this->url);
         $this->dataSOP();
     }
 
+    private function getUrl($getData)
+    {
+        $getUrl = $this->_db->where('status', 'Y')
+                            ->get('getUrl', ['url_id']);
+        $fetchUrl = $this->_db->fetch($getUrl);
+        if ($fetchUrl) {
+            switch ($fetchUrl['url_id']) {
+                case 1 :
+                    $this->tableKey = 'kj52_lotteryTable';
+                    $this->dataKey = '<tdstyle="width:164px">';
+                    $this->url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
+                    $this->fixDataUrl = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=';
+                    $this->dataNum = [4, 2];
+                    $this->dateSe = [
+                        'all' => [0, 17],
+                        'date' => [0, 8],
+                        'time' => [-5, 5],
+                        'period' => [9, 3]
+                    ];
+                break;
+                case 2 :
+                    $this->url = 'https://www.9111kjw.com/draw-xyft-today.html';
+                    $this->tableKey = '<div class="table h45 history-table" data-type="xyft">';
+                    $this->dataKey = '<tdclass="time"><span>';
+                    $this->dataNum = [3, 2];
+                    $this->dateSe = [
+                        'all' => [0, 23],
+                        'date' => [0, 8],
+                        'time' => [18, 5],
+                        'period' => [8, 3]
+                    ];
+                break;
+            }
+        }
+        // if ($getData) {
+        //     $this->url = $this->fixDataUrl . $getData;
+        //     $this->fixOpen = true;
+        // }        
+    }
     #關於整體SOP流程放置這
     private function dataSOP()
     {
@@ -102,29 +149,33 @@ class GetUrlData {
     #用每個表格的key來判斷抓取範圍
     private function getData()
     {
-        $this->data = str_replace(" ", "", $this->data);
+        $replace = [
+            "&nbsp", ";", " ","\r", "\n", "\r\n", "\n\r"
+        ];
+        $this->data = str_replace($replace, "", $this->data);
         $this->data = explode($this->dataKey ,$this->data);
         unset($this->data[0]);
     }
     #存入資料庫
     private function insertDB()
     {
-        foreach ($this->data as $game) {
-            $oneGame = str_replace(array("\r", "\n", "\r\n", "\n\r"), '', $game);
-            $datePeriodTime = substr($oneGame, 0, 17);
+        foreach ($this->data as $oneGame) {
+
+            $datePeriodTime = substr($oneGame, $this->dateSe['all'][0], $this->dateSe['all'][1]);    
             #日期、時間、期數
-            $date = substr($datePeriodTime, 0, 8);
-            $time = substr($datePeriodTime, -5, 5);
-            $period = substr($datePeriodTime, 9, 3);
+            $date = substr($datePeriodTime, $this->dateSe['date'][0], $this->dateSe['date'][1]);
+            $time = substr($datePeriodTime, $this->dateSe['time'][0], $this->dateSe['time'][1]);
+            $period = substr($datePeriodTime, $this->dateSe['period'][0], $this->dateSe['period'][1]);    
             $dbID = $date . $period;
             #重複的不新增，用資料庫最大值去判斷
             if ($dbID < $this->maxID && !$this->fixOpen) continue;
             $ball = array();
             $gameData = explode('spanclass' ,$oneGame);
             unset($gameData[0]);
-            foreach ($gameData as $item) {
-                $ballStr = substr($item, 4, 2);
-                $ball[] = str_replace("'", '', $ballStr);
+            foreach ($gameData as $key => $item) {
+                if ($key > 10) break;
+                $ballStr = substr($item, $this->dataNum[0], $this->dataNum[1]);
+                $ball[] = str_replace(["'", '"'], '', $ballStr);
             }
             $inserData = [
                 'id' => $dbID,
