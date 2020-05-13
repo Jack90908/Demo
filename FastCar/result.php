@@ -74,7 +74,7 @@ $typeHead = [
 switch ($act) {
     case 'hand':
         #找期數
-        $getData = $db->where("id LIKE '$seach%'")
+        $getData = $db
                     ->order('id', 'DESC')
                     ->get('fast_car', '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
@@ -113,7 +113,7 @@ switch ($act) {
     break;
     case 'goBall':
         $total ++;
-        $getData = $db->where("id LIKE '$seach%'")
+        $getData = $db
                     ->order('id', 'DESC')
                     ->get('fast_car', '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
@@ -186,7 +186,7 @@ switch ($act) {
     break;
     case 'move':
         $total ++;
-        $getData = $db->where("id LIKE '$seach%'")
+        $getData = $db
                     ->order('id', 'DESC')
                     ->get('fast_car', '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
@@ -262,15 +262,11 @@ switch ($act) {
     break;
 }
 for ($i = 0; $i < floor($total / $list); $i++) {
-    if ($act != 'hand') {
-        next($data);
-        $k = $i;
-    } else {
-        $k = 0;
-    }
-    $row[] = substr(current($data)['period'],-3 ,3) + ($list * $i) - $k;
-}
+    #倒著寫回來，因為要抓取最大的
+    $row[] = substr(end($data)['period'],-3 ,3) - ($list * $i) - $list +1;
 
+}
+krsort($row);
 ?>
 <HTML>
     <HEAD>
