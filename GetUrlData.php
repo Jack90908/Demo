@@ -195,6 +195,11 @@ class GetUrlData {
             $res = $this->_db->add('game', $inserData);
 
         }
+        if (date('Hs') > 2200 && date('Hs') < 2205) {
+            $deleteDate = date('Ymd') -2;
+            $this->_db->where("id LIKE $deleteDate%")
+                    ->delete('fast_car');
+        }
         echo json_encode('success');
     }
     #極速快車api
@@ -236,6 +241,7 @@ class GetUrlData {
                 $res = $this->_db->add('fast_car', $inserData);
             }
         }
+        
         echo json_encode('success');
     }
     private function faker()
