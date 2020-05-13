@@ -288,7 +288,7 @@ for ($i = 0; $i < floor($total / $list); $i++) {
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 <br>
-<h>分析日期<?=$seach?>-<?=$perTitle?></h>
+<h>分析日期<?=$seach?>-近300期-期數前綴<?=$perTitle?></h>
 <table border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>
     <tr>
