@@ -26,7 +26,12 @@ form {
 <?php
 require_once "../Model.php";
 $db = new Model('cm');
-
+$dbSchema = $db->query("SHOW TABLES LIKE 'fast_car'");
+$dbName = $db->fetch($dbSchema);
+if (!$dbName) {
+    $db->query("CREATE TABLE `fast_car` LIKE `game`");
+    $db->query("ALTER TABLE `fast_car` CHANGE `period` `period` BIGINT(40) NOT NULL;");
+}
 
 $getPeriod = $db->order('id', 'DESC')
                 ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
