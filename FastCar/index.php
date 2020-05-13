@@ -1,4 +1,3 @@
-<?php header("Location: FastCar/index.php");exit; ?>
 <style>
 .button {
   background-color: #4CAF50; Green
@@ -25,17 +24,16 @@ form {
 }
 </style>
 <?php
-
-require_once "Model.php";
+require_once "../Model.php";
 $db = new Model('cm');
 
+
 $getPeriod = $db->order('id', 'DESC')
-                ->get('game', ['id','creat_time'], 'LIMIT 1');
-list($id, $uptime) = $db->fetch($getPeriod, PDO::FETCH_NUM);
+                ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
+list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
 $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
-$period = substr($id, -3, 3);
 if (isset($_POST['changeurl'])) {
     $db->set('getUrl', ['status' => 'Y']);
     $db->where('url_id', $_POST['changeurl'])->set('getUrl', ['status' => 'N']);
@@ -92,10 +90,11 @@ $typeHead = [
 <HTML>
     <HEAD>
         <TITLE>選擇</TITLE>
+        <link rel="icon" href="fastCar.ico" type="image/x-icon"/>
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<h1>請選擇號碼</h1>
+<h1>極速快車---請選擇號碼</h1>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
@@ -153,13 +152,13 @@ $typeHead = [
 <input class="summit" type="button" id="clearCookie" value="清除點選記錄">
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 &nbsp;&nbsp;&nbsp;&nbsp;
-<form action="index.php" method="post" name="url">
+<!-- <form action="index.php" method="post" name="url">
     <input type="hidden" name="changeurl" value="<?=$urlData['url_id']?>">
     <input class="summit" type="submit" value="切換開獎網">
 </form>
 當前網站：<a target="_blank" href="<?=$urlData['domain']?>"><?=$urlData['setUrlName']?></a>
 <footer>
-    <a href="historic.php" style="font-size:5px;">更新日誌</a>
+    <a href="historic.php" style="font-size:5px;">更新日誌</a> -->
 </footer>
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
@@ -187,7 +186,7 @@ $typeHead = [
         $('button').click(function(){
             var data = '<?=$id?>';
                     $.ajax({
-                            url: 'GetUrlData.php',
+                            url: '../GetUrlData.php',
                             type: 'POST',
                             dataType: 'json',
                             async: true,

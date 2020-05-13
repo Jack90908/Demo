@@ -1,6 +1,10 @@
 <?php
+// 幸運備份用
+// 
+// 
+// 
 require_once "Model.php";
-// 極速賽車
+// $a = curl_get('https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php');
 $getData = '';
 $post = array();
 if (isset($_GET['getData'])) $getData = $_GET['getData'];
@@ -13,14 +17,15 @@ class GetUrlData {
     public $dataKeyLen = '';
     private $fixOpen = false; #不修正資料則判斷最大期數
     private $_db = '';//資料庫連線
-    public $tableKey = '{"errorCode":0';
+    public $tableKey = 'kj52_lotteryTable';
     public $dataKey = '<tdstyle="width:164px">';
-    private $url = 'https://api.api68.com/pks/getPksHistoryList.do?lotCode=10037';
+    private $url = 'https://www.9696ty.com/96/xyft/xyft_get/numberdistribution.php';
+    private $fixDataUrl = 'https://www.9696ty.com/96/xyft/xyft_get/number.php?date=';
     private $dataNum = [4, 2];
     private $dateSe = [
         'all' => [0, 17],
         'date' => [0, 8],
-        'time' => [-8, 8],
+        'time' => [-5, 5],
         'period' => [9, 3]
     ];
 
@@ -28,14 +33,14 @@ class GetUrlData {
     {
         $this->_db = new Model('cm');
         #抓最大ID
-        $getMaxID = $this->_db->get('fast_car', 'max(id)');
+        $getMaxID = $this->_db->get('game', 'max(id)');
         list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
         #判斷抓的站台
-        // $this->getUrl($getData);
+        $this->getUrl($getData);
         #手動更新如果資料已有則不抓資料
         if ($post) $this->getNowId(key($post));
         $this->data = $this->curl_get($this->url);
-        $this->fastCarSOP();
+        $this->dataSOP();
     }
 
     private function getUrl($getData)
@@ -194,47 +199,6 @@ class GetUrlData {
             ];
             $res = $this->_db->add('game', $inserData);
 
-        }
-        echo json_encode('success');
-    }
-    #極速快車api
-    private function fastCarSOP()
-    {
-        $this->getTable();
-        $this->data = json_decode($this->data, true);
-        if (isset($this->data['result'])) {
-            foreach ($this->data['result']['data'] as $resB) {
-                $timeR = str_replace('-', "", $resB['preDrawTime']);
-                $date = substr($timeR, $this->dateSe['date'][0], $this->dateSe['date'][1]);
-                $time = substr($timeR, $this->dateSe['time'][0], $this->dateSe['time'][1]);
-                $period = $resB['preDrawIssue'];    
-                $dbID = $date . $period;
-                #重複的不新增，用資料庫最大值去判斷
-                if ($dbID < $this->maxID && !$this->fixOpen) break;
-                $ballArray = explode(',', $resB['preDrawCode']);
-                $ball = array();
-                foreach ($ballArray as $key => $item) {
-                    if ($key > 10) break;
-                    $ball[] = $item;
-                }
-                $inserData = [
-                    'id' => $dbID,
-                    'date' => $date,
-                    'time' => $time,
-                    'period' => $period,
-                    'no1' => $ball[0],
-                    'no2' => $ball[1],
-                    'no3' => $ball[2],
-                    'no4' => $ball[3],
-                    'no5' => $ball[4],
-                    'no6' => $ball[5],
-                    'no7' => $ball[6],
-                    'no8' => $ball[7],
-                    'no9' => $ball[8],
-                    'no10' => $ball[9]
-                ];
-                $res = $this->_db->add('fast_car', $inserData);
-            }
         }
         echo json_encode('success');
     }

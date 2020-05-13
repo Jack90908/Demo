@@ -38,7 +38,7 @@
 </style>
 <?php
 
-require_once "Model.php";
+require_once "../Model.php";
 //中獎量 0123 藍 456789紅色
 $db = new Model('cm');
 $_POST['setAct'] = (isset($_POST['setAct'])) ? $_POST['setAct'] : '';
@@ -82,15 +82,15 @@ if($_POST['setAct'] == 'del') {
     
 }
 $getPeriod = $db->order('id', 'DESC')
-                ->get('game', ['id','creat_time'], 'LIMIT 1');
-list($id, $uptime) = $db->fetch($getPeriod, PDO::FETCH_NUM);
+                ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
+list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
 $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
-$period = substr($id, -3, 3);
+
 $limit = (isset($_POST['limit'])) ? $_POST['limit'] :100;
 $getData = $db->order('id', 'DESC')
-            ->get('game', '*', [0, $limit]);
+            ->get('fast_car', '*', [0, $limit]);
 $data = $db->fetchAll($getData);
 $setGet = $db->order('act')
             ->order('name')
@@ -240,7 +240,7 @@ endforeach;?>
         $('button').click(function(){
             var data = '<?=$id?>';
                     $.ajax({
-                            url: 'GetUrlData.php',
+                            url: '../GetUrlData.php',
                             type: 'POST',
                             dataType: 'json',
                             async: true,
