@@ -142,6 +142,7 @@ $tableStyle = [
 <HTML>
     <HEAD>
         <TITLE>設定最愛</TITLE>
+        <link rel="icon" href="fastCar.ico" type="image/x-icon"/>
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
