@@ -262,7 +262,7 @@ switch ($act) {
     break;
 }
 for ($i = 0; $i < floor($total / $list); $i++) {
-    if ($act != 'head') next($data);
+    if ($act != 'hand') next($data);
     $row[] = substr(current($data)['period'],-3 ,3) + ($list * $i) - $i;
 }
 
