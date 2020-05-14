@@ -117,14 +117,15 @@ foreach ($settingData as $setV) {
         case 'hand' :
             #設定球的中獎
             #13期的期數，以名次為群組
-            foreach ($data as $dV) {
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
                 $bingo[substr($dV['period'], -3, 3)] = 0;
                 foreach ($ball as $num) {
                     if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
             }
         break;
         case 'goBall' :
@@ -138,7 +139,7 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
@@ -156,7 +157,7 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
