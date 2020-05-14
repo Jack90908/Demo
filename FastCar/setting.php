@@ -88,13 +88,12 @@ $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
 
-$limit = (isset($_POST['limit'])) ? $_POST['limit'] :100;
 $getData = $db->order('id', 'DESC')
-            ->get('fast_car', '*', [0, $limit]);
+                ->get('fast_car', '*', "LIMIT 13");
 $data = $db->fetchAll($getData);
 $setGet = $db->order('act')
             ->order('name')
-            ->get('setting', ['name', 'act']);
+            ->get('setting', ['name', 'act', 'data']);
 $settingData = $db->fetchAll($setGet);
 $ball = [
     '1' => 1,
@@ -108,6 +107,65 @@ $ball = [
     '9' => 9,
     '10' => 10
 ];
+#以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
+foreach ($settingData as $setV) {
+    $listChange[$setV['name']] = '';
+    $change = 0;
+    $setBall = json_decode($setV['data'], true);
+    switch ($setV['act']) {
+        case 'hand' :
+            #設定球的中獎
+            #13期的期數，以名次為群組
+            foreach ($data as $dV) {
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+            }
+        break;
+        case 'goBall' :
+            $beforBall = array();
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
+                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+                unset($beforBall);
+                foreach($ball as $num) {
+                    $beforBall["no{$num}"] = $dV["no{$num}"];
+                }
+            }
+        break;
+        case 'move' :
+            $beforBall = array();
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
+                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+                unset($beforBall);
+                foreach($ball as $num) {
+                    $beforBall["no{$num}"] = $dV["no{$num}"];
+                }
+            }
+        break;
+    }
+    #當連續12次都是低於3次的
+    if ($change >= 12) $listChange[$setV['name']] ='change';
+}
 $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
 $typeHead = [
     'hand' => [
@@ -202,8 +260,9 @@ $setAct = '';
 foreach ($settingData as $setK => $setV) :
     if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
     $backGroud = $typeHead[$setV['act']]['color'];
+    $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
     ?>
-    <input type="button" style="width:200px; background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
+    <input type="button" style="width:200px;<?=$remind?>  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">
