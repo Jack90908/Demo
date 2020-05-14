@@ -91,6 +91,7 @@ $date['day'] = substr($id, 6, 2);
 $getData = $db->order('id', 'DESC')
                 ->get('fast_car', '*', "LIMIT 13");
 $data = $db->fetchAll($getData);
+ksort($data);
 $setGet = $db->order('act')
             ->order('name')
             ->get('setting', ['name', 'act', 'data']);
