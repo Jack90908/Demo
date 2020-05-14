@@ -263,7 +263,7 @@ foreach ($settingData as $setK => $setV) :
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
     ?>
-    <input type="button" style="width:200px;<?=$remind?>  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">
