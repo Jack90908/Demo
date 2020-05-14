@@ -91,7 +91,7 @@ $date['day'] = substr($id, 6, 2);
 $getData = $db->order('id', 'DESC')
                 ->get('fast_car', '*', "LIMIT 13");
 $data = $db->fetchAll($getData);
-ksort($data);
+krsort($data);
 $setGet = $db->order('act')
             ->order('name')
             ->get('setting', ['name', 'act', 'data']);
@@ -124,7 +124,7 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
             }
         break;
         case 'goBall' :
@@ -138,7 +138,7 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
@@ -151,12 +151,12 @@ foreach ($settingData as $setV) {
                 $frist = (!isset($frist)) ? $dK : $frist;
                 $bingo[substr($dV['period'], -3, 3)] = 0;
                 foreach ($ball as $num) {
-                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
-                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
+                    $move = ($num == 10) ? 1 : $num + 1;
+                    if ($dK != $frist && in_array($dV["no{$move}"], $setBall[$beforBall["no{$num}"]])) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] < 3) $change ++;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3) $change ++;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
