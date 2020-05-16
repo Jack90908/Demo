@@ -1,0 +1,39 @@
+body.button {
+  background-color: #4CAF50; Green
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+body.summit {
+  background-color: #ab4646; Green
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+form {
+    margin:0px; display:inline
+}
+body.button_sel {
+  background-color: #4CAF50; Green
+  border: none;
+  color: 00000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#content{
+    color:#ccc; 
+}
+body.formNoChang{
+    margin:0px; display:inline
+}
