@@ -2,13 +2,13 @@
 require_once "Model.php";
 #資料庫語法
 if ($_POST) {
-    new FastCarIn168('', $_POST);
+    new FastCarInWord('', $_POST);
 }
-//CREATE TABLE `super_member`.`roberTest` ( `id` BIGINT(40) NOT NULL , `date` INT(10) NOT NULL , `time` VARCHAR(10) NOT NULL , `period` INT(4) NOT NULL , `no1` INT(2) NOT NULL , `no2` INT(2) NOT NULL , `no3` INT(2) NOT NULL , `no4` INT(2) NOT NULL , `no5` INT(2) NOT NULL , `no6` INT(2) NOT NULL , `no7` INT(2) NOT NULL , `no8` INT(2) NOT NULL , `no9` INT(2) NOT NULL , `no10` INT(2) NOT NULL , `creat_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-class FastCarIn168 {
-    private $url = 'https://api.api68.com/pks/getPksHistoryList.do?lotCode=10037';
-    private $dbName = 'fast_car';
-    public $tableKey = '{"errorCode":0';
+// CREATE TABLE `fast_car_word` LIKE `fast_car`
+class FastCarInWord {
+    private $url = 'http://52.193.14.86/Api/pks/getPksHistoryList?lotCode=10037';
+    private $dbName = 'fast_car_word';
+    public $tableKey = '{"message":"';
 
     public $dataKeyLen = '';
     private $fixOpen = false; #不修正資料則判斷最大期數
