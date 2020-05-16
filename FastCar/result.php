@@ -298,6 +298,14 @@ krsort($row);
         foreach ($row as $rowV):
         $periodList = $rowV + $j;
         if ($periodList >= 1000) $periodList = $periodList - 1000;
+        if ($periodList < 100) {
+            $periodStr = 3 - strlen($periodList);
+            if ($periodStr == 2) {
+                $periodList = '00'.$periodList;
+            } else {
+                $periodList = '0'.$periodList;
+            }
+        }
         ?>
         <td width="340">
             <font color=darkviolet><?=$periodList?>：</font>
