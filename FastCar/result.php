@@ -263,8 +263,9 @@ switch ($act) {
 }
 for ($i = 0; $i < floor($total / $list); $i++) {
     #倒著寫回來，因為要抓取最大的
-    $row[] = substr(end($data)['period'],-3 ,3) - ($list * $i) - $list +1;
-
+    $orderPeriod = substr(end($data)['period'],-3 ,3) - ($list * $i) - $list +1;
+    if ($orderPeriod < 0) $orderPeriod += 1000;
+    $row[] = $orderPeriod;
 }
 krsort($row);
 ?>
