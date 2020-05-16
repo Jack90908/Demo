@@ -26,15 +26,15 @@ form {
 <?php
 require_once "../Model.php";
 $db = new Model('cm');
-$dbSchema = $db->query("SHOW TABLES LIKE 'fast_car'");
+$dbSchema = $db->query("SHOW TABLES LIKE '{$gameType['gameDB']}'");
 $dbName = $db->fetch($dbSchema);
 if (!$dbName) {
-    $db->query("CREATE TABLE `fast_car` LIKE `game`");
-    $db->query("ALTER TABLE `fast_car` CHANGE `period` `period` BIGINT(40) NOT NULL;");
+    $db->query("CREATE TABLE `{$gameType['gameDB']}` LIKE `game`");
+    $db->query("ALTER TABLE `{$gameType['gameDB']}` CHANGE `period` `period` BIGINT(40) NOT NULL;");
 }
 
 $getPeriod = $db->order('id', 'DESC')
-                ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
+                ->get("{$gameType['gameDB']}", ['id','creat_time', 'period'], 'LIMIT 1');
 list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
 $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
@@ -99,8 +99,8 @@ $typeHead = [
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<h1>168--極速賽車---請選擇號碼</h1>
-官方網站：<a target="_blank" href="https://1680380.com/view/jisusaiche/pk10kai.html">168開獎網</a><br>
+<h1><?=$gameType['dataWeb']?>--極速賽車---請選擇號碼</h1>
+官方網站：<a target="_blank" href="<?=$gameType['urlWeb']?>"><?=$gameType['dataWeb']?>開獎網</a><br>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
@@ -192,7 +192,7 @@ $typeHead = [
         $('button').click(function(){
             var data = '<?=$id?>';
                     $.ajax({
-                            url: '../FastCarIn168.php',
+                            url: '<?=$gameType['updateData']?>',
                             type: 'POST',
                             dataType: 'json',
                             async: true,
