@@ -1,5 +1,6 @@
 <?php
 require_once "Model.php";
+new FastCarInWord();
 #資料庫語法
 if ($_POST) {
     new FastCarInWord('', $_POST);

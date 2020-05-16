@@ -82,14 +82,14 @@ if($_POST['setAct'] == 'del') {
     
 }
 $getPeriod = $db->order('id', 'DESC')
-                ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
+                ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
 list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
 $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
 
 $getData = $db->order('id', 'DESC')
-                ->get('fast_car', '*', "LIMIT 13");
+                ->get($gameType['gameDB'], '*', "LIMIT 13");
 $data = $db->fetchAll($getData);
 krsort($data);
 $setGet = $db->order('act')
@@ -302,7 +302,7 @@ endforeach;?>
         $('button').click(function(){
             var data = '<?=$id?>';
                     $.ajax({
-                            url: '../FastCarIn168.php',
+                            url: '<?=$gameType['updateData']?>',
                             type: 'POST',
                             dataType: 'json',
                             async: true,

@@ -25,7 +25,7 @@ require_once "../Model.php";
 //中獎量 0123 藍 456789紅色
 $db = new Model('cm');
 $getPeriod = $db->order('id', 'DESC')
-                ->get('fast_car', ['id','creat_time', 'period'], 'LIMIT 1');
+                ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
 list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
 $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
@@ -76,7 +76,7 @@ switch ($act) {
         #找期數
         $getData = $db
                     ->order('id', 'DESC')
-                    ->get('fast_car', '*', "LIMIT {$total}");
+                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
         krsort($data);
         #找是否有偏好設定
@@ -115,7 +115,7 @@ switch ($act) {
         $total ++;
         $getData = $db
                     ->order('id', 'DESC')
-                    ->get('fast_car', '*', "LIMIT {$total}");
+                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
         krsort($data);
 
@@ -188,7 +188,7 @@ switch ($act) {
         $total ++;
         $getData = $db
                     ->order('id', 'DESC')
-                    ->get('fast_car', '*', "LIMIT {$total}");
+                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
         $data = $db->fetchAll($getData);
         krsort($data);
 
@@ -330,7 +330,7 @@ krsort($row);
         $('button').click(function(){
             var data = '<?=$id?>';
                     $.ajax({
-                            url: '../FastCarIn168.php',
+                            url: '<?=$gameType['updateData']?>',
                             type: 'POST',
                             dataType: 'json',
                             async: true,
