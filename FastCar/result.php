@@ -297,6 +297,7 @@ krsort($row);
         <?php 
         foreach ($row as $rowV):
         $periodList = $rowV + $j;
+        if ($periodList >= 1000) $periodList = $periodList - 1000;
         ?>
         <td width="340">
             <font color=darkviolet><?=$periodList?>：</font>
