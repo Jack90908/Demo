@@ -5,6 +5,6 @@ $gameType = [
     'gameDB' => 'fast_car_word',
     'dataWeb' => '世界',
     'urlWeb' => 'http://52.193.14.86/html/jisusaiche/pk10kai.html',
-    'updateData' => '../FastCarIn168.php'
+    'updateData' => '../FastCarInWord.php'
 ];
 require_once '../FastCarTemplate/'.$templateUrl;
