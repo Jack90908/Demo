@@ -6,7 +6,7 @@ if ($_POST) {
 }
 // CREATE TABLE `fast_car_word` LIKE `fast_car`
 class FastCarInWord {
-    private $url = 'http://52.193.14.86/Api/pks/getPksHistoryList?lotCode=10037';
+    private $url = 'http://www.1988660.com/Api/pks/getPksHistoryList?lotCode=10037';
     private $dbName = 'fast_car_word';
     public $tableKey = '{"message":"';
 
