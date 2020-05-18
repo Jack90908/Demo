@@ -21,33 +21,11 @@
 }
 </style>
 <?php
-require_once "../Model.php";
-//中獎量 0123 藍 456789紅色
-$db = new Model('cm');
-$getPeriod = $db->order('id', 'DESC')
-                ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
-list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
-$date['year'] = substr($id, 0, 4);
-$date['month'] = substr($id, 4, 2);
-$date['day'] = substr($id, 6, 2);
-
+require_once "default.php";
 $limit = (isset($_POST['limit'])) ? $_POST['limit'] :100;
 $getData = $db->order('id', 'DESC')
             ->get($gameType['gameDB'], '*', [0, $limit]);
 $data = $db->fetchAll($getData);
-
-$ball = [
-    '1' => 1,
-    '2' => 2,
-    '3' => 3,
-    '4' => 4,
-    '5' => 5,
-    '6' => 6,
-    '7' => 7,
-    '8' => 8,
-    '9' => 9,
-    '10' => 10
-];
 ?>
 <HTML>
     <HEAD>

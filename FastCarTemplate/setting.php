@@ -37,10 +37,7 @@
 }
 </style>
 <?php
-
-require_once "../Model.php";
-//中獎量 0123 藍 456789紅色
-$db = new Model('cm');
+require_once "default.php";
 $_POST['setAct'] = (isset($_POST['setAct'])) ? $_POST['setAct'] : '';
 if($_POST['setAct'] == 'setting') {
     if ($_POST['content'] == '請輸入暱稱') {
@@ -81,123 +78,6 @@ if($_POST['setAct'] == 'del') {
     exit;
     
 }
-$getPeriod = $db->order('id', 'DESC')
-                ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
-list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
-$date['year'] = substr($id, 0, 4);
-$date['month'] = substr($id, 4, 2);
-$date['day'] = substr($id, 6, 2);
-
-$getData = $db->order('id', 'DESC')
-                ->get($gameType['gameDB'], '*', "LIMIT 13");
-$data = $db->fetchAll($getData);
-krsort($data);
-$setGet = $db->order('act')
-            ->order('name')
-            ->get('setting', ['name', 'act', 'data']);
-$settingData = $db->fetchAll($setGet);
-$ball = [
-    '1' => 1,
-    '2' => 2,
-    '3' => 3,
-    '4' => 4,
-    '5' => 5,
-    '6' => 6,
-    '7' => 7,
-    '8' => 8,
-    '9' => 9,
-    '10' => 10
-];
-#以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
-foreach ($settingData as $setV) {
-    $listChange[$setV['name']] = '';
-    $change = 0;
-    $setBall = json_decode($setV['data'], true);
-    switch ($setV['act']) {
-        case 'hand' :
-            #設定球的中獎
-            #13期的期數，以名次為群組
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
-            }
-        break;
-        case 'goBall' :
-            $beforBall = array();
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
-                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
-                unset($beforBall);
-                foreach($ball as $num) {
-                    $beforBall["no{$num}"] = $dV["no{$num}"];
-                }
-            }
-        break;
-        case 'move' :
-            $beforBall = array();
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    $move = ($num == 10) ? 1 : $num + 1;
-                    if ($dK != $frist && in_array($dV["no{$move}"], $setBall[$beforBall["no{$num}"]])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
-                unset($beforBall);
-                foreach($ball as $num) {
-                    $beforBall["no{$num}"] = $dV["no{$num}"];
-                }
-            }
-        break;
-    }
-    #當連續12次都是低於3次的
-    if ($change >= 12) $listChange[$setV['name']] ='change';
-}
-$act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
-$typeHead = [
-    'hand' => [
-        'title' => '手選-當期',
-        'color' => '#fafad2',
-        'type'  => '第'
-    ],
-    'goBall' => [
-        'title' => '跟球-下期',
-        'color' => 'antiquewhite',
-        'type'  => '號球'
-    ], 
-    'move'=> [
-        'title' => '偏移-下期',
-        'color' => 'lavender',
-        'type'  => '號球'
-    ], 
-];
-$tableStyle = [
-    '一',
-    '二',
-    '三',
-    '四',
-    '五',
-    '六',
-    '七',
-    '八',
-    '九',
-    '十',
-];
 ?>
 <HTML>
     <HEAD>
@@ -254,27 +134,7 @@ $tableStyle = [
         </tr>
     </form>
 </table>
-<hr size="8px" color=#00000>
-<h3>查詢結果</h3>
-
-<?php 
-$setAct = '';
-foreach ($settingData as $setK => $setV) :
-    if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
-    $backGroud = $typeHead[$setV['act']]['color'];
-    $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
-    ?>
-    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
-    <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
-        <input type="hidden" name="name" value="<?=$setV['name']?>">
-        <input type="hidden" name="act" value="<?=$setV['act']?>">
-    </form>
-<?php $setAct = $setV['act'];
-endforeach;?>
-
 <br>
-<span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
-<h>更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</h>
 <h3>刪除不要的設定值</h3>
 <table border=1 cellpadding=2 cellspacing=1 width=300 bgcolor=#fafad2>
     <form action="setting.php" id='del' method="post">

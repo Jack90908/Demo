@@ -22,79 +22,99 @@
 form {
     margin:0px; display:inline
 }
+.button_sel {
+  background-color: #4CAF50; Green
+  border: none;
+  color: 00000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#content{
+    color:#ccc; 
+}
+.formNoChang{
+    margin:0px; display:inline
+}
 </style>
 <?php
-require_once "../Model.php";
-$db = new Model('cm');
-$dbSchema = $db->query("SHOW TABLES LIKE '{$gameType['gameDB']}'");
-$dbName = $db->fetch($dbSchema);
-if (!$dbName) {
-    $db->query("CREATE TABLE `{$gameType['gameDB']}` LIKE `game`");
-    $db->query("ALTER TABLE `{$gameType['gameDB']}` CHANGE `period` `period` BIGINT(40) NOT NULL;");
-}
+require_once "default.php";
+$getData = $db->order('id', 'DESC')
+                ->get($gameType['gameDB'], '*', "LIMIT 13");
+$data = $db->fetchAll($getData);
+krsort($data);
+$setGet = $db->order('act')
+            ->order('name')
+            ->get('setting', ['name', 'act', 'data']);
+$settingData = $db->fetchAll($setGet);
 
-$getPeriod = $db->order('id', 'DESC')
-                ->get("{$gameType['gameDB']}", ['id','creat_time', 'period'], 'LIMIT 1');
-list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
-$date['year'] = substr($id, 0, 4);
-$date['month'] = substr($id, 4, 2);
-$date['day'] = substr($id, 6, 2);
-if (isset($_POST['changeurl'])) {
-    $db->set('getUrl', ['status' => 'Y']);
-    $db->where('url_id', $_POST['changeurl'])->set('getUrl', ['status' => 'N']);
-    header('Location: index.php');
-    exit;
+#以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
+foreach ($settingData as $setV) {
+    $listChange[$setV['name']] = '';
+    $change = 0;
+    $setBall = json_decode($setV['data'], true);
+    switch ($setV['act']) {
+        case 'hand' :
+            #設定球的中獎
+            #13期的期數，以名次為群組
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+            }
+        break;
+        case 'goBall' :
+            $beforBall = array();
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
+                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+                unset($beforBall);
+                foreach($ball as $num) {
+                    $beforBall["no{$num}"] = $dV["no{$num}"];
+                }
+            }
+        break;
+        case 'move' :
+            $beforBall = array();
+            foreach ($data as $dK => $dV) {
+                $frist = (!isset($frist)) ? $dK : $frist;
+                $bingo[substr($dV['period'], -3, 3)] = 0;
+                foreach ($ball as $num) {
+                    $move = ($num == 10) ? 1 : $num + 1;
+                    if ($dK != $frist && in_array($dV["no{$move}"], $setBall[$beforBall["no{$num}"]])) {
+                        $bingo[substr($dV['period'], -3, 3)] ++;
+                    }
+                }
+                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+                unset($beforBall);
+                foreach($ball as $num) {
+                    $beforBall["no{$num}"] = $dV["no{$num}"];
+                }
+            }
+        break;
+    }
+    #當連續12次都是低於3次的
+    if ($change >= 12) $listChange[$setV['name']] ='change';
 }
-$getUrlData = $db->where('status', 'Y')
-                ->get('getUrl', ['setUrlName', 'domain', 'url_id']);
-$urlData = $db->fetch($getUrlData);
-$tableStyle = [
-    '名次',
-    '一',
-    '二',
-    '三',
-    '四',
-    '五',
-    '六',
-    '七',
-    '八',
-    '九',
-    '十',
-];
-$ball = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10
-];
-$act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
-$typeHead = [
-    'hand' => [
-        'title' => '手選-當期',
-        'color' => '#fafad2',
-        'type'  => '第'
-    ],
-    'goBall' => [
-        'title' => '跟球-下期',
-        'color' => 'antiquewhite',
-        'type'  => '號球'
-    ], 
-    'move'=> [
-        'title' => '偏移-下期',
-        'color' => 'lavender',
-        'type'  => '號球'
-    ], 
-];
 ?>
 <HTML>
     <HEAD>
-        <TITLE>選擇</TITLE>
+        <TITLE>極速賽車</TITLE>
+        <LINK rel=stylesheet type=text/css href="css/FastCar.css">
         <link rel="icon" href="fastCar.ico" type="image/x-icon"/>
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
@@ -105,67 +125,25 @@ $typeHead = [
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
+<h3>查詢結果</h3>
+
+<?php 
+$setAct = '';
+foreach ($settingData as $setK => $setV) :
+    if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
+    $backGroud = $typeHead[$setV['act']]['color'];
+    $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
+    ?>
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
+    <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
+        <input type="hidden" name="name" value="<?=$setV['name']?>">
+        <input type="hidden" name="act" value="<?=$setV['act']?>">
+    </form>
+<?php $setAct = $setV['act'];
+endforeach;?>
 
 <br><br><br><br>
-<form action="index.php" method="get" name="changeAct">
-    <select id="act" name="act" onchange="selectChange()">
-        <?php foreach ($typeHead as $tK => $titleValue) : 
-        $checked = ($tK == $act) ? 'selected' : '';
-        ?>
-            <option <?=$checked?> value="<?=$tK?>"><?=$titleValue['title']?></option>
-        <?php endforeach;?>
-    </select>
-</form>
-<h><?=$typeHead[$act]['title']?></h>
-<font size="1px"> <?php if ($act != 'hand') echo '(不帶任何數值為預設ex:1->1,4,7...)';?></font>
-<br>
-<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
-    <form action="result.php" method="get" name=formS target="_blank">
-        <input type="hidden" name="act" value="<?=$act?>">
-        <?php 
-        foreach ($tableStyle as $tableKey => $tableValue) :
-            $tdName = ($act == 'hand') ? $typeHead[$act]['type'] . $tableValue .'名' : $tableValue . $typeHead[$act]['type'];
-            if ($tableValue == '名次') $tdName = '名次';
-        ?>
-            <tr>
-            <td><font color=#000000><?=$tdName?></font></td>
-            <?php if ($tableValue == '名次') :?>
-            <td>
-                查詢區間：
-                <input type="radio" name="date" value="day" checked><font color=#000000>當日&nbsp;&nbsp;&nbsp;</font>
-                <input type="radio" name="date" value="yesterday"><font color=#000000>昨日&nbsp;&nbsp;&nbsp;</font>
-                <!-- <input type="radio" name="date" value="1month"><font color=#000000>一個月&nbsp;&nbsp;&nbsp;</font>
-                <input type="radio" name="date" value="2month"><font color=#000000>兩個月&nbsp;&nbsp;&nbsp;</font> -->
-            </td>
-            <?php 
-            continue;
-            endif;
-            ?>
-            <td>
-                <?php foreach ($ball as $ballVaule) :?>
-                <input type="checkbox" id="chk<?=$tableKey?>-<?=$ballVaule?>" name="ball[<?=$tableKey?>][]" onclick="checkbox_clicked(this)" value="<?=$ballVaule?>"><font color=#000000><?=$ballVaule?>&nbsp;&nbsp;&nbsp;</font>
-                <?php endforeach?>
-            </td>
-            </tr>
-        <?php endforeach;?>
-        <tr>
-            <td>
-                <input class="summit" type="submit" value="統計">
-            </td>
-        </tr>
-    </form>
-</table>
-<input class="summit" type="button" id="clearCookie" value="清除點選記錄">
-&nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<!-- <form action="index.php" method="post" name="url">
-    <input type="hidden" name="changeurl" value="<?=$urlData['url_id']?>">
-    <input class="summit" type="submit" value="切換開獎網">
-</form>
-當前網站：<a target="_blank" href="<?=$urlData['domain']?>"><?=$urlData['setUrlName']?></a>
-<footer>
-    <a href="historic.php" style="font-size:5px;">更新日誌</a> -->
-</footer>
+&nbsp;&nbsp;<button class="summit">手動更新期數</button>    
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>

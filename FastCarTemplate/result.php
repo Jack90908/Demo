@@ -21,54 +21,20 @@
 }
 </style>
 <?php
-require_once "../Model.php";
-//中獎量 0123 藍 456789紅色
-$db = new Model('cm');
-$getPeriod = $db->order('id', 'DESC')
-                ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
-list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
-$date['year'] = substr($id, 0, 4);
-$date['month'] = substr($id, 4, 2);
-$date['day'] = substr($id, 6, 2);
-$date['Ymd'] = $date['year'].$date['month'].$date['day'];
+require_once "default.php";
 
 ##預設值##
 $perTitle = substr($period, 0, 6);
 $perLast = substr($period, -3, 3);
 $total = 300;
 $list = 20;
-$ball = [
-    '1' => 1,
-    '2' => 2,
-    '3' => 3,
-    '4' => 4,
-    '5' => 5,
-    '6' => 6,
-    '7' => 7,
-    '8' => 8,
-    '9' => 9,
-    '10' => 10
-];
+
 #必要的參數
 $titleData = array();
 if (!isset($_GET['date'])) $_GET['date'] ='day';
 $seach = ($_GET['date'] == 'yesterday') ? $date['Ymd'] -1 : $date['Ymd'];
 $bingo = array();
 $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
-$typeHead = [
-    'hand' => [
-        'title' => '手選-當期',
-        'color' => '#fafad2'
-    ],
-    'goBall' => [
-        'title' => '跟球-下期',
-        'color' => 'antiquewhite'
-    ], 
-    'move'=> [
-        'title' => '偏移-下期',
-        'color' => 'lavender'
-    ], 
-];
 ##########
 
 switch ($act) {
