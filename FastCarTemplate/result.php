@@ -85,6 +85,9 @@ switch ($act) {
         }
     break;
     case 'goBall':
+        #只選單顆球
+        $oneBall = false;
+        $m = 0;
         $total ++;
         $getData = $db
                     ->order('id', 'DESC')
@@ -100,6 +103,11 @@ switch ($act) {
             $resData = $db->fetch($getData);
             $bData = json_decode($resData['data'], true);
         }
+        foreach ($bData as $one) {
+            if (!empty($one[1]) && !empty($one[2]) && !empty($one[3]))$m ++;
+        }
+        #只選單顆球的話
+        if ($m == 1) $oneBall = true;
         if (isset($_GET['ball']) || isset($_GET['name'])) {
 
             $titleData = array();
@@ -294,6 +302,7 @@ if ($change >= $selectCount) {
             <font color=darkviolet><?=$periodList?>：</font>
             <?php if (isset($bingo[$periodList])) :
             $color = ($bingo[$periodList] > 3) ? 'red' : 'blue';
+            if ($act == 'goBall' && $oneBall) $color = 'red';
             ?>
             <font color=<?=$color?>><?= $bingo[$periodList]?></font>
             <?php else: ?>
