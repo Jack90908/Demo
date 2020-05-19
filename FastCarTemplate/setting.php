@@ -208,8 +208,9 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td>
                 <?php for($i = 1; $i <= 3; $i++):?>
                 <select name="ball[<?=$ballVaule?>][<?=$i?>]">
+            　      <option value="" checked></option>
                     <?php foreach($ball as $seachV):?>
-            　      <option value="<?=$seachV?>" checked><?=$seachV?></option>
+            　      <option value="<?=$seachV?>"><?=$seachV?></option>
                     <?php endforeach?>
                 </select><br>
                 <?php endfor;?>
