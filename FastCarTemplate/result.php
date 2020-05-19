@@ -32,6 +32,8 @@ $change = 0;
 $bite = 0;
 $selectCount = 12;
 $bitString = '';
+#只選單顆球
+$oneBall = false;
 #必要的參數
 $titleData = array();
 if (!isset($_GET['date'])) $_GET['date'] ='day';
@@ -86,7 +88,6 @@ switch ($act) {
     break;
     case 'goBall':
         #只選單顆球
-        $oneBall = false;
         $m = 0;
         $total ++;
         $getData = $db
@@ -256,7 +257,7 @@ for ($i = 0; $i < floor($total / $list); $i++) {
     $row[] = $orderPeriod;
 }
 krsort($row);
-if ($change >= $selectCount) {
+if ($change >= $selectCount && $oneBall) {
     $bitString = "連續{$change}期藍字，共咬{$bite}期";
 }
 ?>
@@ -305,7 +306,9 @@ if ($change >= $selectCount) {
             #一般的顏色區分
             $color = ($bingo[$periodList] > 3) ? 'red' : 'blue';
             #跟球走但只選一球
-            $color = ($act == 'goBall' && $oneBall && $bingo[$periodList] == 1) ? 'red' : 'blue';
+            if ($oneBall) {
+                $color = ($bingo[$periodList] == 1) ?'red' : 'blue';
+            }
             ?>
             <font color=<?=$color?>><?= $bingo[$periodList]?></font>
             <?php else: ?>
