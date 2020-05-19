@@ -41,8 +41,15 @@ form {
 </style>
 <?php
 require_once "default.php";
+#共有幾球會提示
+$selectCount = 12;
+#總共搜尋幾球
+$getCount = $selectCount + 16;
+$change = 0;
+$bite = 0;
+
 $getData = $db->order('id', 'DESC')
-                ->get($gameType['gameDB'], '*', "LIMIT 13");
+                ->get($gameType['gameDB'], '*', "LIMIT {$getCount}");
 $data = $db->fetchAll($getData);
 krsort($data);
 $setGet = $db->order('act')
@@ -53,7 +60,6 @@ $settingData = $db->fetchAll($setGet);
 #以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
-    $change = 0;
     $setBall = json_decode($setV['data'], true);
     switch ($setV['act']) {
         case 'hand' :
@@ -67,7 +73,9 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;
             }
         break;
         case 'goBall' :
@@ -81,7 +89,9 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
@@ -99,7 +109,9 @@ foreach ($settingData as $setV) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
-                if ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) $change ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;
                 unset($beforBall);
                 foreach($ball as $num) {
                     $beforBall["no{$num}"] = $dV["no{$num}"];
@@ -108,7 +120,10 @@ foreach ($settingData as $setV) {
         break;
     }
     #當連續12次都是低於3次的
-    if ($change >= 12) $listChange[$setV['name']] ='change';
+    if ($change >= $selectCount) {
+        $listChange[$setV['name']] ='change';
+        if ($bite / $change > 0.7 ) $listChange[$setV['name']] ='bite';
+    }
 }
 ?>
 <HTML>
@@ -133,6 +148,7 @@ foreach ($settingData as $setK => $setV) :
     if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
+    $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : '';
     ?>
     <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">

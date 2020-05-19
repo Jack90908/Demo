@@ -28,7 +28,10 @@ $perTitle = substr($period, 0, 6);
 $perLast = substr($period, -3, 3);
 $total = 300;
 $list = 20;
-
+$change = 0;
+$bite = 0;
+$selectCount = 12;
+$bitString = '';
 #必要的參數
 $titleData = array();
 if (!isset($_GET['date'])) $_GET['date'] ='day';
@@ -68,13 +71,17 @@ switch ($act) {
             $titleData[] = "第{$ballList}名：" . $str;
         }
         #塞入結果
-        foreach ($data as $dV) {
+        foreach ($data as $dK => $dV) {
+            $frist = (!isset($frist)) ? $dK : $frist;
             $bingo[substr($dV['period'], -3, 3)] = 0;
             foreach ($ball as $num) {
                 if (isset($bData[$num]) && in_array($dV["no{$num}"], $bData[$num])) {
                     $bingo[substr($dV['period'], -3, 3)] ++;
                 }
             }
+            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+            if ($change == 0) $bite = 0;
         }
     break;
     case 'goBall':
@@ -148,6 +155,9 @@ switch ($act) {
             foreach($ball as $num) {
                 $beforBall["no{$num}"] = $dV["no{$num}"];
             }
+            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+            if ($change == 0) $bite = 0;
         }
     break;
     case 'move':
@@ -222,6 +232,9 @@ switch ($act) {
             foreach($ball as $num) {
                 $beforBall["no{$num}"] = $dV["no{$num}"];
             }
+            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+            if ($change == 0) $bite = 0;
         }
     break;
     default:
@@ -234,6 +247,9 @@ for ($i = 0; $i < floor($total / $list); $i++) {
     $row[] = $orderPeriod;
 }
 krsort($row);
+if ($change >= $selectCount) {
+    $bitString = "連續{$change}期藍字，共咬{$bite}期";
+}
 ?>
 <HTML>
     <HEAD>
@@ -256,7 +272,8 @@ krsort($row);
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 &nbsp;&nbsp;&nbsp;&nbsp;<button class="summit">手動更新期數</button>
 <br>
-<h>分析日期<?=$seach?>-近300期-期數前綴<?=$perTitle?></h>
+<h>分析日期<?=$seach?>-近300期-期數前綴<?=$perTitle?></h>&nbsp;&nbsp;&nbsp;&nbsp;
+<font><?=$bitString?></font>
 <table border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>
     <tr>
