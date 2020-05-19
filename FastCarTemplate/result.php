@@ -103,10 +103,11 @@ switch ($act) {
             $resData = $db->fetch($getData);
             $bData = json_decode($resData['data'], true);
         }
-        foreach ($bData as $one) {
-            if (!empty($one[1]) && !empty($one[2]) && !empty($one[3]))$m ++;
-        }
+
         #只選單顆球的話
+        foreach ($bData as $one) {
+            if (!empty($one[1]) || !empty($one[2]) || !empty($one[3]))$m ++;
+        }
         if ($m == 1) $oneBall = true;
         if (isset($_GET['ball']) || isset($_GET['name'])) {
 
@@ -301,8 +302,10 @@ if ($change >= $selectCount) {
         <td width="340">
             <font color=darkviolet><?=$periodList?>：</font>
             <?php if (isset($bingo[$periodList])) :
+            #一般的顏色區分
             $color = ($bingo[$periodList] > 3) ? 'red' : 'blue';
-            if ($act == 'goBall' && $oneBall) $color = 'red';
+            #跟球走但只選一球
+            $color = ($act == 'goBall' && $oneBall && $bingo[$periodList] == 1) ? 'red' : 'blue';
             ?>
             <font color=<?=$color?>><?= $bingo[$periodList]?></font>
             <?php else: ?>
