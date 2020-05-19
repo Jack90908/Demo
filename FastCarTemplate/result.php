@@ -257,7 +257,7 @@ for ($i = 0; $i < floor($total / $list); $i++) {
     $row[] = $orderPeriod;
 }
 krsort($row);
-if ($change >= $selectCount && $oneBall) {
+if ($change >= $selectCount && !$oneBall) {
     $bitString = "連續{$change}期藍字，共咬{$bite}期";
 }
 ?>
