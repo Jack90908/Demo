@@ -148,7 +148,7 @@ foreach ($settingData as $setK => $setV) :
     if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
-    $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : '';
+    $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : $remind;
     ?>
     <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
