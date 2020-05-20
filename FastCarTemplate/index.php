@@ -41,90 +41,44 @@ form {
 </style>
 <?php
 require_once "default.php";
-#共有幾球會提示
-$selectCount = 12;
+require_once "../Service/FastCarService.php";
+$getConfig = $db->get('ball_config');
+$config = $db->fetch($getConfig);
+$nowConfig = $config[$config['basis']];
 #總共搜尋幾球
-$getCount = $selectCount + 16;
-$change = 0;
-$bite = 0;
-
+$getCount = $config['point'] + 16;
 $getData = $db->order('id', 'DESC')
                 ->get($gameType['gameDB'], '*', "LIMIT {$getCount}");
 $data = $db->fetchAll($getData);
 krsort($data);
+
 $setGet = $db->order('act')
             ->order('name')
             ->get('setting', ['name', 'act', 'data']);
 $settingData = $db->fetchAll($setGet);
+$fast = new FastCarService($data);
 
 #以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
     $setBall = json_decode($setV['data'], true);
-    switch ($setV['act']) {
-        case 'hand' :
-            #設定球的中獎
-            #13期的期數，以名次為群組
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-                if ($change == 0) $bite = 0;
-            }
-        break;
-        case 'goBall' :
-            $beforBall = array();
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
-                    if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-                if ($change == 0) $bite = 0;
-                unset($beforBall);
-                foreach($ball as $num) {
-                    $beforBall["no{$num}"] = $dV["no{$num}"];
-                }
-            }
-        break;
-        case 'move' :
-            $beforBall = array();
-            foreach ($data as $dK => $dV) {
-                $frist = (!isset($frist)) ? $dK : $frist;
-                $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($ball as $num) {
-                    $move = ($num == 10) ? 1 : $num + 1;
-                    if ($dK != $frist && in_array($dV["no{$move}"], $setBall[$beforBall["no{$num}"]])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
-                    }
-                }
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-                if ($change == 0) $bite = 0;
-                unset($beforBall);
-                foreach($ball as $num) {
-                    $beforBall["no{$num}"] = $dV["no{$num}"];
-                }
-            }
-        break;
-    }
+    $res = $fast->analysis($setV['act'], $setBall);
+    $oneBall = $fast->oneBall($setBall);
     #當連續12次都是低於3次的
-    if ($change >= $selectCount) {
-        $listChange[$setV['name']] ='change';
-        if ($bite / $change > 0.7 ) $listChange[$setV['name']] ='bite';
+    if (!$oneBall) {
+        if ($res['change'] >= $config['point']) {
+            $listChange[$setV['name']] ='change';
+            if ($config['basis'] == 'bite_ave') {
+                if ($res['bite'] / $res['change'] > $config['bite_ave'] ) $listChange[$setV['name']] ='bite';
+            } else {
+                if ($res['bite'] >= $config['bite'] ) $listChange[$setV['name']] ='bite';
+            }
+        }
+    } else {
+        if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
     }
 }
+$fast->orderBySettingData($settingData);
 ?>
 <HTML>
     <HEAD>
@@ -140,6 +94,15 @@ foreach ($settingData as $setV) {
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
+<br>
+
+<span style="font-size:20px;">
+    ----藍字：<?=$config['point']?><img src="new.gif">/
+    &nbsp;&nbsp;<?=$configView[$config['basis']]?>：<?=$nowConfig?><img src="grounde.gif">/
+    &nbsp;&nbsp;單球：<?=$config['one_ball']?>----
+</span>
+<span style="font-size:13px;">&nbsp;&nbsp;//備註：只有超過連續藍字咬度才生效 </span><br>
+
 <h3>查詢結果</h3>
 
 <?php 
@@ -149,8 +112,9 @@ foreach ($settingData as $setK => $setV) :
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
     $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : $remind;
+    $one = ($setV['oneBall']) ? '::' : '';
     ?>
-    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$setV['name']?>" >
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">

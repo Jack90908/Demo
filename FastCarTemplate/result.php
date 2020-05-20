@@ -22,18 +22,17 @@
 </style>
 <?php
 require_once "default.php";
-
+require_once "../Service/FastCarService.php";
 ##預設值##
 $perTitle = substr($period, 0, 6);
 $perLast = substr($period, -3, 3);
-$total = 300;
+$total = 301;
 $list = 20;
 $change = 0;
 $bite = 0;
 $selectCount = 12;
 $bitString = '';
 #只選單顆球
-$oneBall = false;
 #必要的參數
 $titleData = array();
 if (!isset($_GET['date'])) $_GET['date'] ='day';
@@ -41,218 +40,36 @@ $seach = ($_GET['date'] == 'yesterday') ? $date['Ymd'] -1 : $date['Ymd'];
 $bingo = array();
 $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
 ##########
+$getData = $db
+        ->order('id', 'DESC')
+        ->get($gameType['gameDB'], '*', "LIMIT {$total}");
+$data = $db->fetchAll($getData);
+krsort($data);
+$getData = $db->where("name", $_GET['name'])
+    ->get('setting', 'data');
+$resData = $db->fetch($getData);
+$bData = json_decode($resData['data'], true);
 
-switch ($act) {
-    case 'hand':
-        #找期數
-        $getData = $db
-                    ->order('id', 'DESC')
-                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
-        $data = $db->fetchAll($getData);
-        krsort($data);
-        #找是否有偏好設定
-        if (isset($_GET['name'])) {
-            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
-            $getData = $db->where("name", $_GET['name'])
-                    ->get('setting', 'data');
-            $resData = $db->fetch($getData);
-            $bData = json_decode($resData['data'], true);
-        } else {
-            $bData = $_GET['ball'];
-        }
+#開頭
+$typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
+$fast = new FastCarService($data);
+#結果集結
+$res = $fast->analysis($act, $bData);
+#選擇的球
+$titleData = $fast->title($act, $bData);
+#中幾球
+$bingo = $res['bingo'];
+#連續幾球藍字
+$change = $res['change'];
+#咬度
+$bite = $res['bite'];
+#是否只選單顆球
+$oneBall = $fast->oneBall($bData);
+$maxPeriod = substr(end($data)['period'],-3 ,3);
 
-        #塞入開頭資訊
-        foreach ($ball as $ballList) {
-            $str = '';
-            if (isset($bData[$ballList])) {
-                foreach ($bData[$ballList] as $num) {
-                    $str .= $num.',';
-                }
-                $str = substr($str,0,-1);
-            }
-            $titleData[] = "第{$ballList}名：" . $str;
-        }
-        #塞入結果
-        foreach ($data as $dK => $dV) {
-            $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
-            foreach ($ball as $num) {
-                if (isset($bData[$num]) && in_array($dV["no{$num}"], $bData[$num])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
-                }
-            }
-            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-            if ($change == 0) $bite = 0;
-        }
-    break;
-    case 'goBall':
-        #只選單顆球
-        $m = 0;
-        $total ++;
-        $getData = $db
-                    ->order('id', 'DESC')
-                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
-        $data = $db->fetchAll($getData);
-        krsort($data);
-
-        #塞入開頭資訊
-        if (isset($_GET['name'])) {
-            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
-            $getData = $db->where("name", $_GET['name'])
-                    ->get('setting', 'data');
-            $resData = $db->fetch($getData);
-            $bData = json_decode($resData['data'], true);
-        }
-
-        #只選單顆球的話
-        foreach ($bData as $one) {
-            if (!empty($one[1]) || !empty($one[2]) || !empty($one[3]))$m ++;
-        }
-        if ($m == 1) $oneBall = true;
-        if (isset($_GET['ball']) || isset($_GET['name'])) {
-
-            $titleData = array();
-            $setBall = (isset($_GET['ball'])) ? $_GET['ball'] : $bData;
-            foreach ($setBall as $ballK => $ballCanter) {
-                $titleData[$ballK] = $ballK."號球：";
-                foreach ($ballCanter as $canter) {
-                    $titleData[$ballK] .= $canter . ',';
-                }
-                $titleData[$ballK] = substr($titleData[$ballK],0,-1);
-            }
-        } else {
-            $titleData = [
-                '1,4,7號： 下期中獎1,4,7',
-                '2,5,8號： 下期中獎2,5,8',
-                '3,6,9號： 下期中獎3,6,9',
-                '10號： 下期中獎1,5,10',
-            ];
-        }
-        #塞入結果
-        if (isset($setBall)) {
-            $dataGroup = array();
-            foreach ($setBall as $ballK => $ballCanter) {
-                foreach ($ballCanter as $canter) {
-                    $dataGroup[$ballK][] = $canter;
-                }
-            }
-        } else {
-            $dataGroup = [
-                '1' => [1, 4, 7],
-                '2' => [2, 5, 8],
-                '3' => [3, 6, 9],
-                '4' => [1, 4, 7],
-                '5' => [2, 5, 8],
-                '6' => [3, 6, 9],
-                '7' => [1, 4, 7],
-                '8' => [2, 5, 8],
-                '9' => [3, 6, 9],
-                '10' => [1, 5, 10],
-            ];
-        }
-        $beforBall = array();
-        foreach ($data as $dK => $dV) {
-            $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
-            foreach ($ball as $num) {
-                if (!isset($beforBall["no{$num}"],$dataGroup[$beforBall["no{$num}"]])) continue;
-                if ($dK != $frist && in_array($dV["no{$num}"], $dataGroup[$beforBall["no{$num}"]])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
-                }
-            }
-            unset($beforBall);
-            foreach($ball as $num) {
-                $beforBall["no{$num}"] = $dV["no{$num}"];
-            }
-            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-            if ($change == 0) $bite = 0;
-        }
-    break;
-    case 'move':
-        $total ++;
-        $getData = $db
-                    ->order('id', 'DESC')
-                    ->get($gameType['gameDB'], '*', "LIMIT {$total}");
-        $data = $db->fetchAll($getData);
-        krsort($data);
-
-        #塞入開頭資訊
-        if (isset($_GET['name'])) {
-            $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
-            $getData = $db->where("name", $_GET['name'])
-                    ->get('setting', 'data');
-            $resData = $db->fetch($getData);
-            $bData = json_decode($resData['data'], true);
-        }
-        if (isset($_GET['ball']) || isset($_GET['name'])) {
-
-            $titleData = array();
-            $setBall = (isset($_GET['ball'])) ? $_GET['ball'] : $bData;
-            foreach ($setBall as $ballK => $ballCanter) {
-                $titleData[$ballK] = $ballK."號：";
-                foreach ($ballCanter as $canter) {
-                    $titleData[$ballK] .= $canter . ',';
-                }
-                $titleData[$ballK] = substr($titleData[$ballK],0,-1);
-            }
-        } else {
-            $titleData = [
-                '1,4,7號： 下期右側中獎1,4,7',
-                '2,5,8號： 下期右側中獎2,5,8',
-                '3,6,9號： 下期右側中獎3,6,9',
-                '10號： 下期右側中獎1,5,10',
-            ];
-        }
-
-        #塞入結果
-        if (isset($setBall)) {
-            $dataGroup = array();
-            foreach ($setBall as $ballK => $ballCanter) {
-                foreach ($ballCanter as $canter) {
-                    $dataGroup[$ballK][] = $canter;
-                }
-            }
-        } else {
-            $dataGroup = [
-                '1' => [1, 4, 7],
-                '2' => [2, 5, 8],
-                '3' => [3, 6, 9],
-                '4' => [1, 4, 7],
-                '5' => [2, 5, 8],
-                '6' => [3, 6, 9],
-                '7' => [1, 4, 7],
-                '8' => [2, 5, 8],
-                '9' => [3, 6, 9],
-                '10' => [1, 5, 10],
-            ];
-        }
-        $beforBall = array();
-        foreach ($data as $dK => $dV) {
-            $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
-            foreach ($ball as $num) {
-                $move = ($num == 10) ? 1 : $num + 1;
-                if ($dK != $frist && in_array($dV["no{$move}"], $dataGroup[$beforBall["no{$num}"]])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
-                }
-            }
-            unset($beforBall);
-            foreach($ball as $num) {
-                $beforBall["no{$num}"] = $dV["no{$num}"];
-            }
-            $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-            if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
-            if ($change == 0) $bite = 0;
-        }
-    break;
-    default:
-    break;
-}
 for ($i = 0; $i < floor($total / $list); $i++) {
     #倒著寫回來，因為要抓取最大的
-    $orderPeriod = substr(end($data)['period'],-3 ,3) - ($list * $i) - $list +1;
+    $orderPeriod = $maxPeriod - ($list * $i) - $list +1;
     if ($orderPeriod < 0) $orderPeriod += 1000;
     $row[] = $orderPeriod;
 }
