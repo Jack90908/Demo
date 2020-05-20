@@ -49,7 +49,8 @@ $getData = $db->where("name", $_GET['name'])
     ->get('setting', 'data');
 $resData = $db->fetch($getData);
 $bData = json_decode($resData['data'], true);
-
+$getConfig = $db->get('ball_config');
+$config = $db->fetch($getConfig);
 #開頭
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 $fast = new FastCarService($data);
@@ -74,8 +75,10 @@ for ($i = 0; $i < floor($total / $list); $i++) {
     $row[] = $orderPeriod;
 }
 krsort($row);
-if ($change >= $selectCount && !$oneBall) {
-    $bitString = "連續{$change}期藍字，共咬{$bite}期";
+if (!$oneBall) {
+    if ($res['change'] >= $config['point']) $bitString = "連續{$change}期藍字，共咬{$bite}期";
+} else {
+    if ($res['change'] >= $config['one_ball']) $bitString = "連續{$change}期藍字";
 }
 ?>
 <HTML>

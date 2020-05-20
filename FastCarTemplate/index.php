@@ -101,17 +101,19 @@ $fast->orderBySettingData($settingData);
     &nbsp;&nbsp;<?=$configView[$config['basis']]?>：<?=$nowConfig?><img src="grounde.gif">/
     &nbsp;&nbsp;單球：<?=$config['one_ball']?>----
 </span>
-<span style="font-size:13px;">&nbsp;&nbsp;//備註：只有超過連續藍字咬度才生效 </span><br>
+<span style="font-size:13px;">&nbsp;&nbsp;//備註：只有超過連續藍字咬度才生效 ::前綴的為選單一球 </span><br>
 
 <h3>查詢結果</h3>
 
 <?php 
 $setAct = '';
+$one = '';
 foreach ($settingData as $setK => $setV) :
     if ($setV['act'] != $setAct) echo '<br>------' . $typeHead[$setV['act']]['title'] . '------<br>';
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = ($listChange[$setV['name']] == 'change') ? "background-image:url('new.gif');" : '';
     $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : $remind;
+    if ($one == '' && $setV['oneBall']) echo '<br><br>';
     $one = ($setV['oneBall']) ? '::' : '';
     ?>
     <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >

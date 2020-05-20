@@ -199,6 +199,11 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
         </tr>
     </form>
 </table>
+<!-- <h3>編輯最愛</h3>
+<table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
+    <form action="setting.php" method="post" name=formS>
+    </form>
+</table> -->
 <hr size="8px" color=#00000>
 <h3>刪除不要的設定值</h3>
 <table border=1 cellpadding=2 cellspacing=1 width=300 bgcolor=#fafad2>
