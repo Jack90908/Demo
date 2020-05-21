@@ -75,6 +75,7 @@ foreach ($settingData as $setV) {
             }
         }
     } else {
+        var_dump($res['change']);
         if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
     }
 }
@@ -99,7 +100,7 @@ $fast->orderBySettingData($settingData);
 <span style="font-size:20px;">
     ----藍字：<?=$config['point']?><img src="new.gif">/
     &nbsp;&nbsp;<?=$configView[$config['basis']]?>：<?=$nowConfig?><img src="grounde.gif">/
-    &nbsp;&nbsp;單球：<?=$config['one_ball']?>----
+    &nbsp;&nbsp;單球：<?=$config['one_ball']?><img src="new.gif">----
 </span>
 <span style="font-size:13px;">&nbsp;&nbsp;//備註：只有超過連續藍字咬度才生效 ::前綴的為選單一球 </span><br>
 
