@@ -75,7 +75,6 @@ foreach ($settingData as $setV) {
             }
         }
     } else {
-        var_dump($res['change']);
         if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
     }
 }
