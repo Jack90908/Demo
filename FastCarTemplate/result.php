@@ -58,10 +58,12 @@ $config = $db->fetch($getConfig);
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 $fast = new FastCarService($data);
 #結果集結
+$goBall = false;
 if ($_GET['act'] == 'three') {
     $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
+    $goBall = ($_GET['goBall'] == 'true') ?: false;
 } 
-$res = $fast->analysis($act, $bData);
+$res = $fast->analysis($act, $bData, $goBall);
 #選擇的球
 $titleData = $fast->title($act, $bData);
 #中幾球

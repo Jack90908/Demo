@@ -71,12 +71,21 @@ foreach ($settingData as $setV) {
             if ($config['basis'] == 'bite_ave') {
                 if ($res['bite'] / $res['change'] > $config['bite_ave'] ) $listChange[$setV['name']] ='bite';
             } else {
-                if ($res['bite'] >= $config['bite'] ) $listChange[$setV['name']] ='bite';
+                if ($res['bite'] >= $config['bite']) $listChange[$setV['name']] ='bite';
             }
         }
     } else {
         if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
     }
+}
+#三碼專用
+foreach ($ball as $bV) {
+    $res = $fast->analysis('three', [$bV]);
+    $three[$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+}
+foreach ($ball as $bV) {
+    $res = $fast->analysis('three', [$bV], true);
+    $threeGoBall[$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
 }
 $fast->orderBySettingData($settingData);
 ?>
@@ -124,18 +133,34 @@ foreach ($settingData as $setK => $setV) :
 <?php $setAct = $setV['act'];
 endforeach;?>
 <br>------往下三碼------<br>
-<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listTest').submit();" value="三碼跑道全部" >
+<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listTest').submit();" value="三碼全部" >
 <form class="formNoChang" action="result.php" id='listTest' method="get" target="_blank">
     <input type="hidden" name="name" value="三碼全部">
     <input type="hidden" name="act" value="three">
     <input type="hidden" name="threeBall" value="all">
 </form>
-<?php foreach ($ball as $threeV) :?>
-<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$threeV?>').submit();" value="跟<?=$threeV?>跑道" >
+<br>
+<?php foreach ($ball as $threeV) :
+$remind = ($three[$threeV] == 'change') ? "background-image:url('new.gif');" : '';    
+?>
+<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$threeV?>').submit();" value="跟<?=$threeV?>跑道" >
 <form class="formNoChang" action="result.php" id='listThree<?=$threeV?>' method="get" target="_blank">
     <input type="hidden" name="name" value="跟<?=$threeV?>跑道">
     <input type="hidden" name="act" value="three">
     <input type="hidden" name="threeBall" value="<?=$threeV?>">
+    <input type="hidden" name="goBall" value="false">
+</form>
+<?php endforeach?>
+<br><br>
+<?php foreach ($ball as $threeV) :
+$remind = ($threeGoBall[$threeV] == 'change') ? "background-image:url('new.gif');" : '';
+?>
+<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThreeBall<?=$threeV?>').submit();" value="跟<?=$threeV?>號球" >
+<form class="formNoChang" action="result.php" id='listThreeBall<?=$threeV?>' method="get" target="_blank">
+    <input type="hidden" name="name" value="跟<?=$threeV?>號球">
+    <input type="hidden" name="act" value="three">
+    <input type="hidden" name="threeBall" value="<?=$threeV?>">
+    <input type="hidden" name="goBall" value="true">
 </form>
 <?php endforeach?>
 <br><br><br><br>

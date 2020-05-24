@@ -101,7 +101,8 @@ class FastCarService {
         }
     }
     #分析結果用
-    public function analysis($act = 'hand', $setBall = null)
+    #goBall 目前用於三碼 three
+    public function analysis($act = 'hand', $setBall = null, $goBall = false)
     {
         $this->oneBallSel = $this->oneBall($setBall, $act);
         if (!is_array($this->data)) return false;
@@ -116,7 +117,7 @@ class FastCarService {
                 return $this->moveAnal($setBall);
             break;
             case 'three' :
-                return $this->threeAnal($setBall);
+                return $this->threeAnal($setBall, $goBall);
             break;
             default:
             break;
@@ -124,18 +125,27 @@ class FastCarService {
 
     }
 
-    private function threeAnal($setBall)
+    private function threeAnal($setBall, $goBall = false)
     {
         $bite = 0;
         $change = 0;
         $beforThree = 0;
+        $ballInNo = 0;
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
             $beforThree ++;
             if ($beforThree > 15) {
                 $bingo[substr($dV['period'], -3, 3)] = 0;
-                foreach ($setBall as $num) {
-                    if (in_array($dV["no{$num}"], $beforBall["no{$num}"])) {
+                #跟跑道
+                if (!$goBall) {
+                    foreach ($setBall as $num) {
+                        if (in_array($dV["no{$num}"], $beforBall["no{$num}"])) {
+                            $bingo[substr($dV['period'], -3, 3)] ++;
+                        }
+                    }
+                } else {
+                #跟球跑
+                    if (in_array($dV["no{$ballInNo}"], $beforBall["no{$ballInNo}"])) {
                         $bingo[substr($dV['period'], -3, 3)] ++;
                     }
                 }
@@ -150,8 +160,11 @@ class FastCarService {
             }
 
             foreach($this->ball as $num) {
+                #跟球跑
+                if ($goBall && $dV["no{$num}"] == $setBall[0]) {
+                    $ballInNo = $num;
+                }
                 $beforBall["no{$num}"][] = $dV["no{$num}"];
-                
                 if (array_count_values($beforBall["no{$num}"])[$dV["no{$num}"]] == 2) {
                     $test = array_search($dV["no{$num}"], $beforBall["no{$num}"]);
                     unset($beforBall["no{$num}"][$test]);    
