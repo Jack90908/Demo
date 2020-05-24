@@ -26,7 +26,10 @@ require_once "../Service/FastCarService.php";
 ##預設值##
 $perTitle = substr($period, 0, 6);
 $perLast = substr($period, -3, 3);
-$total = 301;
+#搜尋筆數
+$total = 315;
+#顯示
+$totalView = 300;
 $list = 20;
 $change = 0;
 $bite = 0;
@@ -55,6 +58,9 @@ $config = $db->fetch($getConfig);
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 $fast = new FastCarService($data);
 #結果集結
+if ($_GET['act'] == 'three') {
+    $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
+} 
 $res = $fast->analysis($act, $bData);
 #選擇的球
 $titleData = $fast->title($act, $bData);
@@ -65,10 +71,9 @@ $change = $res['change'];
 #咬度
 $bite = $res['bite'];
 #是否只選單顆球
-$oneBall = $fast->oneBall($bData);
+$oneBall = $fast->oneBall($bData, $act);
 $maxPeriod = substr(end($data)['period'],-3 ,3);
-
-for ($i = 0; $i < floor($total / $list); $i++) {
+for ($i = 0; $i < floor($totalView / $list); $i++) {
     #倒著寫回來，因為要抓取最大的
     $orderPeriod = $maxPeriod - ($list * $i) - $list +1;
     if ($orderPeriod < 0) $orderPeriod += 1000;

@@ -123,7 +123,21 @@ foreach ($settingData as $setK => $setV) :
     </form>
 <?php $setAct = $setV['act'];
 endforeach;?>
-
+<br>------往下三碼------<br>
+<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listTest').submit();" value="三碼跑道全部" >
+<form class="formNoChang" action="result.php" id='listTest' method="get" target="_blank">
+    <input type="hidden" name="name" value="三碼全部">
+    <input type="hidden" name="act" value="three">
+    <input type="hidden" name="threeBall" value="all">
+</form>
+<? foreach ($ball as $bV) :?>
+<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$bV?>').submit();" value="跟<?=$bV?>跑道" >
+<form class="formNoChang" action="result.php" id='listThree<?=$bV?>' method="get" target="_blank">
+    <input type="hidden" name="name" value="跟<?=$bV?>跑道">
+    <input type="hidden" name="act" value="three">
+    <input type="hidden" name="threeBall" value="<?=$bV?>">
+</form>
+<? endforeach?>
 <br><br><br><br>
 &nbsp;&nbsp;<button class="summit">手動更新期數</button>    
 </HTML>

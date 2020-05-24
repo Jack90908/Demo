@@ -90,6 +90,11 @@ $typeHead = [
         'color' => 'lavender',
         'type'  => '號球'
     ], 
+    'three' => [
+        'title' => '三碼',
+        'color' => 'gainsboro',
+        'type'  => '號球' 
+    ]
 ];
 $configView = [
     'bite_ave' => '平均咬度',
