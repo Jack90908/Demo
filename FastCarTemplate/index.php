@@ -130,12 +130,12 @@ endforeach;?>
     <input type="hidden" name="act" value="three">
     <input type="hidden" name="threeBall" value="all">
 </form>
-<? foreach ($ball as $bV) :?>
-<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$bV?>').submit();" value="跟<?=$bV?>跑道" >
-<form class="formNoChang" action="result.php" id='listThree<?=$bV?>' method="get" target="_blank">
-    <input type="hidden" name="name" value="跟<?=$bV?>跑道">
+<? foreach ($ball as $threeV) :?>
+<input type="button" style="width:200px; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$threeV?>').submit();" value="跟<?=$threeV?>跑道" >
+<form class="formNoChang" action="result.php" id='listThree<?=$threeV?>' method="get" target="_blank">
+    <input type="hidden" name="name" value="跟<?=$threeV?>跑道">
     <input type="hidden" name="act" value="three">
-    <input type="hidden" name="threeBall" value="<?=$bV?>">
+    <input type="hidden" name="threeBall" value="<?=$threeV?>">
 </form>
 <? endforeach?>
 <br><br><br><br>
