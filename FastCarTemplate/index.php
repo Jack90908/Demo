@@ -137,7 +137,7 @@ endforeach;?>
     <input type="hidden" name="act" value="three">
     <input type="hidden" name="threeBall" value="<?=$threeV?>">
 </form>
-<? endforeach?>
+<?php endforeach?>
 <br><br><br><br>
 &nbsp;&nbsp;<button class="summit">手動更新期數</button>    
 </HTML>
