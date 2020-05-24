@@ -138,6 +138,7 @@ endforeach;?>
     <input type="hidden" name="name" value="三碼全部">
     <input type="hidden" name="act" value="three">
     <input type="hidden" name="threeBall" value="all">
+    <input type="hidden" name="goBall" value="false">
 </form>
 <br>
 <?php foreach ($ball as $threeV) :
