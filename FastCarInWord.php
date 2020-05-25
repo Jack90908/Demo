@@ -106,7 +106,7 @@ class FastCarInWord {
                 $period = $resB['preDrawIssue'];    
                 $dbID = $date . $period;
                 #重複的不新增，用資料庫最大值去判斷
-                if ($dbID < $this->maxID && !$this->fixOpen) break;
+                if ($dbID <= $this->maxID && !$this->fixOpen) break;
                 $ballArray = explode(',', $resB['preDrawCode']);
                 $ball = array();
                 foreach ($ballArray as $key => $item) {
