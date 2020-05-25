@@ -113,6 +113,7 @@ $fast->orderBySettingData($settingData);
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
+&nbsp;&nbsp;<button class="summit">手動更新期數</button>    
 <br>
 
 <span style="font-size:20px;">
@@ -182,7 +183,6 @@ $remind = ($threeGoBall[$threeV] == 'change') ? "background-image:url('new.gif')
 </form>
 <?php endforeach?>
 <br><br><br><br>
-&nbsp;&nbsp;<button class="summit">手動更新期數</button>    
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 </script>
