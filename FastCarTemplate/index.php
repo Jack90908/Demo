@@ -182,6 +182,15 @@ $remind = ($threeGoBall[$threeV] == 'change') ? "background-image:url('new.gif')
     <input type="hidden" name="goBall" value="true">
 </form>
 <?php endforeach?>
+<br>------平移三碼------<br>
+<?php foreach ($ball as $panV) :?>
+<input type="button" style="width:200px; background-color:<?=$typeHead['pan']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listPan<?=$panV?>').submit();" value="平移<?=$panV?>號球" >
+<form class="formNoChang" action="result.php" id='listPan<?=$panV?>' method="get" target="_blank">
+    <input type="hidden" name="name" value="平移<?=$panV?>號球">
+    <input type="hidden" name="act" value="pan"">
+    <input type="hidden" name="panBall" value="<?=$panV?>">
+</form>
+<?php endforeach?>
 <br><br><br><br>
 </HTML>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">

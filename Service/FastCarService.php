@@ -94,6 +94,7 @@ class FastCarService {
                 return $titleData;
             break;
             case 'three' :
+            case 'pan' :
                 return array();
             break;
             default:
@@ -119,12 +120,55 @@ class FastCarService {
             case 'three' :
                 return $this->threeAnal($setBall, $goBall);
             break;
+            case 'pan' :
+                return $this->panAnal($setBall);
+            break;
             default:
             break;
         }
 
     }
-
+    private function panAnal($setBall)
+    {
+        $bite = 0;
+        $change = 0;
+        $beforBall = array();
+        $ballInNo = array();
+        #強制不是一球
+        foreach ($this->data as $dK => $dV) {
+            $frist = (!isset($frist)) ? $dK : $frist;
+            $bingo[substr($dV['period'], -3, 3)] = 0;
+            foreach ($ballInNo as $num) {
+                if (!isset($beforBall["no{$num}"])) continue;
+                if ($dV["no{$num}"] == $beforBall["no{$num}"]) {
+                    $bingo[substr($dV['period'], -3, 3)] ++;
+                }
+            }
+            #連續藍字判斷
+            if ($this->oneBallSel) {
+                $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
+            } else {
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;    
+            }
+            unset($beforBall);
+            foreach($this->ball as $num) {
+                if ($dV["no{$num}"] == $setBall[0]) {
+                    $ballInNo[0] = ($num == 1) ? 10 : $num - 1;
+                    $ballInNo[1] = $num;
+                    $ballInNo[2] = ($num == 10) ? 1 : $num + 1;
+                }
+                $beforBall["no{$num}"] = $dV["no{$num}"];
+            }
+        }
+        $res = [
+            'bingo' => $bingo,
+            'change' => $change,
+            'bite' => $bite,
+        ];
+        return $res;
+    }
     private function threeAnal($setBall, $goBall = false)
     {
         $bite = 0;

@@ -94,6 +94,11 @@ $typeHead = [
         'title' => '三碼',
         'color' => 'gainsboro',
         'type'  => '號球' 
+    ],
+    'pan' => [
+        'title' => '平移',
+        'color' => 'beige',
+        'type'  => '號球'
     ]
 ];
 $configView = [

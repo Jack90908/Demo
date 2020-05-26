@@ -62,7 +62,10 @@ $goBall = false;
 if ($_GET['act'] == 'three') {
     $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
     $goBall = ($_GET['goBall'] == 'true') ?: false;
-} 
+}
+if ($_GET['act'] == 'pan') {
+    $bData[] = $_GET['panBall'];
+}
 $res = $fast->analysis($act, $bData, $goBall);
 #選擇的球
 $titleData = $fast->title($act, $bData);
@@ -133,8 +136,8 @@ if (!$oneBall) {
             #一般的顏色區分
             $color = ($bingo[$periodList] > 3) ? 'red' : 'blue';
             #跟球走但只選一球
-            if ($oneBall) {
-                $color = ($bingo[$periodList] == 1) ?'red' : 'blue';
+            if ($oneBall || $act == 'pan') {
+                $color = ($bingo[$periodList] >= 1) ?'red' : 'blue';
             }
             ?>
             <font color=<?=$color?>><?= $bingo[$periodList]?></font>
