@@ -54,7 +54,7 @@ krsort($data);
 
 $setGet = $db->order('act')
             ->order('name')
-            ->get('setting', ['name', 'act', 'data']);
+            ->get('setting', ['name', 'act', 'data', 'red_letter']);
 $settingData = $db->fetchAll($setGet);
 $fast = new FastCarService($data);
 
@@ -62,7 +62,7 @@ $fast = new FastCarService($data);
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
     $setBall = json_decode($setV['data'], true);
-    $res = $fast->analysis($setV['act'], $setBall);
+    $res = $fast->analysis($setV['act'], $setBall, false, $setV['red_letter']);
     $oneBall = $fast->oneBall($setBall);
     #當連續12次都是低於3次的
     if (!$oneBall) {
@@ -135,8 +135,9 @@ foreach ($settingData as $setK => $setV) :
     $remind = ($listChange[$setV['name']] == 'bite') ? "background-image:url('grounde.gif');" : $remind;
     if ($one == '' && $setV['oneBall']) echo '<br><br>';
     $one = ($setV['oneBall']) ? '::' : '';
+    $redLetterFont = ($setV['red_letter'] > 0) ? " - {$setV['red_letter']}" : '';
     ?>
-    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?><?=$redLetterFont?>" >
     <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">

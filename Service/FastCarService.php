@@ -15,6 +15,8 @@ class FastCarService {
         '10' => 10
     ];
     private $oneBallSel = false;
+    private $changeRange = 3;
+    private $bitRange = 2;
     
     public function __construct($data)
     {
@@ -103,8 +105,15 @@ class FastCarService {
     }
     #分析結果用
     #goBall 目前用於三碼 three
-    public function analysis($act = 'hand', $setBall = null, $goBall = false)
+    public function analysis($act = 'hand', $setBall = null, $goBall = false, $redLetter = 0)
     {
+        if ($redLetter != 0) {
+            $this->changeRange = $redLetter - 1;
+            $this->bitRange = ($this->changeRange == 0) ? $this->changeRange : $this->changeRange -1;
+        } else {
+            $this->changeRange = 3;
+            $this->bitRange = 2;
+        }
         $this->oneBallSel = $this->oneBall($setBall, $act);
         if (!is_array($this->data)) return false;
         switch ($act) {
@@ -148,8 +157,8 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
             unset($beforBall);
@@ -197,8 +206,8 @@ class FastCarService {
                 if ($this->oneBallSel) {
                     $change = ($bingo[substr($dV['period'], -3, 3)] == 0) ? $change + 1 : 0;
                 } else {
-                    $change = ($bingo[substr($dV['period'], -3, 3)] <= 3) ? $change + 1 : 0;
-                    if ($bingo[substr($dV['period'], -3, 3)] <= 2) $bite ++;
+                    $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange) ? $change + 1 : 0;
+                    if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange) $bite ++;
                     if ($change == 0) $bite = 0;    
                 }
             }
@@ -240,8 +249,8 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
         }
@@ -271,8 +280,8 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
             unset($beforBall);
@@ -306,8 +315,8 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= 3 && $dK != $frist) ? $change + 1 : 0;
-                if ($bingo[substr($dV['period'], -3, 3)] <= 2 && $dK != $frist) $bite ++;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
             unset($beforBall);

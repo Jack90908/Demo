@@ -53,7 +53,8 @@ if($_POST['setAct'] == 'setting') {
     $inserData = [
         'name' => $_POST['content'],
         'act' => $_POST['act'],
-        'data' => $ball
+        'data' => $ball,
+        'red_letter' => $_POST['redLetter']
 
     ];
     $insertSet = json_decode($db->add('setting', $inserData));
@@ -172,6 +173,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td>
                 <select id="act" name="act" onchange="chageAct()">
                     <?php foreach ($typeHead as $tK => $titleValue) : 
+                    if (in_array($tK, ['three', 'pan'])) continue;
                     $checked = ($tK == $act) ? 'selected' : '';
                     ?>
                     <option <?=$checked?> value="<?=$tK?>"><?=$titleValue['title']?></option>
@@ -195,6 +197,12 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td>
                 <input class="summit" type="submit" value="設定">
                 <input type="hidden" name='setAct' value="setting">
+            </td>
+            <td>
+                顯示紅字設定<br>
+                <input type="radio" name="redLetter" value="0" checked>預設<br>
+                <input type="radio" name="redLetter" value="1">一次<br>
+                <input type="radio" name="redLetter" value="2">兩次
             </td>
         </tr>
     </form>
