@@ -108,8 +108,8 @@ class FastCarService {
     public function analysis($act = 'hand', $setBall = null, $goBall = false, $redLetter = 0)
     {
         if ($redLetter != 0) {
-            $this->changeRange = $redLetter - 1;
-            $this->bitRange = ($this->changeRange == 0) ? $this->changeRange : $this->changeRange -1;
+            $this->changeRange = 0;
+            $this->bitRange = 0;
         } else {
             $this->changeRange = 3;
             $this->bitRange = 2;
