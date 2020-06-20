@@ -108,14 +108,12 @@ class FastCarService {
     public function analysis($act = 'hand', $setBall = null, $goBall = false, $redLetter = 0)
     {
         if ($redLetter != 0) {
-            $this->changeRange = 0;
+            $this->changeRange = $redLetter - 1;
             $this->bitRange = 0;
         } else {
             $this->changeRange = 3;
             $this->bitRange = 2;
         }
-
-        $this->red = ($redLetter == 2) ? true : false;
         $this->oneBallSel = $this->oneBall($setBall, $act);
         if (!is_array($this->data)) return false;
         switch ($act) {
@@ -159,8 +157,7 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
@@ -209,8 +206,7 @@ class FastCarService {
                 if ($this->oneBallSel) {
                     $change = ($bingo[substr($dV['period'], -3, 3)] == 0) ? $change + 1 : 0;
                 } else {
-                    $clear = ($this->red) ? $change : 0;
-                    $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange) ? $change + 1 : $clear;
+                    $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange) ? $change + 1 : 0;
                     if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange) $bite ++;
                     if ($change == 0) $bite = 0;    
                 }
@@ -253,8 +249,7 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
@@ -285,8 +280,7 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
@@ -321,8 +315,7 @@ class FastCarService {
             if ($this->oneBallSel) {
                 $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
             }
