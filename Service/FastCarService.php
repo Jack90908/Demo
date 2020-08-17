@@ -27,7 +27,7 @@ class FastCarService {
     {
         $half = [
             0 => [
-                'name' => '正常(1-5球)',
+                'name' => '正常(1-5名)',
                 'act' => 'goBall',
                 'red_letter' => '2',
                 'data' => json_encode([
@@ -39,7 +39,7 @@ class FastCarService {
                 ]),
             ],
             1 => [
-                'name' => '正常(6-10球)',
+                'name' => '正常(6-10名)',
                 'act' => 'goBall',
                 'red_letter' => '2',
                 'data' => json_encode([
@@ -52,8 +52,8 @@ class FastCarService {
             ],
         ];
         if ($setData) $setData = array_merge($setData, $half);
-        if ($select == '正常(1-5球)') return $half[0];
-        if ($select == '正常(6-10球)') return $half[1];
+        if ($select == '正常(1-5名)') return $half[0];
+        if ($select == '正常(6-10名)') return $half[1];
     }
     public function orderBySettingData(&$setData)
     {

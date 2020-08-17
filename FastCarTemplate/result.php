@@ -53,7 +53,7 @@ $fast = new FastCarService($data);
 $getData = $db->where("name", $_GET['name'])
     ->get('setting', ['data', 'red_letter']);
 $resData = $db->fetch($getData);
-if (in_array($_GET['name'], ['正常(1-5球)', '正常(6-10球)'])) {
+if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
     $resData = $fast->addHalf($resData, $_GET['name']);
 }
 $bData = json_decode($resData['data'], true);
@@ -140,8 +140,8 @@ if (!$oneBall) {
             #一般的顏色區分
             $redLetter = ($resData['red_letter'] > 0) ? $resData['red_letter'] : 4;
             $color = ($bingo[$periodList] >= $redLetter) ? 'red' : 'blue';
-            if (($bingo[$periodList] >= 3) && in_array($_GET['name'], ['正常(1-5球)', '正常(6-10球)'])) {
-                $color = 'green';
+            if (($bingo[$periodList] >= 3) && in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
+                $color = '#B78E0D';
             }
             #跟球走但只選一球
             if ($oneBall || $act == 'pan') {
