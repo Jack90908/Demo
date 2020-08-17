@@ -63,7 +63,8 @@ $fast->addHalf($settingData);
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
     $setBall = json_decode($setV['data'], true);
-    $res = $fast->analysis($setV['act'], $setBall, false, $setV['red_letter']);
+    $goBall = (in_array($setV['name'], ['正常(1-5名)', '正常(6-10名)'])) ? $setV['name'] : false;
+    $res = $fast->analysis($setV['act'], $setBall, $goBall, $setV['red_letter']);
     $oneBall = $fast->oneBall($setBall);
     #當連續12次都是低於3次的
     if (!$oneBall) {

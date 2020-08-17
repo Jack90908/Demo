@@ -53,8 +53,11 @@ $fast = new FastCarService($data);
 $getData = $db->where("name", $_GET['name'])
     ->get('setting', ['data', 'red_letter']);
 $resData = $db->fetch($getData);
+$goBall = false;
+
 if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
     $resData = $fast->addHalf($resData, $_GET['name']);
+    $goBall = $_GET['name'];
 }
 $bData = json_decode($resData['data'], true);
 $getConfig = $db->get('ball_config');
@@ -62,7 +65,6 @@ $config = $db->fetch($getConfig);
 #開頭
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 #結果集結
-$goBall = false;
 if ($_GET['act'] == 'three') {
     $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
     $goBall = ($_GET['goBall'] == 'true') ?: false;
@@ -141,7 +143,7 @@ if (!$oneBall) {
             $redLetter = ($resData['red_letter'] > 0) ? $resData['red_letter'] : 4;
             $color = ($bingo[$periodList] >= $redLetter) ? 'red' : 'blue';
             if (($bingo[$periodList] >= 3) && in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
-                $color = '#B78E0D';
+                $color = '#15481e';
             }
             #跟球走但只選一球
             if ($oneBall || $act == 'pan') {

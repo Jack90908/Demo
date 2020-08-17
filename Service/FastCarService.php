@@ -36,6 +36,11 @@ class FastCarService {
                     '3' => ['1' => 3, '2' => 6, '3' => 9],
                     '4' => ['1' => 1, '2' => 4, '3' => 7],
                     '5' => ['1' => 2, '2' => 5, '3' => 8],
+                    '6' => ['1' => 3, '2' => 6, '3' => 9],
+                    '7' => ['1' => 1, '2' => 4, '3' => 7],
+                    '8' => ['1' => 2, '2' => 5, '3' => 8],
+                    '9' => ['1' => 3, '2' => 6, '3' => 9],
+                    '10' => ['1' => 1, '2' => 5, '3' => 10],
                 ]),
             ],
             1 => [
@@ -43,6 +48,11 @@ class FastCarService {
                 'act' => 'goBall',
                 'red_letter' => '2',
                 'data' => json_encode([
+                    '1' => ['1' => 1, '2' => 4, '3' => 7],
+                    '2' => ['1' => 2, '2' => 5, '3' => 8],
+                    '3' => ['1' => 3, '2' => 6, '3' => 9],
+                    '4' => ['1' => 1, '2' => 4, '3' => 7],
+                    '5' => ['1' => 2, '2' => 5, '3' => 8],
                     '6' => ['1' => 3, '2' => 6, '3' => 9],
                     '7' => ['1' => 1, '2' => 4, '3' => 7],
                     '8' => ['1' => 2, '2' => 5, '3' => 8],
@@ -155,7 +165,7 @@ class FastCarService {
                 return $this->handAnal($setBall);
             break;
             case 'goBall' :
-                return $this->goBallAnal($setBall);
+                return $this->goBallAnal($setBall, $goBall);
             break;
             case 'move' :
                 return $this->moveAnal($setBall);
@@ -299,15 +309,18 @@ class FastCarService {
         return $res;
     }
 
-    private function goBallAnal($setBall)
+    private function goBallAnal($setBall, $goBall = null)
     {
         $bite = 0;
         $change = 0;
         $beforBall = array();
+        $rank = $this->ball;
+        if ($goBall == '正常(1-5名)') $rank = array_slice($rank, 0, 5, true);
+        if ($goBall == '正常(6-10名)') $rank = array_slice($rank, 5, 5, true);
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
             $bingo[substr($dV['period'], -3, 3)] = 0;
-            foreach ($this->ball as $num) {
+            foreach ($rank as $num) {
                 if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
                 if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
                     $bingo[substr($dV['period'], -3, 3)] ++;
@@ -323,7 +336,7 @@ class FastCarService {
                 if ($change == 0) $bite = 0;    
             }
             unset($beforBall);
-            foreach($this->ball as $num) {
+            foreach($rank as $num) {
                 $beforBall["no{$num}"] = $dV["no{$num}"];
             }
         }
