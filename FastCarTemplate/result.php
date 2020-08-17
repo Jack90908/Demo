@@ -48,15 +48,19 @@ $getData = $db
         ->get($gameType['gameDB'], '*', "LIMIT {$total}");
 $data = $db->fetchAll($getData);
 krsort($data);
+$fast = new FastCarService($data);
+
 $getData = $db->where("name", $_GET['name'])
     ->get('setting', ['data', 'red_letter']);
 $resData = $db->fetch($getData);
+if (in_array($_GET['name'], ['正常(1-5球)', '正常(6-10球)'])) {
+    $resData = $fast->addHalf($resData, $_GET['name']);
+}
 $bData = json_decode($resData['data'], true);
 $getConfig = $db->get('ball_config');
 $config = $db->fetch($getConfig);
 #開頭
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
-$fast = new FastCarService($data);
 #結果集結
 $goBall = false;
 if ($_GET['act'] == 'three') {
@@ -136,6 +140,9 @@ if (!$oneBall) {
             #一般的顏色區分
             $redLetter = ($resData['red_letter'] > 0) ? $resData['red_letter'] : 4;
             $color = ($bingo[$periodList] >= $redLetter) ? 'red' : 'blue';
+            if (($bingo[$periodList] >= 3) && in_array($_GET['name'], ['正常(1-5球)', '正常(6-10球)'])) {
+                $color = 'green';
+            }
             #跟球走但只選一球
             if ($oneBall || $act == 'pan') {
                 $color = ($bingo[$periodList] >= 1) ?'red' : 'blue';

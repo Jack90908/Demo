@@ -17,12 +17,44 @@ class FastCarService {
     private $oneBallSel = false;
     private $changeRange = 3;
     private $bitRange = 2;
-    
     public function __construct($data)
     {
         if (!empty($data)) $this->data = $data;
     }
 
+    #加入一半數據的跟球
+    public function addHalf(&$setData, $select = null)
+    {
+        $half = [
+            0 => [
+                'name' => '正常(1-5球)',
+                'act' => 'goBall',
+                'red_letter' => '2',
+                'data' => json_encode([
+                    '1' => ['1' => 1, '2' => 4, '3' => 7],
+                    '2' => ['1' => 2, '2' => 5, '3' => 8],
+                    '3' => ['1' => 3, '2' => 6, '3' => 9],
+                    '4' => ['1' => 1, '2' => 4, '3' => 7],
+                    '5' => ['1' => 2, '2' => 5, '3' => 8],
+                ]),
+            ],
+            1 => [
+                'name' => '正常(6-10球)',
+                'act' => 'goBall',
+                'red_letter' => '2',
+                'data' => json_encode([
+                    '6' => ['1' => 3, '2' => 6, '3' => 9],
+                    '7' => ['1' => 1, '2' => 4, '3' => 7],
+                    '8' => ['1' => 2, '2' => 5, '3' => 8],
+                    '9' => ['1' => 3, '2' => 6, '3' => 9],
+                    '10' => ['1' => 1, '2' => 5, '3' => 10],
+                ]),
+            ],
+        ];
+        if ($setData) $setData = array_merge($setData, $half);
+        if ($select == '正常(1-5球)') return $half[0];
+        if ($select == '正常(6-10球)') return $half[1];
+    }
     public function orderBySettingData(&$setData)
     {
         $orderArr = array();

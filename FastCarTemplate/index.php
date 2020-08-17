@@ -57,7 +57,8 @@ $setGet = $db->order('act')
             ->get('setting', ['name', 'act', 'data', 'red_letter']);
 $settingData = $db->fetchAll($setGet);
 $fast = new FastCarService($data);
-
+#加入跟球一半的數據
+$fast->addHalf($settingData);
 #以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
