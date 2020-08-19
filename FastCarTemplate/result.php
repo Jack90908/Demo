@@ -19,6 +19,10 @@
   display: inline-block;
   font-size: 16px;
 }
+.resultTable td{
+    width: 75px;
+    height: 41px;
+}
 </style>
 <?php
 require_once "default.php";
@@ -120,7 +124,7 @@ if (!$oneBall) {
 <br>
 <h>分析日期<?=$seach?>-近300期-期數前綴<?=$perTitle?></h>&nbsp;&nbsp;&nbsp;&nbsp;
 <font><?=$bitString?></font>
-<table border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
+<table class="resultTable" border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>
     <tr>
         <?php 
@@ -143,7 +147,7 @@ if (!$oneBall) {
             $redLetter = ($resData['red_letter'] > 0) ? $resData['red_letter'] : 4;
             $color = ($bingo[$periodList] >= $redLetter) ? 'red' : 'blue';
             if (($bingo[$periodList] >= 3) && in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
-                $color = '#15481e';
+                $color = '#15481e; style="font-size:21px;"';
             }
             #跟球走但只選一球
             if ($oneBall || $act == 'pan') {
