@@ -103,19 +103,21 @@ $fast->orderBySettingData($settingData);
 ?>
 <HTML>
     <HEAD>
-        <TITLE>極速賽車</TITLE>
+        <TITLE><?=$gameType['title']?></TITLE>
         <LINK rel=stylesheet type=text/css href="css/FastCar.css">
         <link rel="icon" href="fastCar.ico" type="image/x-icon"/>
         <META http-equiv=Content-Type content="text/html; charset=utf-8">
     </HEAD>
 <body>
-<h1><?=$gameType['dataWeb']?>--極速賽車---請選擇號碼</h1>
-官方網站：<a target="_blank" href="<?=$gameType['urlWeb']?>"><?=$gameType['dataWeb']?>開獎網</a><br>
+<h1><?=$gameType['dataWeb']?>--<?=$gameType['title']?>--</h1>
+官方網站：<a target="_blank" href="<?=$gameType['urlWeb']?>"><?=$gameType['title']?>開獎網</a><br>
 <span style="font-size:13px;">最後更新資料時間<?=$uptime?></span><br>
 <span style="font-size:13px;">更新最新期數：<?=$date['year']?>年<?=$date['month']?>月<?=$date['day']?>日--<?=$period?>期</span><br>
 <input class="button" type="button" onclick="location.href='view.php'" target="view_window" title="瀏覽" value ="近期期數">
 <input class="button" type="button" onclick="window.open('setting.php')" target="_blank" title="瀏覽" value ="設定最愛">
 &nbsp;&nbsp;<button class="summit">手動更新期數</button>    
+&nbsp;&nbsp;<input class="button" type="button" onclick="location.href='../index.php'" target="view_window" title="瀏覽" value ="回首頁">
+
 <br>
 
 <span style="font-size:20px;">
