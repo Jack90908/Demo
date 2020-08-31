@@ -1,13 +1,3 @@
-<?php
-require_once 'Model.php';
-require_once 'FastShipInWord.php';
-$db = new Model('cm');
-$tables = $db->query("SHOW TABLES Like 'fast_ship_word'");
-if (!$db->fetch($tables)) {
-  $db->query('CREATE TABLE `fast_ship_word` LIKE `fast_car`');
-  new FastShipInWord();
-}
-?>
 <style>
 .button {
   background-color: #4CAF50; Green

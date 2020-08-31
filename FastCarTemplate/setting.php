@@ -91,6 +91,7 @@ if ($_POST['config']) {
         'bite_ave' => $_POST['bite_ave'],
         'basis' => $configChange[$_POST['basis']],
         'one_ball' => $_POST['one_ball'],
+        'red_point' => $_POST['red_point'],
     ];
     $db->set('ball_config', $array);
     echo "<script>";
@@ -132,6 +133,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td style="width:200px">平均咬幾球</td>
             <td style="width:200px">選擇種類</td>
             <td style="width:200px">單球連續藍字</td>
+            <td style="width:200px">紅字一/兩次藍字</td>
             <td style="width:200px"></td>
         </tr>
         <tr>
@@ -148,6 +150,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
                 </select>
             </td>
             <td><input name="one_ball" type="text" value="<?=$config['one_ball']?>"></td>
+            <td><input name="red_point" type="text" value="<?=$config['red_point']?>"></td>
             <td><input class="summit" type="submit" value="修改"></td>
         </tr>
     </form>

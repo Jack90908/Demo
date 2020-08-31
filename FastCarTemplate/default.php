@@ -1,10 +1,10 @@
 <?php
 require_once "../Model.php";
 $db = new Model('cm');
-$dbSchema = $db->query("select * from information_schema.columns where table_name='setting' AND column_name = 'red_letter'");
+$dbSchema = $db->query("select * from information_schema.columns where table_name='ball_config' AND column_name = 'red_point'");
 $dbName = $db->fetch($dbSchema);
 if (!$dbName) {
-    $db->query("ALTER TABLE `setting` ADD `red_letter` INT NOT NULL DEFAULT '0' AFTER `data`");
+    $db->query("ALTER TABLE `ball_config` ADD `red_point` INT(10) NOT NULL DEFAULT '7' AFTER `basis`;");
 }
 
 $getPeriod = $db->order('id', 'DESC')
