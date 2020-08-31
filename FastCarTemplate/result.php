@@ -96,7 +96,8 @@ for ($i = 0; $i < floor($totalView / $list); $i++) {
 }
 krsort($row);
 if (!$oneBall) {
-    if ($res['change'] >= $config['point']) $bitString = "連續{$change}期藍字，共咬{$bite}期";
+    $point = ($resData['red_letter']) ? $config['red_point'] : $config['point'];
+    if ($res['change'] >= $point) $bitString = "連續{$change}期藍字，共咬{$bite}期";
 } else {
     if ($res['change'] >= $config['one_ball']) $bitString = "連續{$change}期藍字";
 }
