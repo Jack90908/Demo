@@ -2,14 +2,10 @@
 require_once 'Model.php';
 require_once 'BeijingCarInWord.php';
 $db = new Model('cm');
-$tables = $db->query("SELECT * FROM `beijing_car` WHERE date = '20200927'");
+$tables = $db->query("SHOW TABLES Like 'beijing_car'");
 if (!$db->fetch($tables)) {
-    $date = 27;
-    for ($i = 0; $i < 10; $i++) {
-        $url = 'http://52.193.14.86/Api/pks/getPksHistoryList?date=2020-9-' . $date . '&lotCode=10001';
-        $date--;
-        new BeijingCarInWord($url);
-    }
+  $db->query('CREATE TABLE `beijing_car` LIKE `fast_car`');
+  new BeijingCarInWord();
 }
 ?>
 <style>
