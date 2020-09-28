@@ -23,6 +23,11 @@ class BeijingCarInWord {
 
     public function __construct($getData = '', $post = array())
     {
+        #一天太少，抓回前幾期的值
+        if ($getData) {
+            $this->url = $getData;
+            $this->list = true;
+        }
         $this->_db = new Model('cm');
         #抓最大ID
         $getMaxID = $this->_db->get($this->dbName, 'max(id)');
@@ -106,7 +111,7 @@ class BeijingCarInWord {
                 $period = $resB['preDrawIssue'];    
                 $dbID = $date . $period;
                 #重複的不新增，用資料庫最大值去判斷
-                if ($dbID <= $this->maxID && !$this->fixOpen) break;
+                if ($dbID <= $this->maxID && !$this->fixOpen && !$this->list) break;
                 $ballArray = explode(',', $resB['preDrawCode']);
                 $ball = array();
                 foreach ($ballArray as $key => $item) {
