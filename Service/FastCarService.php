@@ -193,23 +193,24 @@ class FastCarService {
         #強制不是一球
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
+            $period = substr($dV['period'], -3, 3);
+            $bingo[$period] = 0;
             foreach ($ballInNo as $num) {
                 if (!isset($beforBall["no{$num}"])) continue;
                 if ($dV["no{$num}"] == $beforBall["no{$num}"]) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
+                    $bingo[$period] ++;
                 }
             }
             #連續藍字判斷
             if ($this->oneBallSel) {
-                $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
+                $change = ($bingo[$period] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red && $bingo[substr($dV['period'], -3, 3)] == 1) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
-                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
+                $clear = ($this->red && $bingo[$period] == 1) ? $change : 0;
+                $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
@@ -241,32 +242,33 @@ class FastCarService {
         $points = 0;
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
+            $period = substr($dV['period'], -3, 3);
             $beforThree ++;
             if ($beforThree > 15) {
-                $bingo[substr($dV['period'], -3, 3)] = 0;
+                $bingo[$period] = 0;
                 #跟跑道
                 if (!$goBall) {
                     foreach ($setBall as $num) {
                         if (in_array($dV["no{$num}"], $beforBall["no{$num}"])) {
-                            $bingo[substr($dV['period'], -3, 3)] ++;
+                            $bingo[$period] ++;
                         }
                     }
                 } else {
                 #跟球跑
                     if (in_array($dV["no{$ballInNo}"], $beforBall["no{$ballInNo}"])) {
-                        $bingo[substr($dV['period'], -3, 3)] ++;
+                        $bingo[$period] ++;
                     }
                 }
                 #連續藍字判斷
                 if ($this->oneBallSel) {
-                    $change = ($bingo[substr($dV['period'], -3, 3)] == 0) ? $change + 1 : 0;
+                    $change = ($bingo[$period] == 0) ? $change + 1 : 0;
                 } else {
-                    $clear = ($this->red && $bingo[substr($dV['period'], -3, 3)] == 1) ? $change : 0;
-                    $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange) ? $change + 1 : $clear;
-                    if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange) $bite ++;
+                    $clear = ($this->red && $bingo[$period] == 1) ? $change : 0;
+                    $change = ($bingo[$period] <= $this->changeRange) ? $change + 1 : $clear;
+                    if ($bingo[$period] <= $this->bitRange) $bite ++;
                     if ($change == 0) $bite = 0;    
                     #藍字加總分數(期數加總分數)
-                    if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
+                    if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
                 }
             }
 
@@ -302,22 +304,23 @@ class FastCarService {
         $points = 0;
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
+            $period = substr($dV['period'], -3, 3);
+            $bingo[$period] = 0;
             foreach ($this->ball as $num) {
                 if (isset($setBall[$num]) && in_array($dV["no{$num}"], $setBall[$num])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
+                    $bingo[$period] ++;
                 }
             }
             #連續藍字判斷
             if ($this->oneBallSel) {
-                $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
+                $change = ($bingo[$period] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red && $bingo[substr($dV['period'], -3, 3)] == 1) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
-                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
+                $clear = ($this->red && $bingo[$period] == 1) ? $change : 0;
+                $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
             }
         }
         $res = [
@@ -343,23 +346,24 @@ class FastCarService {
         if ($goBall == '正常(6-10名)') $rank = array_slice($rank, 5, 5, true);
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
+            $period = substr($dV['period'], -3, 3);
+            $bingo[$period] = 0;
             foreach ($rank as $num) {
                 if (!isset($beforBall["no{$num}"],$setBall[$beforBall["no{$num}"]])) continue;
                 if ($dK != $frist && in_array($dV["no{$num}"], $setBall[$beforBall["no{$num}"]])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
+                    $bingo[$period] ++;
                 }
             }
             #連續藍字判斷
             if ($this->oneBallSel) {
-                $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
+                $change = ($bingo[$period] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red && $bingo[substr($dV['period'], -3, 3)] == 1) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
-                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
+                $clear = ($this->red && $bingo[$period] == 1) ? $change : 0;
+                $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
             }
             unset($beforBall);
             foreach($rank as $num) {
@@ -386,23 +390,24 @@ class FastCarService {
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
-            $bingo[substr($dV['period'], -3, 3)] = 0;
+            $period = substr($dV['period'], -3, 3);
+            $bingo[$period] = 0;
             foreach ($this->ball as $num) {
                 $move = ($num == 10) ? 1 : $num + 1;
                 if ($dK != $frist && in_array($dV["no{$move}"], $setBall[$beforBall["no{$num}"]])) {
-                    $bingo[substr($dV['period'], -3, 3)] ++;
+                    $bingo[$period] ++;
                 }
             }
             #連續藍字判斷
             if ($this->oneBallSel) {
-                $change = ($bingo[substr($dV['period'], -3, 3)] == 0 && $dK != $frist) ? $change + 1 : 0;
+                $change = ($bingo[$period] == 0 && $dK != $frist) ? $change + 1 : 0;
             } else {
-                $clear = ($this->red && $bingo[substr($dV['period'], -3, 3)] == 1) ? $change : 0;
-                $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
-                if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
+                $clear = ($this->red && $bingo[$period] == 1) ? $change : 0;
+                $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
