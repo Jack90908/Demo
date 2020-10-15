@@ -17,6 +17,8 @@ class FastCarService {
     private $oneBallSel = false;
     private $changeRange = 3;
     private $bitRange = 2;
+    #藍字分數計算期數 
+    private $pointsPeriod = 100;
     public function __construct($data)
     {
         if (!empty($data)) $this->data = $data;
@@ -187,6 +189,7 @@ class FastCarService {
         $change = 0;
         $beforBall = array();
         $ballInNo = array();
+        $points = 0;
         #強制不是一球
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
@@ -205,6 +208,8 @@ class FastCarService {
                 $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
+                #藍字加總分數(期數加總分數)
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
@@ -220,6 +225,10 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
+            'points' => [
+                'period' => $this->pointsPeriod,
+                'point' => $points,
+            ],
         ];
         return $res;
     }
@@ -229,6 +238,7 @@ class FastCarService {
         $change = 0;
         $beforThree = 0;
         $ballInNo = 0;
+        $points = 0;
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
             $beforThree ++;
@@ -255,6 +265,8 @@ class FastCarService {
                     $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange) ? $change + 1 : $clear;
                     if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange) $bite ++;
                     if ($change == 0) $bite = 0;    
+                    #藍字加總分數(期數加總分數)
+                    if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
                 }
             }
 
@@ -275,6 +287,10 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
+            'points' => [
+                'period' => $this->pointsPeriod,
+                'point' => $points,
+            ],
         ];
         return $res;
     }
@@ -283,6 +299,7 @@ class FastCarService {
     {
         $bite = 0;
         $change = 0;
+        $points = 0;
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
             $bingo[substr($dV['period'], -3, 3)] = 0;
@@ -299,12 +316,18 @@ class FastCarService {
                 $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
+                #藍字加總分數(期數加總分數)
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
             }
         }
         $res = [
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
+            'points' => [
+                'period' => $this->pointsPeriod,
+                'point' => $points,
+            ],
         ];
         return $res;
     }
@@ -313,6 +336,7 @@ class FastCarService {
     {
         $bite = 0;
         $change = 0;
+        $points = 0;
         $beforBall = array();
         $rank = $this->ball;
         if ($goBall == '正常(1-5名)') $rank = array_slice($rank, 0, 5, true);
@@ -334,6 +358,8 @@ class FastCarService {
                 $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
+                #藍字加總分數(期數加總分數)
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
             }
             unset($beforBall);
             foreach($rank as $num) {
@@ -344,6 +370,10 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
+            'points' => [
+                'period' => $this->pointsPeriod,
+                'point' => $points,
+            ],
         ];
         return $res;
     }
@@ -352,6 +382,7 @@ class FastCarService {
     {
         $bite = 0;
         $change = 0;
+        $points = 0;
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
             $frist = (!isset($frist)) ? $dK : $frist;
@@ -370,6 +401,8 @@ class FastCarService {
                 $change = ($bingo[substr($dV['period'], -3, 3)] <= $this->changeRange && $dK != $frist) ? $change + 1 : $clear;
                 if ($bingo[substr($dV['period'], -3, 3)] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
+                #藍字加總分數(期數加總分數)
+                if ($dK < $this->pointsPeriod) $points = $points + $bingo[substr($dV['period'], -3, 3)] - 3;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
@@ -380,6 +413,10 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
+            'points' => [
+                'period' => $this->pointsPeriod,
+                'point' => $points,
+            ],
         ];
         return $res;
     }
