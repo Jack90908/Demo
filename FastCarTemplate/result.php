@@ -46,13 +46,17 @@ if (!isset($_GET['date'])) $_GET['date'] ='day';
 $seach = ($_GET['date'] == 'yesterday') ? $date['Ymd'] -1 : $date['Ymd'];
 $bingo = array();
 $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
-##########
+##########資料
 $getData = $db
         ->order('id', 'DESC')
         ->get($gameType['gameDB'], '*', "LIMIT {$total}");
 $data = $db->fetchAll($getData);
 krsort($data);
-$fast = new FastCarService($data);
+##########設定檔
+$getConfig = $db->get('ball_config');
+$config = $db->fetch($getConfig);
+
+$fast = new FastCarService($data, $config['point_period']);
 
 $getData = $db->where("name", $_GET['name'])
     ->get('setting', ['data', 'red_letter']);
@@ -64,8 +68,6 @@ if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
     $goBall = $_GET['name'];
 }
 $bData = json_decode($resData['data'], true);
-$getConfig = $db->get('ball_config');
-$config = $db->fetch($getConfig);
 #開頭
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 #結果集結

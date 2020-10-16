@@ -1,12 +1,10 @@
 <?php
 require_once "../Model.php";
 $db = new Model('cm');
-$dbSchema = $db->query("select * from information_schema.columns where table_name='ball_config' AND column_name = 'red_point'");
-$dbName = $db->fetch($dbSchema);
-if (!$dbName) {
-    $db->query("ALTER TABLE `ball_config` ADD `red_point` INT(10) NOT NULL DEFAULT '7' AFTER `basis`;");
+$tables = $db->query("show columns from ball_config like 'point_period'");
+if (!$db->fetch($tables)) {    
+  $db->query("ALTER TABLE `ball_config` ADD `point_period` INT UNSIGNED NOT NULL DEFAULT '100' AFTER `red_point`;");
 }
-
 $getPeriod = $db->order('id', 'DESC')
                 ->get($gameType['gameDB'], ['id','creat_time', 'period'], 'LIMIT 1');
 list($id, $uptime, $period) = $db->fetch($getPeriod, PDO::FETCH_NUM);
