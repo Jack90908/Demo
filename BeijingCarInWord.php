@@ -9,7 +9,7 @@ class BeijingCarInWord {
     private $url = 'http://www.1988660.com/Api/pks/getPksHistoryList?lotCode=10001';
     private $dbName = 'beijing_car';
     public $tableKey = '{"message":"';
-
+    private $yestoday = false;
     public $dataKeyLen = '';
     private $fixOpen = false; #不修正資料則判斷最大期數
     private $_db = '';//資料庫連線
@@ -24,6 +24,10 @@ class BeijingCarInWord {
     public function __construct($getData = '', $post = array())
     {
         $this->_db = new Model('cm');
+        if($getData != '') {
+            $this->url = $getData;
+            $this->yestoday = true;
+        }
         #抓最大ID
         $getMaxID = $this->_db->get($this->dbName, 'max(id)');
         list($this->maxID) = $this->_db->fetch($getMaxID, PDO::FETCH_NUM);
@@ -93,11 +97,28 @@ class BeijingCarInWord {
         #移除前面不要的
         $this->data = substr($this->data, $tableLen);
     }
+    private function BeijingCarFix($data = false)
+    {
+        if (!$data) return;
+        $timeR = str_replace('-', "", $data['preDrawTime']);
+        $date = substr($timeR, $this->dateSe['date'][0], $this->dateSe['date'][1]);
+        $time = substr($timeR, $this->dateSe['time'][0], $this->dateSe['time'][1]);
+        $lastPeriod = $data['preDrawIssue'] - 1;
+        $date = $date - 1;
+        $getLast = $this->_db->where('id', $date . $lastPeriod)->get($this->dbName);
+        if ($time < '11:30:00' && !$this->_db->fetch($getLast)) {
+            $getHisDay = date('Y-m-d', strtotime("-1 day"));
+            $url = "http://52.193.14.86/Api/pks/getPksHistoryList?date=" . $getHisDay ."&lotCode=10001";
+            new self($url);
+        }
+    }
     #極速快車api
     private function fastCarSOP()
     {
         $this->getTable();
         $this->data = json_decode($this->data, true);
+        #修正北京賽車
+        if (!$this->yestoday) $this->BeijingCarFix(end($this->data['result']['data']));
         if (isset($this->data['result'])) {
             foreach ($this->data['result']['data'] as $resB) {
                 $timeR = str_replace('-', "", $resB['preDrawTime']);
@@ -106,7 +127,7 @@ class BeijingCarInWord {
                 $period = $resB['preDrawIssue'];    
                 $dbID = $date . $period;
                 #重複的不新增，用資料庫最大值去判斷
-                if ($dbID <= $this->maxID && !$this->fixOpen) break;
+                if ($dbID <= $this->maxID && !$this->fixOpen && !$this->yestoday) break;
                 $ballArray = explode(',', $resB['preDrawCode']);
                 $ball = array();
                 foreach ($ballArray as $key => $item) {
@@ -133,6 +154,6 @@ class BeijingCarInWord {
             }
         }
         
-        echo json_encode('success');
+        if (!$this->yestoday) echo json_encode('success');
     }
 }
