@@ -105,7 +105,7 @@ class BeijingCarInWord {
         $lastPeriod = $data['preDrawIssue'] - 1;
         $date = $date - 1;
         $getLast = $this->_db->where('id', $date . $lastPeriod)->get($this->dbName);
-        if (!$this->_db->fetch($getLast && !$this->yestoday)) {
+        if (!$this->_db->fetch($getLast) && !$this->yestoday) {
             $getHisDay = date('Y-m-d', strtotime("-1 day"));
             $url = "http://52.193.14.86/Api/pks/getPksHistoryList?date=" . $getHisDay ."&lotCode=10001";
             new self($url);
