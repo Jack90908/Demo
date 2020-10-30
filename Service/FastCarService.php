@@ -19,10 +19,9 @@ class FastCarService {
     private $bitRange = 2;
     #藍字分數計算期數 
     private $pointsPeriod = 100;
-    public function __construct($data, $pointsPeriod = false)
+    public function __construct($data)
     {
         if (!empty($data)) $this->data = $data;
-        if ($pointsPeriod) $this->pointsPeriod = $pointsPeriod;
     }
 
     #加入一半數據的跟球

@@ -92,7 +92,6 @@ if ($_POST['config']) {
         'basis' => $configChange[$_POST['basis']],
         'one_ball' => $_POST['one_ball'],
         'red_point' => $_POST['red_point'],
-        'point_period' => $_POST['point_period'],
     ];
     $db->set('ball_config', $array);
     echo "<script>";
@@ -135,7 +134,6 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td style="width:200px">選擇種類</td>
             <td style="width:200px">單球連續藍字</td>
             <td style="width:200px">紅字一/兩次藍字</td>
-            <td style="width:200px">加總分期數</td>
             <td style="width:200px"></td>
         </tr>
         <tr>
@@ -153,7 +151,6 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             </td>
             <td><input name="one_ball" type="text" value="<?=$config['one_ball']?>"></td>
             <td><input name="red_point" type="text" value="<?=$config['red_point']?>"></td>
-            <td><input name="point_period" type="text" value="<?=$config['point_period']?>"></td>
             <td><input class="summit" type="submit" value="修改"></td>
         </tr>
     </form>
