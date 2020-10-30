@@ -87,7 +87,7 @@ $change = $res['change'];
 $bite = $res['bite'];
 #期數分數加總
 $pointPeriod = $res['points'];
-$pointRed = ($pointPeriod['point'] > 0) ? 'red' : 'blue';
+$pointRed = ($pointPeriod > 0) ? 'red' : 'blue';
 #是否只選單顆球
 $oneBall = $fast->oneBall($bData, $act);
 $maxPeriod = substr(end($data)['period'],-3 ,3);
@@ -101,7 +101,7 @@ krsort($row);
 if (!$oneBall) {
     $point = ($resData['red_letter']) ? $config['red_point'] : $config['point'];
     if ($res['change'] >= $point) $bitString = "連續{$change}期藍字，共咬{$bite}期";
-    $pointString = "——最新{$pointPeriod['period']}期加總分：";
+    $pointString = "——連續藍字加總分：";
 } else {
     if ($res['change'] >= $config['one_ball']) $bitString = "連續{$change}期藍字";
     $pointString = '';
@@ -131,9 +131,9 @@ if (!$oneBall) {
 <br>
 <h>分析日期<?=$seach?>-近300期-期數前綴<?=$perTitle?></h>&nbsp;&nbsp;&nbsp;&nbsp;
 <font><?=$bitString?></font>
-<?php if ($pointString != ''): ?>
+<?php if ($pointString != '' && !in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])): ?>
 <?=$pointString?>
-<font color="<?=$pointRed?>"><?=$pointPeriod['point']?></font>
+<font color="<?=$pointRed?>"><?=$pointPeriod?></font>
 <?php endif ?>
 <table class="resultTable" border=1 cellpadding=3 cellspacing=2 width=1180 bgcolor=<?=$typeHead[$act]['color']?>>
     <?php for ($j = 0; $j < $list; $j++):?>

@@ -60,6 +60,7 @@ $fast = new FastCarService($data);
 #加入跟球一半的數據
 $fast->addHalf($settingData);
 #以下為每個最愛近300期每期 少於3筆中獎 12個以上標記顏色
+$topRes = [];
 foreach ($settingData as $setV) {
     $listChange[$setV['name']] = '';
     $setBall = json_decode($setV['data'], true);
@@ -72,9 +73,15 @@ foreach ($settingData as $setV) {
         if ($res['change'] >= $point) {
             $listChange[$setV['name']] ='change';
             if ($config['basis'] == 'bite_ave') {
-                if ($res['bite'] / $res['change'] > $config['bite_ave'] ) $listChange[$setV['name']] ='bite';
+                if ($res['bite'] / $res['change'] > $config['bite_ave'] ) {
+                    $listChange[$setV['name']] ='bite';
+                    $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];
+                } 
             } else {
-                if ($res['bite'] >= $config['bite']) $listChange[$setV['name']] ='bite';
+                if ($res['bite'] >= $config['bite']) {
+                    $listChange[$setV['name']] ='bite';
+                    $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];    
+                }
             }
         }
     } else {
@@ -87,9 +94,15 @@ $threeAll = '';
 if ($res['change'] >= $config['point']) {
     $threeAll = 'change';
     if ($config['basis'] == 'bite_ave') {
-        if ($res['bite'] / $res['change'] > $config['bite_ave'] ) $threeAll ='bite';
+        if ($res['bite'] / $res['change'] > $config['bite_ave']) {
+            $threeAll ='bite';
+            $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
+        } 
     } else {
-        if ($res['bite'] >= $config['bite']) $threeAll ='bite';
+        if ($res['bite'] >= $config['bite']) {
+            $threeAll ='bite';
+            $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
+        }
     }
 }
 foreach ($ball as $bV) {
@@ -131,6 +144,26 @@ $fast->orderBySettingData($settingData);
 <span style="font-size:13px;">&nbsp;&nbsp;//備註：::前綴的為選單一球，當有[紅字設定]跟[單一球]時，將會看[單一球]的連續藍字 </span><br>
 
 <h3>查詢結果</h3>
+
+<?php 
+$setAct = '';
+$one = '';
+echo '<br>------咬度結果------<br>';
+foreach ($topRes as $setK => $setV) :
+    $backGroud = $typeHead[$setV['act']]['color'];
+    $remind = "background-image:url('grounde.gif');";
+    ?>
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >
+    <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
+        <input type="hidden" name="name" value="<?=$setV['name']?>">
+        <input type="hidden" name="act" value="<?=$setV['act']?>">
+        <?php if ($setV['name'] == '三碼全部'):?>
+        <input type="hidden" name="threeBall" value="all">
+        <input type="hidden" name="goBall" value="false">
+        <?php endif;?>
+    </form>
+<?php $setAct = $setV['act'];
+endforeach;?>
 
 <?php 
 $setAct = '';

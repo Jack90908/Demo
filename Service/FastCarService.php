@@ -210,7 +210,7 @@ class FastCarService {
                 if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
+                $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
@@ -226,10 +226,7 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
-            'points' => [
-                'period' => $this->pointsPeriod,
-                'point' => $points,
-            ],
+            'points' => $points,
         ];
         return $res;
     }
@@ -268,7 +265,7 @@ class FastCarService {
                     if ($bingo[$period] <= $this->bitRange) $bite ++;
                     if ($change == 0) $bite = 0;    
                     #藍字加總分數(期數加總分數)
-                    if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
+                    $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
                 }
             }
 
@@ -289,10 +286,7 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
-            'points' => [
-                'period' => $this->pointsPeriod,
-                'point' => $points,
-            ],
+            'points' => $points,
         ];
         return $res;
     }
@@ -320,17 +314,14 @@ class FastCarService {
                 if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
+                $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
             }
         }
         $res = [
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
-            'points' => [
-                'period' => $this->pointsPeriod,
-                'point' => $points,
-            ],
+            'points' => $points,
         ];
         return $res;
     }
@@ -363,7 +354,7 @@ class FastCarService {
                 if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
+                $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
             }
             unset($beforBall);
             foreach($rank as $num) {
@@ -374,10 +365,7 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
-            'points' => [
-                'period' => $this->pointsPeriod,
-                'point' => $points,
-            ],
+            'points' => $points,
         ];
         return $res;
     }
@@ -407,7 +395,7 @@ class FastCarService {
                 if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
                 if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
-                if ($dK < $this->pointsPeriod) $points = $points + $bingo[$period] - 3;
+                $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
             }
             unset($beforBall);
             foreach($this->ball as $num) {
@@ -418,10 +406,7 @@ class FastCarService {
             'bingo' => $bingo,
             'change' => $change,
             'bite' => $bite,
-            'points' => [
-                'period' => $this->pointsPeriod,
-                'point' => $points,
-            ],
+            'points' => $points,
         ];
         return $res;
     }
