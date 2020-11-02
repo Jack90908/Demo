@@ -46,7 +46,7 @@ $getConfig = $db->get('ball_config');
 $config = $db->fetch($getConfig);
 $nowConfig = $config[$config['basis']];
 #總共搜尋幾球
-$getCount = $config['point'] + 16;
+$getCount = $config['point'] + 300;
 $getData = $db->order('id', 'DESC')
                 ->get($gameType['gameDB'], '*', "LIMIT {$getCount}");
 $data = $db->fetchAll($getData);
@@ -72,16 +72,10 @@ foreach ($settingData as $setV) {
         $point = ($setV['red_letter']) ? $config['red_point'] : $config['point'];
         if ($res['change'] >= $point) {
             $listChange[$setV['name']] ='change';
-            if ($config['basis'] == 'bite_ave') {
-                if ($res['bite'] / $res['change'] > $config['bite_ave'] ) {
-                    $listChange[$setV['name']] ='bite';
-                    $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];
-                } 
-            } else {
-                if ($res['bite'] >= $config['bite']) {
-                    $listChange[$setV['name']] ='bite';
-                    $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];    
-                }
+            if ($res['bite'] >= $config['bite']) {
+                $listChange[$setV['name']] ='bite';
+                if (abs($res['points']) >  abs($config['point_period']))
+                $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];    
             }
         }
     } else {
@@ -93,16 +87,10 @@ $res = $fast->analysis('three', $ball);
 $threeAll = '';
 if ($res['change'] >= $config['point']) {
     $threeAll = 'change';
-    if ($config['basis'] == 'bite_ave') {
-        if ($res['bite'] / $res['change'] > $config['bite_ave']) {
-            $threeAll ='bite';
-            $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
-        } 
-    } else {
-        if ($res['bite'] >= $config['bite']) {
-            $threeAll ='bite';
-            $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
-        }
+    if ($res['bite'] >= $config['bite']) {
+        $threeAll ='bite';
+        if (abs($res['points']) >  abs($config['point_period']))
+        $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
     }
 }
 foreach ($ball as $bV) {
@@ -137,8 +125,9 @@ $fast->orderBySettingData($settingData);
 <span style="font-size:20px;">
     ----藍字：<?=$config['point']?><img src="new.gif">/
     &nbsp;&nbsp;<?=$configView[$config['basis']]?>：<?=$nowConfig?><img src="grounde.gif">/
-    &nbsp;&nbsp;單球：<?=$config['one_ball']?><img src="new.gif">/
-    &nbsp;&nbsp;紅字：<?=$config['red_point']?><img src="new.gif">
+    &nbsp;&nbsp;藍字加總顯示：<?=$config['point_period']?>/
+    &nbsp;&nbsp;單球：<?=$config['one_ball']?>/
+    &nbsp;&nbsp;紅字：<?=$config['red_point']?>
     ----
 </span>
 <span style="font-size:13px;">&nbsp;&nbsp;//備註：::前綴的為選單一球，當有[紅字設定]跟[單一球]時，將會看[單一球]的連續藍字 </span><br>

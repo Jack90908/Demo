@@ -82,16 +82,12 @@ if($_POST['setAct'] == 'del') {
 }
 if ($_POST['config']) {
     $configChange = [
-        '平均咬度' => 'bite_ave',
         '共咬幾球' => 'bite'
     ];
     $array = [
         'point' => $_POST['point'],
         'bite' => $_POST['bite'],
-        'bite_ave' => $_POST['bite_ave'],
-        'basis' => $configChange[$_POST['basis']],
-        'one_ball' => $_POST['one_ball'],
-        'red_point' => $_POST['red_point'],
+        'point_period' => $_POST['point_period'],
     ];
     $db->set('ball_config', $array);
     echo "<script>";
@@ -130,27 +126,13 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
         <tr>
             <td style="width:200px">連續藍字提示</td>
             <td style="width:200px">連續咬幾球</td>
-            <td style="width:200px">平均咬幾球</td>
-            <td style="width:200px">選擇種類</td>
-            <td style="width:200px">單球連續藍字</td>
-            <td style="width:200px">紅字一/兩次藍字</td>
+            <td style="width:200px">藍字加總顯示</td>
             <td style="width:200px"></td>
         </tr>
         <tr>
             <td><input name="point" type="text" value="<?=$config['point']?>"></td>
             <td><input name="bite" type="text" value="<?=$config['bite']?>"></td>
-            <td><input name="bite_ave" type="text" value="<?=$config['bite_ave']?>"></td>
-            <td>
-                <select style="width:200px" name="basis">
-                    <?php foreach ($configView as $setK => $setV) :
-                    $chk = ($config['basis'] == $setK) ? 'selected' : '';
-                    ?>
-                    　<option value="<?=$setV?>" <?=$chk?>><?=$setV?></option>
-                    <?php endforeach;?>
-                </select>
-            </td>
-            <td><input name="one_ball" type="text" value="<?=$config['one_ball']?>"></td>
-            <td><input name="red_point" type="text" value="<?=$config['red_point']?>"></td>
+            <td><input name="point_period" type="text" value="<?=$config['point_period']?>"></td>
             <td><input class="summit" type="submit" value="修改"></td>
         </tr>
     </form>

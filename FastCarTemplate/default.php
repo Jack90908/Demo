@@ -43,7 +43,6 @@ $typeHead = [
     ]
 ];
 $configView = [
-    'bite_ave' => '平均咬度',
     'bite' => '共咬幾球'
 ];
 $tableStyle = [
