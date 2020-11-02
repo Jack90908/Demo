@@ -9,4 +9,4 @@ require_once "BeijingCarInWord.php";
 new FastCarIn168();
 new FastCarInWord();
 new FastShipInWord();
-new BeijingCarInWord();
+// new BeijingCarInWord();
