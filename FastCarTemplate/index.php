@@ -74,7 +74,7 @@ foreach ($settingData as $setV) {
             $listChange[$setV['name']] ='change';
             if ($res['bite'] >= $config['bite']) {
                 $listChange[$setV['name']] ='bite';
-                if (abs($res['points']) >  abs($config['point_period']))
+                if (abs($res['points']) >=  abs($config['point_period']))
                 $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];    
             }
         }
@@ -89,7 +89,7 @@ if ($res['change'] >= $config['point']) {
     $threeAll = 'change';
     if ($res['bite'] >= $config['bite']) {
         $threeAll ='bite';
-        if (abs($res['points']) >  abs($config['point_period']))
+        if (abs($res['points']) >=  abs($config['point_period']))
         $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
     }
 }
