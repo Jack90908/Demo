@@ -35,6 +35,13 @@
 .formNoChang{
     margin:0px; display:inline
 }
+.select_ball {
+    width: 50;
+}
+
+.select_ball_td {
+    width: 100;
+}
 </style>
 <?php
 require_once "default.php";
@@ -139,6 +146,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
 </table>
 <hr size="8px" color=#00000>
 <h3>設定最愛</h3>
+<p>如要輸入10號球, 請打 '0'</p>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=<?=$typeHead[$act]['color']?>>
     <form action="setting.php" method="post" name=formS>
         <tr>
@@ -166,14 +174,9 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
                 </select>
             </td>
             <?php foreach($ball as $ballVaule) :?>
-            <td>
-                <?php for($i = 1; $i <= 3; $i++):?>
-                <select name="ball[<?=$ballVaule?>][<?=$i?>]">
-            　      <option value="" checked></option>
-                    <?php foreach($ball as $seachV):?>
-            　      <option value="<?=$seachV?>"><?=$seachV?></option>
-                    <?php endforeach?>
-                </select><br>
+            <td class="select_ball_td">
+                <?php for($i = 1; $i <= 10; $i++):?>
+                <input type="text" maxlength="1" class="select_ball" name="ball[<?=$ballVaule?>][<?=$i?>]">
                 <?php endfor;?>
             </td>
             <?php endforeach;?>
@@ -255,6 +258,48 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             var url = "setting.php?act=" + act;
             location.href=url;
     }
+    // 換下一個input ball
+    ball_array = [];
+    $('.select_ball').each(function (){
+        key = this.name.substring(0, 7);
+        if (key.indexOf(']') < 0) {
+            key = this.name.substring(0, 8);
+        }
+        ball_array[key] = [];
+        if ($(this).index() >= 3) {
+            $(this).hide();
+        }
+        $(this).focus(function () {
+            now_value = this.value;
+            now_key = this.name.substring(0, 7);
+        });
+
+        $(this).keyup(function(e){   
+            if ($.isNumeric(now_value) == true && $(this).val() == now_value) {
+                ball_array[now_key].splice($.inArray(now_value,ball_array[now_key]),1);
+            }
+            if($(this).val().length == $(this).attr('maxlength')) {
+                if ($(this).val() == 0) {
+                    $(this).val("10");
+                }
+                if (ball_array[this.name.substring(0, 7)].indexOf($(this).val()) >= 0) {
+                    alert('已設定過此參數');
+                    $(this).val('')
+                    return;
+                }
+                if ($.isNumeric($(this).val()) == false) {
+                    alert('請輸入數字')
+                    $(this).val('')
+                    return;
+                }
+                ball_array[this.name.substring(0, 7)].push($(this).val());
+                if ($(this).index() >= 2) {
+                    $(this).next().show();
+                }
+                $(this).next().focus();
+            }
+        });
+    });
 </script>
 
 <!-- CREATE TABLE `roberDemo`.`setting` ( `name` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `act` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , `data` TEXT NOT NULL , PRIMARY KEY (`name`)) ENGINE = InnoDB; -->

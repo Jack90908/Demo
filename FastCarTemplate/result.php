@@ -63,7 +63,6 @@ if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
     $resData = $fast->addHalf($resData, $_GET['name']);
     $goBall = $_GET['name'];
 }
-$bData = json_decode($resData['data'], true);
 $getConfig = $db->get('ball_config');
 $config = $db->fetch($getConfig);
 #開頭
@@ -72,6 +71,9 @@ $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]
 if ($_GET['act'] == 'three') {
     $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
     $goBall = ($_GET['goBall'] == 'true') ?: false;
+    $resData['red_letter'] = 0;
+} else {
+    $bData = json_decode($resData['data'], true);
 }
 if ($_GET['act'] == 'pan') {
     $bData[] = $_GET['panBall'];
