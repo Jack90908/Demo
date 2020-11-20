@@ -65,10 +65,24 @@ if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
 }
 $getConfig = $db->get('ball_config');
 $config = $db->fetch($getConfig);
+// 往下幾碼套用three板模
+if (is_numeric($_GET['act'])) {
+    $typeHead[$_GET['act']] = $typeHead['three'];
+    $downArray = [
+        '四碼' => 4,
+        '五碼' => 5,
+        '六碼' => 6,
+        '七碼' => 7,
+        '八碼' => 8,
+        '九碼' => 9,
+        '十碼' => 10,
+    ];
+    $typeHead[$_GET['act']]['title'] = array_flip($downArray)[$_GET['act']];
+}
 #開頭
 $typeHead[$_GET['act']]['title'] = $_GET['name'] . '-' . $typeHead[$_GET['act']]['title'];
 #結果集結
-if ($_GET['act'] == 'three') {
+if ($_GET['act'] == 'three' || is_numeric($_GET['act'])) {
     $bData = ($_GET['threeBall'] == 'all') ? $ball : [$_GET['threeBall']];
     $goBall = ($_GET['goBall'] == 'true') ?: false;
     $resData['red_letter'] = 0;

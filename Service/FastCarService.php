@@ -95,7 +95,7 @@ class FastCarService {
     #只選單顆球
     public function oneBall($bData, $act = null)
     {
-        if ($act == 'three') {
+        if (in_array($act, ['three', 4, 5, 6, 7, 8, 9, 10])) {
             if (count($bData) == 10)return false;
             return true;
         }
@@ -144,6 +144,7 @@ class FastCarService {
                 return array();
             break;
             default:
+                return array();
             break;
         }
     }
@@ -173,7 +174,17 @@ class FastCarService {
                 return $this->moveAnal($setBall);
             break;
             case 'three' :
-                return $this->threeAnal($setBall, $goBall);
+            case 1 :
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+            case 6 :
+            case 7 :
+            case 8 :
+            case 9 :
+            case 10 :
+                return $this->threeAnal($setBall, $goBall, $act);
             break;
             case 'pan' :
                 return $this->panAnal($setBall);
@@ -230,13 +241,14 @@ class FastCarService {
         ];
         return $res;
     }
-    private function threeAnal($setBall, $goBall = false)
+    private function threeAnal($setBall, $goBall = false, $act = 'three')
     {
         $bite = 0;
         $change = 0;
         $beforThree = 0;
         $ballInNo = 0;
         $points = 0;
+        $number = ($act == 'three') ? 4 : $act + 1;
         $beforBall = array();
         foreach ($this->data as $dK => $dV) {
             $period = substr($dV['period'], -3, 3);
@@ -279,7 +291,7 @@ class FastCarService {
                     $test = array_search($dV["no{$num}"], $beforBall["no{$num}"]);
                     unset($beforBall["no{$num}"][$test]);    
                 }
-                if (count($beforBall["no{$num}"]) == 4) $delete = array_shift($beforBall["no{$num}"]);
+                if (count($beforBall["no{$num}"]) == $number) $delete = array_shift($beforBall["no{$num}"]);
             }
         }
         $res = [

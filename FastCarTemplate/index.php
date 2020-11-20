@@ -52,7 +52,8 @@ $getData = $db->order('id', 'DESC')
 $data = $db->fetchAll($getData);
 krsort($data);
 
-$setGet = $db->order('act')
+$setGet = $db->where('act', 'move', 'AND', '!=')
+            ->order('act')
             ->order('name')
             ->get('setting', ['name', 'act', 'data', 'red_letter']);
 $settingData = $db->fetchAll($setGet);
@@ -82,24 +83,37 @@ foreach ($settingData as $setV) {
         if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
     }
 }
-#三碼專用
-$res = $fast->analysis('three', $ball);
-$threeAll = '';
-if ($res['change'] >= $config['point']) {
-    $threeAll = 'change';
-    if ($res['bite'] >= $config['bite']) {
-        $threeAll ='bite';
-        if (abs($res['points']) >=  abs($config['point_period']))
-        $topRes[] = ['name' => '三碼全部', 'act' => 'three'];    
+#往下x碼專用
+$downArray = [
+    '三碼' => 'three',
+    '四碼' => 4,
+    '五碼' => 5,
+    '六碼' => 6,
+    '七碼' => 7,
+    '八碼' => 8,
+    '九碼' => 9,
+    '十碼' => 10,
+];
+
+foreach ($downArray as $k => $downNumber) {
+    $res = $fast->analysis($downNumber, $ball);
+    $numberAll[$downNumber] = '';
+    if ($res['change'] >= $config['point']) {
+        $numberAll[$downNumber] = 'change';
+        if ($res['bite'] >= $config['bite']) {
+            $numberAll[$downNumber] ='bite';
+            if (abs($res['points']) >=  abs($config['point_period']))
+            $topRes[] = ['name' => $k . '全部', 'act' => $downNumber];    
+        }
     }
-}
-foreach ($ball as $bV) {
-    $res = $fast->analysis('three', [$bV]);
-    $three[$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
-}
-foreach ($ball as $bV) {
-    $res = $fast->analysis('three', [$bV], true);
-    $threeGoBall[$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+    foreach ($ball as $bV) {
+        $res = $fast->analysis($downNumber, [$bV]);
+        $down[$downNumber][$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+    }
+    foreach ($ball as $bV) {
+        $res = $fast->analysis($downNumber, [$bV], true);
+        $downGoBall[$downNumber][$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+    }
 }
 $fast->orderBySettingData($settingData);
 ?>
@@ -173,44 +187,46 @@ foreach ($settingData as $setK => $setV) :
     </form>
 <?php $setAct = $setV['act'];
 endforeach;?>
-<br>------往下三碼------<br>
-<?php 
-$remind = '';
-$remind = ($threeAll == 'change') ? "background-image:url('new.gif');" : '';
-$remind = ($threeAll == 'bite') ? "background-image:url('grounde.gif');" : $remind;
+<!-- 往下x碼 -->
+<?php foreach ($downArray as $k => $downNumber):
+   $remind = '';
+   $remind = ($numberAll[$downNumber] == 'change') ? "background-image:url('new.gif');" : '';
+   $remind = ($numberAll[$downNumber] == 'bite') ? "background-image:url('grounde.gif');" : $remind; 
 ?>
-<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listTest').submit();" value="三碼全部" >
-<form class="formNoChang" action="result.php" id='listTest' method="get" target="_blank">
-    <input type="hidden" name="name" value="三碼全部">
-    <input type="hidden" name="act" value="three">
+<br>------往下<?=$k?>------<br>
+<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listTest<?=$k?>').submit();" value="<?=$k?>全部" >
+<form class="formNoChang" action="result.php" id='listTest<?=$k?>' method="get" target="_blank">
+    <input type="hidden" name="name" value="<?=$k?>全部">
+    <input type="hidden" name="act" value="<?=$downNumber?>">
     <input type="hidden" name="threeBall" value="all">
     <input type="hidden" name="goBall" value="false">
 </form>
 <br>
-<?php foreach ($ball as $threeV) :
-$remind = '';
-$remind = ($three[$threeV] == 'change') ? "background-image:url('new.gif');" : '';   
-?>
-<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$threeV?>').submit();" value="跟<?=$threeV?>跑道" >
-<form class="formNoChang" action="result.php" id='listThree<?=$threeV?>' method="get" target="_blank">
-    <input type="hidden" name="name" value="跟<?=$threeV?>跑道">
-    <input type="hidden" name="act" value="three">
-    <input type="hidden" name="threeBall" value="<?=$threeV?>">
-    <input type="hidden" name="goBall" value="false">
-</form>
-<?php endforeach?>
-<br><br>
-<?php foreach ($ball as $threeV) :
-$remind = '';
-$remind = ($threeGoBall[$threeV] == 'change') ? "background-image:url('new.gif');" : '';
-?>
-<input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThreeBall<?=$threeV?>').submit();" value="跟<?=$threeV?>號球" >
-<form class="formNoChang" action="result.php" id='listThreeBall<?=$threeV?>' method="get" target="_blank">
-    <input type="hidden" name="name" value="跟<?=$threeV?>號球">
-    <input type="hidden" name="act" value="three">
-    <input type="hidden" name="threeBall" value="<?=$threeV?>">
-    <input type="hidden" name="goBall" value="true">
-</form>
+    <?php foreach ($ball as $threeV) :
+    $remind = '';
+    $remind = ($down[$downNumber][$threeV] == 'change') ? "background-image:url('new.gif');" : '';   
+    ?>
+    <input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThree<?=$k?><?=$threeV?>').submit();" value="跟<?=$threeV?>跑道" >
+    <form class="formNoChang" action="result.php" id='listThree<?=$k?><?=$threeV?>' method="get" target="_blank">
+        <input type="hidden" name="name" value="跟<?=$threeV?>跑道">
+        <input type="hidden" name="act" value="<?=$downNumber?>">
+        <input type="hidden" name="threeBall" value="<?=$threeV?>">
+        <input type="hidden" name="goBall" value="false">
+    </form>
+    <?php endforeach;?>
+    <br><br>
+    <?php foreach ($ball as $threeV) :
+    $remind = '';
+    $remind = ($downGoBall[$downNumber][$threeV] == 'change') ? "background-image:url('new.gif');" : '';
+    ?>
+    <input type="button" style="width:200px; <?=$remind?> background-repeat:no-repeat;background-position:center; background-color:<?=$typeHead['three']['color']?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listThreeBall<?=$k?><?=$threeV?>').submit();" value="跟<?=$threeV?>號球" >
+    <form class="formNoChang" action="result.php" id='listThreeBall<?=$k?><?=$threeV?>' method="get" target="_blank">
+        <input type="hidden" name="name" value="跟<?=$threeV?>號球">
+        <input type="hidden" name="act" value="<?=$downNumber?>">
+        <input type="hidden" name="threeBall" value="<?=$threeV?>">
+        <input type="hidden" name="goBall" value="true">
+    </form>
+    <?php endforeach?>
 <?php endforeach?>
 <br>------平移三碼------<br>
 <?php foreach ($ball as $panV) :?>

@@ -166,7 +166,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td>
                 <select id="act" name="act" onchange="chageAct()">
                     <?php foreach ($typeHead as $tK => $titleValue) : 
-                    if (in_array($tK, ['three', 'pan'])) continue;
+                    if (in_array($tK, ['three', 'pan', 'move'])) continue;
                     $checked = ($tK == $act) ? 'selected' : '';
                     ?>
                     <option <?=$checked?> value="<?=$tK?>"><?=$titleValue['title']?></option>
