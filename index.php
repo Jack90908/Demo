@@ -1,13 +1,13 @@
 <?php
 require_once 'Model.php';
-require_once 'LuckyFerryIn168.php';
+require_once 'LuckAusIn168.php';
 $db = new Model('cm');
-$tables = $db->query("SHOW TABLES Like 'lucky_ferry168'");
+$tables = $db->query("SHOW TABLES Like 'lucky_aus168'");
 if (!$db->fetch($tables)) {
-  $db->query('CREATE TABLE `lucky_ferry168` LIKE `fast_car`');
-  new LuckyFerryIn168('https://api.apiose122.com/pks/getPksHistoryList.do?date=2020-10-31&lotCode=10057');
-  new LuckyFerryIn168('https://api.apiose122.com/pks/getPksHistoryList.do?date=2020-11-01&lotCode=10057');
-  new LuckyFerryIn168();
+  $db->query('CREATE TABLE `lucky_aus168` LIKE `lucky_ferry168`');
+  new LuckAusIn168('https://api.apiose122.com/pks/getPksHistoryList.do?date=2020-11-20&lotCode=10012');
+  new LuckAusIn168('https://api.apiose122.com/pks/getPksHistoryList.do?date=2020-11-21&lotCode=10012');
+  new LuckAusIn168();
 }
 ?>
 <style>
@@ -42,7 +42,8 @@ form {
     </HEAD>
 <body>
 <input class="button" style="background-repeat:no-repeat; background-image:url('FastCar/fastCar.ico');" type="button" onclick="location.href='FastCar/index.php'" target="view_window" title="168" value ="168極速賽車">
-<input class="button" style="background-repeat:no-repeat; background-image:url('LuckyFerryIn168/fastCar.ico');" type="button" onclick="location.href='LuckyFerryIn168/index.php'" target="view_window" title="世界" value ="168幸運飛艇">
+<input class="button" style="background-repeat:no-repeat; background-image:url('LuckyFerryIn168/fastCar.ico');" type="button" onclick="location.href='LuckyFerryIn168/index.php'" target="view_window" title="168" value ="168幸運飛艇">
+<input class="button" style="background-repeat:no-repeat; background-image:url('LuckyAusIn168/fastCar.ico');" type="button" onclick="location.href='LuckyAusIn168/index.php'" target="view_window" title="168" value ="168澳洲幸運10">
 <input class="button" style="background-repeat:no-repeat; background-image:url('FastCarWord/fastCar.ico');" type="button" onclick="location.href='FastCarWord/index.php'" target="view_window" title="世界" value ="世界極速賽車">
 <input class="button" style="background-repeat:no-repeat; background-image:url('FastShipWord/fastCar.ico');" type="button" onclick="location.href='FastShipWord/index.php'" target="view_window" title="世界" value ="世界極速飛艇">
 <input class="button" style="background-repeat:no-repeat; background-image:url('BeijingCarWord/fastCar.ico');" type="button" onclick="location.href='BeijingCarWord/index.php'" target="view_window" title="世界" disabled value ="世界北京賽車-暫停">

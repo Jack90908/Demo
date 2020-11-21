@@ -6,9 +6,11 @@ require_once "FastCarInWord.php";
 require_once "FastShipInWord.php";
 require_once "BeijingCarInWord.php";
 require_once "LuckyFerryIn168.php";
+require_once "LuckAusIn168.php";
 // 極速賽車
 new FastCarIn168();
 new FastCarInWord();
 new FastShipInWord();
 new LuckyFerryIn168();
+new LuckAusIn168();
 // new BeijingCarInWord();
