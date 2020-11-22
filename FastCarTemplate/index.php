@@ -156,8 +156,8 @@ foreach ($topRes as $setK => $setV) :
     $backGroud = $typeHead[$setV['act']]['color'];
     $remind = "background-image:url('grounde.gif');";
     ?>
-    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('list<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >
-    <form class="formNoChang" action="result.php" id='list<?=$setK?>' method="get" target="_blank">
+    <input type="button" style="width:200px;<?=$remind?> background-repeat:no-repeat;background-position:center;  background-color:<?=$backGroud?>" class="button_sel" href="javascript:void(0)" onclick="document.getElementById('listT<?=$setK?>').submit();" value="<?=$one?><?=$setV['name']?>" >
+    <form class="formNoChang" action="result.php" id='listT<?=$setK?>' method="get" target="_blank">
         <input type="hidden" name="name" value="<?=$setV['name']?>">
         <input type="hidden" name="act" value="<?=$setV['act']?>">
         <?php if ($setV['name'] == '三碼全部'):?>
