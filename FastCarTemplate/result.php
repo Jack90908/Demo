@@ -64,10 +64,15 @@ if (in_array($_GET['name'], ['正常(1-5名)', '正常(6-10名)'])) {
     $goBall = $_GET['name'];
 }
 $getConfig = $db->get('ball_config');
-$config = $db->fetch($getConfig);
+$configs = $db->fetchAll($getConfig);
+$configArr = [];
+foreach ($configs as $config) {
+    $configArr[$config['act']] = $config;
+}
 // 往下幾碼套用three板模
 if (is_numeric($_GET['act'])) {
     $typeHead[$_GET['act']] = $typeHead['three'];
+    $configArr[$_GET['act']] = $configArr['three'];
     $downArray = [
         '四碼' => 4,
         '五碼' => 5,
@@ -115,11 +120,11 @@ for ($i = 0; $i < floor($totalView / $list); $i++) {
 }
 krsort($row);
 if (!$oneBall) {
-    $point = ($resData['red_letter']) ? $config['red_point'] : $config['point'];
+    $point = ($resData['red_letter']) ? $configArr[$act]['red_point'] : $configArr[$act]['point'];
     if ($res['change'] >= $point) $bitString = "連續{$change}期藍字，共咬{$bite}期";
     $pointString = "——連續藍字加總分：";
 } else {
-    if ($res['change'] >= $config['one_ball']) $bitString = "連續{$change}期藍字";
+    if ($res['change'] >= $configArr[$act]['one_ball']) $bitString = "連續{$change}期藍字";
     $pointString = '';
 }
 

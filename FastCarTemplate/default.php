@@ -1,10 +1,25 @@
 <?php
 require_once "../Model.php";
 $db = new Model('cm');
-$dbSchema = $db->query("select * from information_schema.columns where table_name='ball_config' AND column_name = 'red_point'");
+$dbSchema = $db->query("select * from information_schema.columns where table_name='ball_config' AND column_name = 'act'");
 $dbName = $db->fetch($dbSchema);
 if (!$dbName) {
-    $db->query("ALTER TABLE `ball_config` ADD `red_point` INT(10) NOT NULL DEFAULT '7' AFTER `basis`;");
+    $db->query("ALTER TABLE `ball_config` ADD `act` VARCHAR(10) NOT NULL DEFAULT 'hand' AFTER `point_period`, ADD UNIQUE `act_only` (`act`);");
+    $resGet = $db->get('ball_config');
+    $res = $db->fetch($resGet);
+    $data = [
+        'point' => $res['point'],
+        'bite_ave' => $res['bite_ave'],
+        'bite' => $res['bite'],
+        'one_ball' => $res['one_ball'],
+        'basis' => $res['basis'],
+        'red_point' => $res['red_point'],
+        'point_period' => $res['point_period'],
+    ];
+    $data['act'] = 'goBall';
+    $db->add('ball_config', $data);
+    $data['act'] = 'three';
+    $db->add('ball_config', $data);
 }
 
 $getPeriod = $db->order('id', 'DESC')

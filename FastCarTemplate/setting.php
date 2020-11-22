@@ -96,7 +96,7 @@ if ($_POST['config']) {
         'bite' => $_POST['bite'],
         'point_period' => $_POST['point_period'],
     ];
-    $db->set('ball_config', $array);
+    $db->where('act', $_POST['act'])->set('ball_config', $array);
     echo "<script>";
     echo "alert('修改偏好成功！');";
     echo "document.location.href='setting.php'
@@ -110,7 +110,7 @@ $date['year'] = substr($id, 0, 4);
 $date['month'] = substr($id, 4, 2);
 $date['day'] = substr($id, 6, 2);
 $getConfig = $db->get('ball_config');
-$config = $db->fetch($getConfig);
+$configs = $db->fetchAll($getConfig);
 $setGet = $db->order('act')
             ->order('name')
             ->get('setting', ['name', 'act', 'data']);
@@ -127,16 +127,20 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
 <input class="button" type="button" onclick="location.href='index.php'" target="_self" title="瀏覽" value ="返回首頁">
 <input class="button" type="button" onclick="location.href='set.php'" target="_self" title="瀏覽" value ="檢視最愛">
 <h3>設定偏好</h3>
+<?php foreach ($configs as $config): ?>
 <table border=1 cellpadding=2 cellspacing=1 width=1020 bgcolor=lightgray>
     <form action="setting.php" method="post" name=formS>
         <input type="hidden" name='config' value="update">
+        <input type="hidden" name='act' value="<?=$config['act']?>">
         <tr>
+            <td style="width:200px">型態</td>
             <td style="width:200px">連續藍字提示</td>
             <td style="width:200px">連續咬幾球</td>
             <td style="width:200px">藍字加總顯示</td>
             <td style="width:200px"></td>
         </tr>
         <tr>
+            <td><?=$typeHead[$config['act']]['title']?></td>
             <td><input name="point" type="text" value="<?=$config['point']?>"></td>
             <td><input name="bite" type="text" value="<?=$config['bite']?>"></td>
             <td><input name="point_period" type="text" value="<?=$config['point_period']?>"></td>
@@ -144,6 +148,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
         </tr>
     </form>
 </table>
+<?php endforeach; ?>
 <hr size="8px" color=#00000>
 <h3>設定最愛</h3>
 <p>如要輸入10號球, 請打 '0'</p>
@@ -273,7 +278,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             now_value = this.value;
             now_key = this.name.substring(0, 7);
         });
-        
+
         $(this).keyup(function(e){   
             if ($.isNumeric(now_value) == true && $(this).val() == now_value) {
                 ball_array[now_key].splice($.inArray(now_value,ball_array[now_key]),1);

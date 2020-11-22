@@ -43,10 +43,13 @@ form {
 require_once "default.php";
 require_once "../Service/FastCarService.php";
 $getConfig = $db->get('ball_config');
-$config = $db->fetch($getConfig);
-$nowConfig = $config[$config['basis']];
+$configs = $db->fetchAll($getConfig);
+$configArr = [];
+foreach ($configs as $config) {
+    $configArr[$config['act']] = $config;
+}
 #總共搜尋幾球
-$getCount = $config['point'] + 300;
+$getCount = 350;
 $getData = $db->order('id', 'DESC')
                 ->get($gameType['gameDB'], '*', "LIMIT {$getCount}");
 $data = $db->fetchAll($getData);
@@ -70,17 +73,17 @@ foreach ($settingData as $setV) {
     $oneBall = $fast->oneBall($setBall);
     #當連續12次都是低於3次的
     if (!$oneBall) {
-        $point = ($setV['red_letter']) ? $config['red_point'] : $config['point'];
+        $point = ($setV['red_letter']) ? $configArr[$setV['act']]['red_point'] : $configArr[$setV['act']]['point'];
         if ($res['change'] >= $point) {
             $listChange[$setV['name']] ='change';
-            if ($res['bite'] >= $config['bite']) {
+            if ($res['bite'] >= $configArr[$setV['act']]['bite']) {
                 $listChange[$setV['name']] ='bite';
-                if (abs($res['points']) >=  abs($config['point_period']))
+                if (abs($res['points']) >=  abs($configArr[$setV['act']]['point_period']))
                 $topRes[] = ['name' => $setV['name'], 'act' => $setV['act']];    
             }
         }
     } else {
-        if ($res['change'] >= $config['one_ball']) $listChange[$setV['name']] ='change';
+        if ($res['change'] >= $configArr[$setV['act']]['one_ball']) $listChange[$setV['name']] ='change';
     }
 }
 #往下x碼專用
@@ -98,21 +101,21 @@ $downArray = [
 foreach ($downArray as $k => $downNumber) {
     $res = $fast->analysis($downNumber, $ball);
     $numberAll[$downNumber] = '';
-    if ($res['change'] >= $config['point']) {
+    if ($res['change'] >= $configArr['three']['point']) {
         $numberAll[$downNumber] = 'change';
-        if ($res['bite'] >= $config['bite']) {
+        if ($res['bite'] >= $configArr['three']['bite']) {
             $numberAll[$downNumber] ='bite';
-            if (abs($res['points']) >=  abs($config['point_period']))
+            if (abs($res['points']) >=  abs($configArr['three']['point_period']))
             $topRes[] = ['name' => $k . '全部', 'act' => $downNumber];    
         }
     }
     foreach ($ball as $bV) {
         $res = $fast->analysis($downNumber, [$bV]);
-        $down[$downNumber][$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+        $down[$downNumber][$bV] = ($res['change'] >= $configArr['three']['one_ball']) ? 'change' : '';
     }
     foreach ($ball as $bV) {
         $res = $fast->analysis($downNumber, [$bV], true);
-        $downGoBall[$downNumber][$bV] = ($res['change'] >= $config['one_ball']) ? 'change' : '';
+        $downGoBall[$downNumber][$bV] = ($res['change'] >= $configArr['three']['one_ball']) ? 'change' : '';
     }
 }
 $fast->orderBySettingData($settingData);
@@ -135,17 +138,27 @@ $fast->orderBySettingData($settingData);
 &nbsp;&nbsp;<input class="button" type="button" onclick="location.href='../index.php'" target="view_window" title="瀏覽" value ="回首頁">
 
 <br>
-
-<span style="font-size:20px;">
-    ----藍字：<?=$config['point']?><img src="new.gif">/
-    &nbsp;&nbsp;<?=$configView[$config['basis']]?>：<?=$nowConfig?><img src="grounde.gif">/
-    &nbsp;&nbsp;藍字加總顯示：<?=$config['point_period']?>/
-    &nbsp;&nbsp;單球：<?=$config['one_ball']?>/
-    &nbsp;&nbsp;紅字：<?=$config['red_point']?>
-    ----
-</span>
+<table width="100%";  border=1 cellpadding=1 cellspacing=1>
+    <tr>
+        <td>型態</td>
+        <td>藍字<img height="30px" src="new.gif"></td>
+        <td>咬度<img height="30px" src="grounde.gif"></td>
+        <td>藍字加總顯示</td>
+        <td>單球</td>
+        <td>紅字</td>
+    </tr>
+    <?php foreach ($configArr as $k => $value): ?>
+    <tr  style="background-color:<?=$typeHead[$k]['color'];?>">
+        <td><?=$typeHead[$k]['title']?></td>
+        <td><?=$value['point']?></td>
+        <td><?=$value['bite']?></td>
+        <td><?=$value['point_period']?></td>
+        <td><?=$value['one_ball']?></td>
+        <td><?=$value['red_point']?></td>
+    </tr>
+    <?php endforeach;?>
+</table>
 <span style="font-size:13px;">&nbsp;&nbsp;//備註：::前綴的為選單一球，當有[紅字設定]跟[單一球]時，將會看[單一球]的連續藍字 </span><br>
-
 <h3>查詢結果</h3>
 
 <?php 
