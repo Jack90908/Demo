@@ -273,7 +273,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             now_value = this.value;
             now_key = this.name.substring(0, 7);
         });
-
+        
         $(this).keyup(function(e){   
             if ($.isNumeric(now_value) == true && $(this).val() == now_value) {
                 ball_array[now_key].splice($.inArray(now_value,ball_array[now_key]),1);
@@ -282,7 +282,12 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
                 if ($(this).val() == 0) {
                     $(this).val("10");
                 }
-                if (ball_array[this.name.substring(0, 7)].indexOf($(this).val()) >= 0) {
+                ball_key = this.name.substring(0, 7);
+                if (ball_key.indexOf(']') < 0) {
+                    ball_key = this.name.substring(0, 8);
+                }
+                console.log(ball_key);
+                if (ball_array[ball_key].indexOf($(this).val()) >= 0) {
                     alert('已設定過此參數');
                     $(this).val('')
                     return;
@@ -292,7 +297,7 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
                     $(this).val('')
                     return;
                 }
-                ball_array[this.name.substring(0, 7)].push($(this).val());
+                ball_array[ball_key].push($(this).val());
                 if ($(this).index() >= 2) {
                     $(this).next().show();
                 }

@@ -131,8 +131,9 @@ class FastCarService {
             case 'goBall' :
             case 'move' :
                     foreach ($bData as $ballK => $ballCanter) {
-                    $titleData[$ballK] = $ballK."號球：";
+                    $titleData[$ballK] = $ballK."號球:";
                     foreach ($ballCanter as $canter) {
+                        if (!empty($canter))
                         $titleData[$ballK] .= $canter . ',';
                     }
                     $titleData[$ballK] = substr($titleData[$ballK],0,-1);
