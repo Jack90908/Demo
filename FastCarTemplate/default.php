@@ -57,6 +57,11 @@ $typeHead = [
         'type'  => '號球'
     ]
 ];
+$typeDown = [4,5,6,7,8,9,10];
+foreach ($typeDown as $v) {
+    $typeHead[$v] = $typeHead['three'];
+    $typeHead[$v]['title'] = "{$v}碼全部";
+}
 $configView = [
     'bite' => '共咬幾球'
 ];
