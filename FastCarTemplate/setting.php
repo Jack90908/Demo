@@ -95,6 +95,8 @@ if ($_POST['config']) {
         'point' => $_POST['point'],
         'bite' => $_POST['bite'],
         'point_period' => $_POST['point_period'],
+        'one_ball' => $_POST['one_ball'],
+        'red_point' => $_POST['red_point'],
     ];
     $db->where('act', $_POST['act'])->set('ball_config', $array);
     echo "<script>";
@@ -137,6 +139,8 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td style="width:200px">連續藍字提示</td>
             <td style="width:200px">連續咬幾球</td>
             <td style="width:200px">藍字加總顯示</td>
+            <td style="width:200px">單球連續藍字</td>
+            <td style="width:200px">紅字一/兩次藍字</td>
             <td style="width:200px"></td>
         </tr>
         <tr>
@@ -144,6 +148,8 @@ $act = (!isset($_GET['act'])) ? 'hand' : $_GET['act'];
             <td><input name="point" type="text" value="<?=$config['point']?>"></td>
             <td><input name="bite" type="text" value="<?=$config['bite']?>"></td>
             <td><input name="point_period" type="text" value="<?=$config['point_period']?>"></td>
+            <td><input name="one_ball" type="text" value="<?=$config['one_ball']?>"></td>
+            <td><input name="red_point" type="text" value="<?=$config['red_point']?>"></td>
             <td><input class="summit" type="submit" value="修改"></td>
         </tr>
     </form>
