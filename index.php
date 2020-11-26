@@ -47,3 +47,4 @@ form {
 <input class="button" style="background-repeat:no-repeat; background-image:url('FastCarWord/fastCar.ico');" type="button" onclick="location.href='FastCarWord/index.php'" target="view_window" title="世界" value ="世界極速賽車">
 <input class="button" style="background-repeat:no-repeat; background-image:url('FastShipWord/fastCar.ico');" type="button" onclick="location.href='FastShipWord/index.php'" target="view_window" title="世界" value ="世界極速飛艇">
 <input class="button" style="background-repeat:no-repeat; background-image:url('BeijingCarWord/fastCar.ico');" type="button" onclick="location.href='BeijingCarWord/index.php'" target="view_window" title="世界" disabled value ="世界北京賽車-暫停">
+<input class="button" style="background-repeat:no-repeat;" type="button" onclick="location.href='BigData/view/index.php?hell=LuckyFerryIn168'" target="view_window" value ="數據分析">
