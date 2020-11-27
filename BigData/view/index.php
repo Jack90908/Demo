@@ -62,6 +62,7 @@ $index = $big_data->index();
             <table border=1 cellpadding=2 cellspacing=1 class="title-center resultTable">
                 <tr>
                     <td>最大連續藍字</td>
+                    <td>咬度</td>
                     <td>最大藍字加總分(單球無此加總分)</td>
                     <td>是否為單球</td>
                 </tr>
@@ -110,6 +111,7 @@ $index = $big_data->index();
                     one = (res.oneBall == true) ? '單球' : '非單球';
                     str = 
                     '<td>' + res.maxChange + '</td>' +
+                    '<td>' + res.maxBite + '</td>' +
                     '<td>' + res.maxPoints + '</td>' +
                     '<td>' + one + '</td>';
                     tbody.innerHTML = str;

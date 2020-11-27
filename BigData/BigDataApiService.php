@@ -82,7 +82,7 @@ class BigDataApiService extends BigDataConfig
         $bigRes = $this->model->fetch($getBig);
 
         // 如果原資料的最小值比 數據庫的最大值還大 代表有斷層則需要找資料庫 
-        if ($originRes['id'] > $bigRes['id']) {
+        if ($originRes == null || $originRes['id'] > $bigRes['id']) {
             return $bigRes;
         }
         return false;

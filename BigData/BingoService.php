@@ -19,6 +19,7 @@ class BingoService {
     private $bitRange = 2;
     private $maxChange = 0;
     private $maxPoints = 0;
+    private $maxBite = 0;
     public function __construct($data)
     {
         if (!empty($data)) $this->data = $data;
@@ -77,9 +78,9 @@ class BingoService {
             break;
         }
         if ($this->oneBallSel) {
-            return ['maxChange' => $this->maxChange, 'maxPoints' => 0, 'oneBall' => $this->oneBallSel];
+            return ['maxChange' => $this->maxChange, 'maxPoints' => 0, 'oneBall' => $this->oneBallSel, 'bite' => 0];
         }
-        return ['maxChange' => $this->maxChange, 'maxPoints' => $this->maxPoints, 'oneBall' => $this->oneBallSel];
+        return ['maxChange' => $this->maxChange, 'maxPoints' => $this->maxPoints, 'oneBall' => $this->oneBallSel, 'maxBite' => $this->maxBite];
 
     }
     private function threeAnal($setBall, $goBall = false, $act = 'three')
@@ -119,7 +120,7 @@ class BingoService {
                     if ($change == 0) $bite = 0;
                     #藍字加總分數(期數加總分數)
                     $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
-                    $this->maxChange($change, $points);
+                    $this->maxChange($change, $points, $bite);
                 }
             }
 
@@ -158,9 +159,11 @@ class BingoService {
                 $this->maxChange($change);
             } else {
                 $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
                 $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
-                $this->maxChange($change, $points);
+                $this->maxChange($change, $points, $bite);
             }
         }
     }
@@ -188,9 +191,11 @@ class BingoService {
                 $this->maxChange($change);
             } else {
                 $change = ($bingo[$period] <= $this->changeRange && $dK != $frist) ? $change + 1 : 0;
+                if ($bingo[$period] <= $this->bitRange && $dK != $frist) $bite ++;
+                if ($change == 0) $bite = 0;    
                 #藍字加總分數(期數加總分數)
                 $points = ($change > 0) ? $points + $bingo[$period] - 3 : 0;
-                $this->maxChange($change, $points);
+                $this->maxChange($change, $points, $bite);
             }
             unset($beforBall);
             foreach($rank as $num) {
@@ -199,12 +204,16 @@ class BingoService {
         }
     }
 
-    private function maxChange($change, $points = null) {
+    private function maxChange($change, $points = null, $bite = null) {
         if ($this->maxChange < $change) {
             $this->maxChange = $change;
         }
         if (!is_null($points) && $this->maxPoints < abs($points)) {
             $this->maxPoints = abs($points);
+        }
+
+        if (!is_null($points) && $this->maxBite < $bite) {
+            $this->maxBite = $bite;
         }
     }
 }
