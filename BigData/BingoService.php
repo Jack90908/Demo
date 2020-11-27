@@ -78,7 +78,7 @@ class BingoService {
             break;
         }
         if ($this->oneBallSel) {
-            return ['maxChange' => $this->maxChange, 'maxPoints' => 0, 'oneBall' => $this->oneBallSel, 'bite' => 0];
+            return ['maxChange' => $this->maxChange, 'maxPoints' => 0, 'oneBall' => $this->oneBallSel, 'maxBite' => 0];
         }
         return ['maxChange' => $this->maxChange, 'maxPoints' => $this->maxPoints, 'oneBall' => $this->oneBallSel, 'maxBite' => $this->maxBite];
 
