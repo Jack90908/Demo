@@ -63,10 +63,10 @@ class BigDataApiService extends BigDataConfig
         for ($i = $searchDay; $i >= 0; $i--) {
             $date = date('Y-m-d',strtotime("-{$i} day"));
             $url = self::PATH . 'date=' . $date . '&lotCode=' . self::LOTCODE[$this->type];
-            // $getData->setUrlAndDb($url, $this->table);
-            // if ($getData->curl_get()) {
-            //     $getData->fastCarSOP();
-            // }
+            $getData->setUrlAndDb($url, $this->table);
+            if ($getData->curl_get()) {
+                $getData->fastCarSOP();
+            }
         }
     }
 
