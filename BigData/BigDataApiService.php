@@ -127,7 +127,6 @@ class BigDataApiService extends BigDataConfig
 
         $getData = $this->model->get($this->table);
         $dataRes = $this->model->fetchAll($getData);
-        krsort($dataRes);
         $bingo = new \BingoService($dataRes);
         return $bingo->analysis($act, $setRes, $configRes);
     }
